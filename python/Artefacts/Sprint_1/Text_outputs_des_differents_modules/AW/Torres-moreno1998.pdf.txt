@@ -1,0 +1,202 @@
+﻿ 
+Evaluation Only. Created with Aspose.Words. Copyright 2003-2023 Aspose Pty Ltd.
+LETTER  Communicated by Scott Fahlman
+EfficientAdaptive Learning for ClassificationTasks with Binary Units
+J. Manuel Torres Moreno Mirta B. Gordon
+Departement´ de Recherche Fondamentale sur la Matier` e Condensee,´ CEA Grenoble, 38054 Grenoble Cedex 9, France
+This article presents a new incremental learning algorithm for classi- fication tasks, called NetLines, which is well adapted for both binary and real-valued input patterns. It generates small, compact feedforward neuralnetworkswithonehiddenlayerofbinaryunitsandbinaryoutput units. A convergence theorem ensures that solutions with a finite num- ber of hidden units exist for both binary and real-valued input patterns. An implementation for problems with more than two classes, valid for any binary classifier, is proposed. The generalization error and the size of the resulting networks are compared to the best published resultsonwell-knownclassificationbenchmarks.Earlystoppingisshown to decrease overfitting, without improving the generalization perfor- mance.
+1 Introduction 
+Feedforward neural networks have been successfully applied to the prob- lemoflearningpatternclassificationfromexamples.Therelationshipofthe numberofweightstothelearningcapacityandthenetwork’sgeneralization ability is well understood only for the simple perceptron, a single binary unitwhoseoutputisasigmoidalfunctionoftheweightedsumofitsinputs. In this case, efficientlearning algorithms based on theoretical results allow thedeterminationoftheoptimalweights.However,simpleperceptronscan generalize only those (very few) problems in which the input patterns are linearlyseparable(LS).Inmanyactualclassificationtasks,multilayeredper- ceptrons with hidden units are needed. However, neither the architecture (number of units, number of layers) nor the functions that hidden units havetolearnareknownapriori,andthetheoreticalunderstandingofthese networks is not enough to provide useful hints.
+Although pattern classificationis an intrinsically discrete task, it may be cast as a problem of function approximation or regression by assigning real values to the targets. This is the approach used by backpropagation and
+Neural Computation 10, 1007–1030 (1998) c 1998 Massachusetts Institute of Technology
+
+Created with an evaluation copy of Aspose.Words. To discover the full versions of our APIs please visit: https://products.aspose.com/words/
+ 
+ 
+ClassificationTasks with Binary Units 1021
+related algorithms, which minimize the squared training error of the out- put units. The approximating function must be highly nonlinear because it has to fit a constant value inside the domains of each class and present a large variation at the boundaries between classes. For example, in a binary classification task in which the two classes are coded as + 1 and − 1, the approximating function must be constant and positive in the input space regions or domains corresponding to class 1 and constant and negative for those of class − 1. The network’s weights are trained to fit this function everywhere—inparticular,insidetheclassdomains—insteadofconcentrat- ing on the relevant problem of the determination of the frontiers between classes. Because the number of parameters needed for the fit is not known a priori, it is tempting to train a large number of weights that can span, at leastinprinciple,alargesetoffunctionsexpectedtocontainthe“true”one. This introduces a small bias (Geman, Bienenstock, & Doursat, 1992), but leaves us with the difficultproblem of minimizing a cost function in a high- dimensional space, with the risk that the algorithm gets stuck in spurious local minima, whose number grows with the number of weights. In prac- tice, the best generalizer is determined through a trial-and-error process in which both the numbers of neurons and weights are varied.
+Analternativeapproachisprovidedbyincremental,adaptive,orgrowth algorithms,inwhichthehiddenunitsaresuccessivelyaddedtothenetwork. One advantage is fast learning, not only because the problem is reduced to training simple perceptrons but also because adaptive procedures do not needthetrial-and-errorsearchforthemostconvenientarchitecture.Growth algorithmsallowtheuseofbinaryhiddenneurons,wellsuitedforbuilding hardware-dedicateddevices.Eachbinaryunitdeterminesadomainbound- ary in input space. Patterns lying on either side of the boundary are given differenthiddenstates.Thus,allthepatternsinsideadomainininputspace aremappedtothesameinternalrepresentation(IR).Thisbinaryencodingis differentforeachdomain.Theoutputunitperformsalogic(binary)function of these IRs, a feature that may be useful for rule extraction. Because there
+is not a unique way of associating IRs to the input patterns, different incre- mental learning algorithms propose different targets to be learned by the appendedhiddenneurons.Thisisnottheonlydifference.Severalheuristics exist that generate fully connected feedforward networks with one or more layers, and treelike architectures with different types of neurons (linear, ra- dial basis functions). Most of these algorithms are not optimal with respect to the number of weights or hidden units. Indeed, growth algorithms have oftenbeencriticizedbecausetheymaygeneratenetworksthataretoolarge, generally believed to be poor generalizers because of overfitting.
+This article presents a new incremental learning algorithm for binary classification tasks that generates small feedforward networks. These net- works have a single hidden layer of binary neurons fully connected to the inputs and a single output neuron connected to the hidden units. We call it NetLines, for Neural Encoder Through Linear Separations. During the learning process, the targets that each appended hidden unit has to learn help to decrease the number of classification errors of the output neuron. The crucial test for any learning algorithm is the generalization ability of theresultingnetwork.ItturnsoutthatthenetworksbuiltwithNetLinesare generally smaller and generalize better than the best networks found so far on well-known benchmarks. Thus, large networks do not necessarily fol- low from growth heuristics. On the other hand, although smaller networks may be generated with NetLines through early stopping, we found that they do not generalize better than the networks that were trained until the number of training errors vanished. Thus, overfitting does not necessarily spoilthenetwork’sperformance.Thissurprisingresultisingoodagreement with recent work on the bias-variance dilemma (Friedman, 1996) showing that, unlike in regression problems where bias and variance compete in the determination of the optimal generalizer, in the case of classification they combine in a highly nonlinear way.
+Although NetLines creates networks for two-class problems, multiclass problemsmaybesolvedusinganystrategythatcombinesbinaryclassifiers, like winner-takes-all. We propose a more involved approach, through the construction of a tree of networks, that may be coupled with any binary classifier.
+NetLines is an efficient approach for creating small, compact classifiers forproblemswithbinaryorcontinuousinputs.Itisbestsuitedforproblems requiring a discrete classificationdecision. Although it may estimate poste- riorprobabilities,asdiscussedinsection2.6,thisrequiresmoreinformation than the bare network’s output. Another weakness of NetLines is that it is not simple to retrain the network when new patterns are available or class priors change over time.
+In section 2, we give the basic definitionsand present a simple example ofourstrategy,followedbytheformalpresentationofthegrowthheuristics and the perceptron learning algorithm used to train the individual units. In section 3 we compare NetLines to other growth strategies. The construc- tion of trees of networks for multiclass problems is presented in section 4. A comparison of the generalization error and the network’s size, with re- sultsobtainedwithotherlearningprocedures,ispresentedinsection5.The conclusions are set out in section 6.
+2 The Incremental Learning Strategy 
+2.1 Definitions. We are given a training set of P input-output examples
+{ξ  µ;τ µ}, where µ = 1; 2;:::; P. The inputs ξ  µ = .1;ξµ;ξµ;:::;ξ µ/ may be binaryorrealvalued N+ 1dimensionalvectors.Thefirst1component2 N ξµ ≡ 1,
+0
+the same for all the patterns, allows us to treat the bias as a supplementary weight. The outputs are binary, τµ = ± 1. These patterns are used to learn
+the classification task with the growth algorithm. Assume that, at a given stage of the learning process, the network already has h binary neurons in the hidden layer. These neurons are connected to the N + 1 input units through synaptic weights w  k = .wk0; wk1 ···wkN/, 1 ≤ k ≤ h, wk0 being the bias.
+Then, given an input pattern ξ  , the states σk of the hidden neurons (1 ≤ k ≤ h) given by
+N
+σk = sign wkiξi ≡ sign.w  k ·ξ  / (2.1)
+i= 0
+definethe pattern’s h-dimensional IR, σ  .h/ = .1;σ1;:::;σh/. The network’s output ζ.h/ is:
+ζ.h/ = sign h W σk ≡ sign W  .h/ ·σ  .h/ (2.2)
+k
+k= 0
+where W  .h/ = .W0; W1;:::; Wh are the output unit weights. Hereafter,
+σ  µ.h/ = .1;σ µ;:::;σ µ/ is the h-dimensional IR associated by the network
+1 h
+of h hidden units to pattern ξ  µ. During the training process, h increases through the addition of hidden neurons, and we denote the final number of hidden units as H.
+2.2 Example. We first describe the general strategy on a schematic ex-
+ample (see Figure 1). Patterns in the gray region belong to class τ = + 1, the others to τ = − 1. The algorithm proceeds as follows. A first hidden unit
+is trained to separate the input patterns at best and finds one solution, say w  1, represented on Figure 1 by the line labeled 1, with the arrow pointing into the positive half-space. Because training errors remain, a second hid- den neuron is introduced. It is trained to learn targets τ2 = + 1 for patterns well classified by the first neuron and τ2 = − 1 for the others (the opposite convention could be adopted, both being strictly equivalent), and suppose that solution w  2 is found. Then an output unit is connected to the two hid-
+den neurons and is trained with the original targets. Clearly it will fail to separate all the patterns correctly because the IR .− 1; 1/ and .+− / are not faithful, as patterns of both classes are mapped onto them. The output neu- ronisdropped,andathirdhiddenunitisappendedandtrainedwithtargets
+τ3 = + 1forpatternsthatwerecorrectlyclassifiedbytheoutputneuronand τ3 = − 1 for the others. Solution w  3 is found, and it is easy to see that now the IRs are faithful, that is, patterns belonging to different classes are given different IRs. The algorithm converged with three hidden units that define three domain boundaries determining six regions or domains in the input space. It is straightforward to verify that the IRs corresponding to each do- main on Figure 1 are linearly separable. Thus, the output unit will findthe correct solution to the training problem. If the faithful IRs were not linearly separable,theoutputunitwouldnotfindasolutionwithouttrainingerrors,
+and the algorithm would go on appending hidden units that should learn
+3
+- + + 
+- + -
+1
++ + - + + +
++ - - 2
++ - +
+Figure 1: Patterns inside the gray region belong to one class, those in the white regiontotheother.Thelines(labeled1,2,and3)representthehyperplanesfound with the NetLines strategy. The arrows point into the correspondent positive half-spaces. The IRs of each domain are indicated (the firstcomponent, σ0 = 1, is omitted for clarity).
+targets τ = 1 for well-learned patterns, and τ = − 1 for the others. A proof that a solution to this strategy with a finitenumber of hidden units exists is left to the appendix.
+2.3 The Algorithm NetLines. Like most other adaptive learning algo-
+rithms, NetLines combines a growth heuristics with a particular learning algorithm for training the individual units, which are simple perceptrons. In this section, we present the growth heuristics first, followed by the de- scription of Minimerror, our perceptron learning algorithm.
+We firstintroduce the following useful remark: if a neuron has to learn a target τ, and the learned state turns out to be σ, then the product στ = 1 if the target has been correctly learned, and στ = − 1 otherwise.
+Givenamaximalacceptednumberofhiddenunits, Hmax,andamaximal number of tolerated training errors, Emax, the Netlines algorithm may be summarized as follows:
+Algorithm.
+• Initialize
+h = 0;
+set the targets τhµ+ 1 = τµ for µ = 1;:::; P;
+• Repeat
+1. /* train the hidden units */
+h = h + 1; /* connect hidden unit h to the inputs */ learn the training set {ξ  µ;τ µ}, µ = 1;:::; P;
+after learning, σµ = sign.w  h ·ξ  µ/, µ = 1;:::; P;
+h h
+if h = 1 /* for the firsthidden neuron */
+if σµ = τ1µ ∀µ then stop. /* the training set is LS */;
+1
+else set τµ = σµτµ for µ = 1;:::; P; go to 1;
+h+ 1 h
+end if
+2. /* learn the mapping between the IRs and the outputs */ connect the output neuron to the h trained hidden units; learn the training set {σ  µ.h/;τ µ}; µ = 1;:::; P;
+after learning, ζµ.h/ = sign W  .h/ ·σ  µ , µ = 1;:::; P;
+µ µ µ
+setcountτh+the1 =numberζ τ forof µtraining= 1;:::;err P;ors e = .1 − τhµ+ 1/=2;
+µ
+• Until .h = Hmax or e ≤ Emax/;
+Thegeneratednetworkhas H = hhiddenunits.Intheappendixwepresent a solution to the learning strategy with a bounded number of hidden units. In practice, the algorithm ends up with much smaller networks than this upper bound, as will be shown in section 5.
+2.4 The Perceptron Learning Algorithm. The final number of hidden
+neurons, which are simple perceptrons, depends on the performance of the learning algorithm used to train them. The best solution should minimize thenumberoferrors.IfthetrainingsetisLS,itshouldendowtheunitswith thelowestgeneralizationerror.OurincrementalalgorithmusesMinimerror (Gordon & Berchier, 1993) to train the hidden and output units. Minimer- ror is based on the minimization of a cost function E that depends on the perceptron weights w  through the stabilities of the training patterns. If the input vector is ξ  µ and τµ the corresponding target, then the stability γ µ of
+pattern µ is a continuous and derivable function of the weights, given by:
+w  ·ξ  µ
+γ µ = τµ ; (2.3)
+  w  
+√ 
+where  w   = w  ·w  .Thestabilityisindependentofthenormoftheweights   w   . It measures the distance of the pattern to the separating hyperplane, which is normal to w  ; it is positive if the pattern is well classified,negative
+otherwise. The cost function E is:
+1  P γ µ
+E = 1 − tanh : (2.4)
+2 2T
+µ= 1
+The contribution to E of patterns with large negative stabilities is  1, that is, they are counted as errors, whereas the contribution of patterns with large, positive stabilities is vanishingly small. Patterns at both sides of the hyperplane within a window of width ≈ 4T contribute to the cost function even if they have positive stability.
+The properties of the global minimum of equation 2.4 have been studied theoretically with methods of statistical mechanics (Gordon & Grempel, 1995). It was shown that in the limit T → 0, the minimum of E corresponds to the weights that minimize the number of training errors. If the training setisLS,theseweightsarenotunique(Gyorgyi&Tishby,1990).Inthatcase,
+there is an optimal learning temperature such that the weights minimizing E at that temperature endow the perceptron with a generalization error numerically indistinguishable from the optimal (Bayesian) value.
+The algorithm Minimerror (Gordon & Berchier, 1993; Raffin & Gordon, 1995)implementsaminimizationof Erestrictedtoasubspaceofnormalized weights, through a gradient descent combined with a slow decrease of the      temperature T, which is equivalentto a deterministic annealing.It has been   shown that the convergence is faster if patterns with negative stabilities are      considered at a temperature T− larger than those with positive stabilities,
+T+ , with a constant ratio θ = T− =T+ . The weights and the temperatures are iteratively updated through:
+τµξ  µ τµξ  µ
+δw  .t/ =  + (2.5) µ=γ µ≤0 cosh 2.γ µ=2T− / µ=γ µ> 0 cosh 2.γ µ=2T+ /
+T+− 1.t + 1/ = T+− 1.t/ + δT− 1; T− = θT+ ; (2.6)
+w  .t/ + δw  .t/
+w  .t + 1/ = N + 1 : (2.7)
+  w  .t/ + δw  .t/ 
+Notice from equation 2.5 that only the incorrectly learned patterns at dis- tancesshorterthan ≈ 2T− fromthehyperplane,andthosecorrectlylearned lying closer than ≈ 2T+ , contribute effectively to learning. The contribu- tion of patterns outside this region is vanishingly small. By decreasing the temperature, the algorithm selects to learn patterns increasingly localized
+in the neighborhood of the hyperplane, allowing for a highly precise de- termination of the parameters definingthe hyperplane, which are the neu-
+ron’s weights.√ Normalization 2.7 restricts the search to the subspace with   w   = N + 1.
+Theonlyadjustableparametersofthealgorithmarethetemperatureratio
+− 1
+θ = T− =T+ , the learning rate  , and the annealing rate δT . In principle,
+w˜ = N + 1 wi=1 i ; (2.12)
+they should be adapted to each √specific problem. However, as a result of ournormalizingtheweightsto N + 1andtodatastandardization(seethe
+nextsection),alltheproblemsarebroughttothesamescale,simplifyingthe choice of the parameters.
+2.5 Data Standardization. Instead of determining the best parameters
+for each new problem, we standardize the input patterns of the training set through a linear transformation, applied to each component:
+ξµ −  ξi 
+ξ˜iµ =  w0 − N wj ξj =1 j 2 + N .wj=1 j/2
+j= 1 j= 1
+so that the normalization (see equation 2.8) is completely transparent to the user: with the transformed weights (see equations 2.11 and 2.12), the neural classifier is applied to the data in the original user’s units, which do not need to be renormalized.
+As a consequence of the weights scaling (see equation 2.7) and the in-
+puts standardization (see equation 2.8), all the problems are automatically rescaled. This allows us to use always the same values of Minimerror’s pa- rameters: the standard values  = 0:02, δT− 1 = 10− 3, and θ = 6. They were usedthroughoutthisarticle,thereportedresultsbeinghighlyinsensitiveto slight variations of them. However, in some extremely difficult cases, like learning the parity in dimensions N > 10 and findingthe separation of the sonar signals (see section 5), larger values of θ were needed.
+ ; 1 ≤ i ≤ N: (2.8)
+1 i
+The mean ξi  and the variance 2i , definedas usual,
+1  P µ
+ ξi  = P ξi (2.9)
+µ= 1
+1 i2 = P .ξi −  ξi /2 = 1 P .ξiµ/2 − . ξi /2; (2.10)
+1 P µ
+P
+µ= 1 µ= 1
+need only a single pass of the P training patterns to be determined. After learning, the inverse transformation is applied to the weights,
+N
+w0 − wi ξi =1 i
+w˜ 0 = N + 1 i= 1 (2.11)
+2
+w0 − N wj ξj =1 j + N .wj=1 j/2
+j= 1 j= 1
+2.6 Interpretation. Ithasbeenshown(Gordon,Peretto,&Berchier,1993)
+that the contribution of each pattern to the cost function of Minimerror, [1− tanh .γ µ=2T/]=2, may be interpreted as the probability of misclassifica-
+tion at the temperature T at which the minimum of the cost function has beendetermined.Byanalogy,theneuron’spredictiononanewinput ξ  may
+be given a confidence measure by replacing the (unknown) pattern stabil-
+ity by its absolute value  γ  =  w  · ξ   =  w   , which is its distance to the hyperplane. This interpretation of the sigmoidal function tanh .  γ  =2T/ as the confidenceon the neuron’s output is similar to the one proposed earlier (Goodman, Smyth, Higgins, & Miller, 1992) within an approach based on information theory.
+Thegeneralizationoftheseideastomultilayerednetworksisnotstraight- forward. An estimate of the confidence on the classification by the output neuron should include the magnitude of the weighted sums of the hidden neurons, as they measure the distances of the input pattern to the domain boundaries.However,shortdistancestotheseparatinghyperplanesarenot always correlated to low confidenceon the network’s output. For an exam- ple, we refer again to Figure 1. Consider a pattern lying close to hyperplane 1. A small, weighted sum on neuron 1 may cast doubt on the classification if the pattern’s IR is ( −++ ) but not if it is ( −+− ), because a change of the sign of the weighted sum in the latter case will map the pattern to the IR (+ + − ) which, being another IR of the same class, will be given the same output by the network. It is worth noting that the same difficultyis met by the interpretation of the outputs of multilayered perceptrons, trained with backpropagation,asposteriorprobabilities.Wedonotexplorethisproblem any further because it is beyond the scope of this article.
+3 Comparison with Other Strategies 
+There are few learning algorithms for neural networks composed of binary units. To our knowledge, all of them are incremental. In this section, we give a short overview of some of them, in order to put forward the main differences with NetLines. We discuss the growth heuristics and then the individual unit training algorithms.
+The Tiling algorithm (Mezar´ d & Nadal, 1989) introduces hidden layers, oneaftertheother.ThefirstneuronofeachlayeristrainedtolearnanIRthat helpstodecreasethenumberoftrainingerrors;supplementaryhiddenunits are then appended to the layer until the IRs of all the patterns in the train- ing set are faithful. This procedure may generate very large networks. The Upstart algorithm (Frean, 1990) introduces successive couples of daughter hidden units between the input layer and the previously included hidden units, which become their parents. The daughters are trained to correct the parents’ classificationerrors, one daughter for each class. The obtained network has a treelike architecture. There are two different algorithms im- plementing the Tilinglike Learning in the Parity Machine (Biehl & Opper,
+1991), Offset (Martinez & Esteve,` 1992), and MonoPlane (Torres Moreno & Gordon, 1995). In both, each appended unit is trained to correct the errors of the previously included unit in the same hidden layer, a procedure that hasbeenshowntogenerateaparitymachine:theclassoftheinputpatterns is the parity of the learned IRs. Unlike Offset, which implements the parity through a second hidden layer that needs to be pruned, MonoPlane goes on adding hidden units (if necessary) in the same hidden layer until the number of training errors at the output vanishes. Convergence proofs for binary input patterns have been produced for all these algorithms. In the case of real-valued input patterns, a solution to the parity machine with a bounded number of hidden units also exists (Gordon, 1996).
+The rationale behind the construction of the parity machine is that it is not worth training the output unit before all the training errors of the hidden units have been corrected. However, Marchand, Golea, and Rujan´ (1990) pointed out that it is not necessary to correct all the errors of the successively trained hidden units. It is sufficientthat the IRs be faithful and LS. If the output unit is trained immediately after each appended hidden unit, the network may discover that the IRs are already faithful and stop adding units. This may be seen in Figure 1. None of the parity machine implementationswouldfindthesolutionrepresentedonthefigure,because each of the three perceptrons systematically unlearns part of the patterns learned by the preceding one.
+To our knowledge, Sequential Learning (Marchand et al., 1990) is the only incremental learning algorithm that might find a solution equivalent (although not the same) to the one of Figure 1. In this algorithm, the first unit is trained to separate the training set keeping one “pure” half-space— containing patterns of only one class. Wrongly classified patterns, if any, must all lie in the other half-space. Each appended neuron is trained to separate wrongly classifiedpatterns with this constraint of always keeping onepure,error-freehalf-space.Thus,neuronsmustbeappendedinaprecise order,makingthealgorithmdifficulttoimplementinpractice.Forexample, Sequential LearningappliedtotheproblemofFigure1needstoimposethat the first unit finds the weights w  3, the only solution satisfying the purity restriction.
+Otherproposedincrementallearningalgorithmsstrivetosolvetheprob- lemwithdifferentarchitectures,and/orwithrealvaluedunits.Forexample, in the algorithm Cascade Correlation (Fahlman & Lebiere, 1990), each ap- pendedunitisselectedamongapoolofseveralreal-valuedneurons,trained tolearnthecorrelationbetweenthetargetsandthetrainingerrors.Theunit is then connected to the input units and to all the other hidden neurons already included in the network.
+Anotherapproachtolearningclassificationtasksisthroughtheconstruc- tionofdecisiontrees(Breiman,Friedman,Olshen,&Stone,1984),whichhi- erarchically partition the input space through successive dichotomies. The neuralnetworksimplementationsgeneratetreelikearchitectures.Eachneu- ron of the tree introduces a dichotomy of the input space, which is treated separately by the children nodes, which eventually produce new splits. Be- sides the weights, the resulting networks need to store the decision path. The proposed heuristics (Sirat & Nadal, 1990; Farrell & Mammone, 1994; Knerr,Personnaz,&Dreyfus,1990)differinthealgorithmusedtotraineach node and/or in the stopping criterion. In particular, Neural-Trees (Sirat & Nadal, 1990) may be regarded as a generalization of Classificationand Re- gression Trees (CART) (Breiman et al., 1984) in which the hyperplanes are notconstrainedtobeperpendiculartothecoordinateaxis.Theheuristicsof the Modified Neural Tree Network (MNTN) (Farrell & Mammone, 1994), similar to Neural-Trees, includes a criterion of early stopping based on a confidencemeasureofthepartition.AsNetLinesconsidersthewholeinput space to train each hidden unit, it generates domain boundaries that may greatly differ from the splits produced by trees. We are not aware of any systematic study or theoretical comparison of both approaches.
+Otheralgorithms,likeRestrictedCoulombEnergy(RCE)(Reilly,Cooper,
+& Elbaum, 1982), Grow and Learn (GAL) (Alpaydin, 1990), Glocal (Depe- nau, 1995), and Growing Cells (Fritzke, 1994), propose to cover or mask the input space with hyperspheres of adaptive size containing patterns of the sameclass.Theseapproachesgenerallyendupwithaverylargenumberof units. Covering Regions by the LP Method (Mukhopadhyay, Roy, Kim, & Govil,1993)isatrial-and-errorproceduredevisedtoselectthemostefficient masks among hyperplanes, hyperspheres, and hyperellipsoids. The mask’s parameters are determined through linear programming.
+Many incremental strategies use the Pocket algorithm (Gallant, 1986) to train the appended units. Its main drawback is that it has no natural stopping condition, which is left to the user’s patience. The proposed alter- native algorithms (Frean, 1992; Bottou & Vapnik, 1992) are not guaranteed to findthe best solution to the problem of learning. The algorithm used by the MNTN (Farrell & Mammone, 1994) and the ITRULE (Goodman et al., 1992) minimize cost functions similar to equation 2.4, but using different misclassification measures at the place of our stability (see equation 2.3). The essential difference with Minimerror is that none of these algorithms is able to control which patterns contribute to learning, as Minimerror does with the temperature.
+4 Generalization to Multiclass Problems 
+The usual way to cope with problems having more than two classes is to generate as many networks as classes. Each network is trained to separate patternsofoneclassfromalltheothers,andawinner-takes-all(WTA)strat- egybasedonthevalueoftheoutput’sweightedsuminequation2.2isused todecidetheclassifmorethanonenetworkrecognizestheinputpattern.In our case, because we use normalized weights, the output’s weighted sum is merely the distance of the IR to the separating hyperplane. All the pat- terns mapped to the same IR are given the same output’s weighted sum, independent of the relative position of the pattern in input space. A strong weightedsumontheoutputneuronisnotinconsistentwithsmallweighted sumsonthehiddenneurons.Therefore,anaiveWTAdecisionmaynotgive good results, as shown in the example in section 5.3.1.
+We now describe an implementation for the multiclass problem that re- sultsinatreelikearchitectureofnetworks.Itismoreinvolvedthanthenaive WTA and may be applied to any binary classifier. Suppose that we have a problem with C classes. We must choose in which order the classes will
+be learned, say .c1; c2;:::; cC/. This order constitutes a particular learning sequence. Given a particular learning sequence, a first network is trained to separate class c1, which is given output target τ1 = + 1, from the others (which are given targets τ1 = − 1). The opposite convention is equivalent and could equally be used. After training, all the patterns of class c1 are eliminatedfromthetrainingset,andwegenerateasecondnetworktrained to separate patterns of class c2 from the remaining classes. The procedure, reiterated with training sets of decreasing size, generates C − 1 hierarchi- cally organized tree of networks (TON): the outputs are ordered sequences
+ζ  = .ζ1;ζ2;:::;ζC− 1/. The predicted class of a pattern is ci, where i is the firstnetwork in the sequence having an output + 1 (ζi = + 1 and ζj = − 1 for j < i), the outputs of the networks with j > i being irrelevant.
+The performance of the TON may depend on the chosen learning se-      quence. Therefore, it is convenient that an odd number of TONs, trained      with different learning sequences, compete through a vote. We verifiedem-       pirically, as is shown in section 5.3, that this vote improves the results ob-      tained with each of the individual TONs participating in the vote. Notice       that our procedure is different from bagging (Breiman, 1994); all the net-     works of the TON are trained with the same training set, without the need
+of any resampling procedure.
+5 Applications 
+Althoughconvergenceproofsoflearningalgorithmsaresatisfactoryonthe- oretical grounds, they are not a guarantee of good generalization. In fact, they demonstrate only that correct learning is possible; they do not address the problem of generalization. This last issue still remains quite empirical (Vapnik, 1992; Geman et al., 1992; Friedman, 1996), and the generalization performanceoflearningalgorithmsisusuallytestedonwell-knownbench- marks (Prechelt, 1994).
+We firsttested the algorithm on learning the parity function of N bits for 2 ≤ N ≤ 11.Itiswellknownthatthesmallestnetworkwiththearchitecture considered here needs H = N hidden neurons. The optimal architecture was found in all the cases. Although this is quite an unusual performance, the parity is not a representative problem: learning is exhaustive, and gen- eralization cannot be tested. Another test, the classificationof sonar signals
+(Gorman&Sejnowski,1988),revealedthequalityofMinimerror,asitsolved
+the problem without hidden units. In fact, we found that not only the train- ing set of this benchmark is linearly separable, a result already reported (Hoehfeld & Fahlman, 1991; Roy, Kim, & Mukhopadhyay, 1993), but that
+the complete database—the training and the test sets together—is also lin- early separable (Torres Moreno & Gordon, 1998).
+Wenextpresentourresults,generalizationerror gandnumberofweights, onseveralbenchmarkscorrespondingtodifferentkindsofproblems:binary classification of binary input patterns, binary classification of real-valued input patterns, and multiclass problems. These benchmarks were chosen because they have already served as a test for many other algorithms, pro- viding us with unbiased results for comparison. The generalization error
+g of NetLines was estimated as usual, through the fraction of misclassified patterns on a test set of data.
+Theresultsarereportedasafunctionofthetrainingsetssizes Pwhenever these sizes are not specified by the benchmark. Besides the generalization error  g, averaged over a (specified)number of classifierstrained with ran- domly selected training sets, we also present the number of weights of the corresponding networks which is a measure of the classifier’s complexity, as it corresponds to the number of its parameters.
+Training times are usually cited among the characteristics of the training algorithms. Only the numbers of epochs used by backpropagation on two ofthestudiedbenchmarkshavebeenpublished;werestrictthecomparison to these cases. As NetLines updates only N weights per epoch, whereas backpropagation updates all the network’s weights, we compare the total number of weights updates. They are of the same order of magnitude for both algorithms. However, these comparisons should be taken with cau- tion. NetLines is a deterministic algorithm; it learns the architecture and the weights through a single run, whereas with backpropagation several architectures must be previously investigated, and this time is not included in the training time.
+Thefollowingnotationisused: Disthetotalnumberofavailablepatterns,
+P the number of training patterns, and G the number of test patterns.
+5.1 Binary Inputs. The case of binary input patterns has the property,
+not shared by real-valued inputs, that every pattern may be separated from theothersbyasinglehyperplane.Thissolution,usuallycalled grandmother, needsasmanyhiddenunitsaspatternsinthetrainingset.Infact,theconver- genceproofsforincrementalalgorithmsinthecaseofbinaryinputpatterns
+are based on this property.
+5.1.1 Monk’s Problem. This benchmark, thoroughly studied with many
+different learning algorithms (Trhun et al., 1991), contains three distinct problems. Each has an underlying logical proposition that depends on six discrete variables, coded with N = 17 binary numbers. The total number of
+possibleinputpatternsis D = 432,andthetargetscorrespondtothetruthta- ble of the corresponding proposition. Both NetLines and MonoPlane found the underlying logical proposition of the first two problems; they general- ized correctly, giving g = 0. In fact, these are easy problems: all the neural network–based algorithms, and some nonneural learning algorithms were reported to generalize them correctly. In the third Monk’s problem, 6 pat- terns among the P3 = 122 examples are given wrong targets. The general- ization error is calculated over the complete set of D = 432 patterns, that is, including the training patterns, but in the test set all the patterns are given the correct targets. Thus, any training method that learns the training set correctly will make at least 1 :4% of generalization errors. Four algorithms speciallyadaptedtonoisyproblemswerereportedtoreach g = 0.However, none of them generalizes correctly the two other (noiseless) Monk’s prob- lems. Besides them, the best performance, g = 0:0277, which corresponds to 12 misclassified patterns, is reached only by neural networks methods: backpropagation, backpropagation with weight decay, cascade correlation, and NetLines. The number of hidden units generated with NetLines (58 weights) is intermediate between backpropagation with weight decay (39) and cascade correlation (75) or backpropagation (77). MonoPlane reached a slightly worse performance ( g = 0:0416, or 18 misclassifiedpatterns) with the same number of weights as NetLines, showing that the parity machine encoding may not be optimal.
+5.1.2 Two or More Clumps. In this problem (Denker et al., 1987) the net-
+workhastodiscriminateifthenumberofclumpsinaringof N bitsisstrictly smaller than 2 or not. One clump is a sequence of identical bits bounded by bits of the other kind. The patterns are generated through a Monte Carlo method in which the mean number of clumps is controlled by a parameter k (Mezar´ d & Nadal, 1989). We generated training sets of P patterns with k = 3, corresponding to a mean number of clumps of ≈ 1:5, for rings of N = 10 and N = 25 bits. The generalization error corresponding to sev- eral learning algorithms, estimated with independently generated testing sets of the same sizes as the training sets, G = P, are displayed in Figure 2 as a function of P. Points with error bars correspond to averages over 25 independent training sets. Points without error bars correspond to best re- sults. NetLines, MonoPlane, and Upstart for N = 25 have nearly the same performances when trained to reach error-free learning.
+WetestedtheeffectofearlystoppingbyimposingonNetLinesamaximal numberoftwohiddenunits( H = 2).Theresidualtrainingerror t isplotted on Figure 2, as a function of P. Note that early stopping does not help to de- crease  g.Overfitting,whichariseswhenNetLinesisapplieduntilerror-free training is reached, does not degrade the network’s generalization perfor- mance. This behavior is very different from the one of networks trained
+with backpropagation. The latter reduces classificationlearning to a regres- sion problem, in which the generalization error can be decomposed in two
+ 
+• RU PRUH FOXPSV  RU PRUH FOXPSV
+%DFNSURS 1  7LOLQJ*URZWK1   6WHSZLVH
+
+e
+J
+0RQR3ODQH 1HW/LQHV 
++ 
+ 1HW/LQHV8SVWDUW
+
+1HW/LQHV
+1HW/LQHVe
+W
+This document was truncated here because it was created in the Evaluation Mode.
+Created with an evaluation copy of Aspose.Words. To discover the full versions of our APIs please visit: https://products.aspose.com/words/
+ 
