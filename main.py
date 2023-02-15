@@ -1,5 +1,5 @@
 #-----------------Modules distribués-----------------
-#loool
+#lel
 import sys
 from time import sleep
 import glob, os
