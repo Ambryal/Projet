@@ -164,7 +164,7 @@ Strategy Word Class Error Rate Coverage
 WSJ Brown WSJ Brown
 
 Created with an evaluation copy of Aspose.Words. To discover the full versions of our APIs please visit: https://products.aspose.com/words/
-301
+303
 Mikheev Periods, Capitalized Words, etc.
 A Sequence strategy
 Sequence strategy
@@ -194,4 +194,4 @@ The frequent-list lookup strategy applies lookup of ambiguously capitalized word
 Note, however, that this strategy is applied after the sequence strategy and thus, a word listed in one of the lists will not necessarily be marked according to its list class. The list lookup assignment is applied only to the ambiguously capitalized words that have not been handled by the sequence strategy.
 This document was truncated here because it was created in the Evaluation Mode.
 Created with an evaluation copy of Aspose.Words. To discover the full versions of our APIs please visit: https://products.aspose.com/words/
-303
+

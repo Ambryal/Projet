@@ -16,4 +16,4 @@ class Text:
   def save(self, path):
     file = open (path, 'w', encoding="utf8")
     file.write(self.raw)
-    
+

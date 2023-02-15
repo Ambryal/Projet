@@ -200,4 +200,4 @@ mary of the same document." This assertion was not being taken into account by p
 Mani and Bloedorn (1997) describe an information extraction framework for sum- marization, a graph-based method to nd similarities and dissimilarities in pairs
 This document was truncated here because it was created in the Evaluation Mode.
 Created with an evaluation copy of Aspose.Words. To discover the full versions of our APIs please visit: https://products.aspose.com/words/
-16
+17
