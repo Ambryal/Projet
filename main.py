@@ -17,7 +17,7 @@ from text import Text
 
 #-----------------Données statiques-----------------
 
-CURRENT_PDF_DIRECTORY = "PDF/Corpus_2021"
+CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
 
 
 #-----------------Variables globales-----------------
@@ -53,6 +53,20 @@ def test_converters_speed(path):
             converter(file).save(folder+"/"+file.name+".txt")
         print("Total time : ",int(now()-time),"s\n")
 
+#Fonction répondant au Sprint2
+#Elle est assez bricolée et n'est ici que pour être fonctionelle
+#Le projet sera refondu complètement
+def sprint2(path):
+    try:
+        shutil.rmtree(path)
+    except:
+        pass
+    os.mkdir(path)
+    print(PDF)
+    for file in PDF:
+        READER.AW(file).saveSprint2(path,file.name)
+        
+
 
 #-----------------Fonctions de Display-----------------
 
@@ -63,26 +77,7 @@ def test_converters_speed(path):
 
 #test_converters_speed("Artefacts/Sprint_1/Text_outputs_des_differents_modules")
 
-def alone(s):
-    for i in tx:
-        if i.count(s)>0:
-            return False
-    return True
-print(PDF[0].name)
-
-tx=[c(PDF[0]).raw for c in READER.converters]
-
-f=tx.pop()
-s=""
-l=[]
-
-for i in f:
-    s+=i
-    if alone(s):
-        l.append(s[:-1])
-        s=i
-
-print(l)
+sprint2("Artefacts/Sprint_2/titre_auteurs_abstract")
         
 
 

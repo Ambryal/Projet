@@ -6,5 +6,5 @@ class Pdf:
     #chemin
     self.path = path
     #nom du fichier
-    self.name = os.path.basename(path)
+    self.name = ".".join(os.path.basename(path).split(".")[:-1])
     
