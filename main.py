@@ -54,8 +54,63 @@ def test_converters_speed(path):
         print("Total time : ",int(now()-time),"s\n")
 
 
+#-----------------Fonctions de Display-----------------
+
+
+
+
 #-----------------Exécution-----------------
 
-test_converters_speed("Artefacts/Sprint_1/Text_outputs_des_differents_modules")
+#test_converters_speed("Artefacts/Sprint_1/Text_outputs_des_differents_modules")
+
+def alone(s):
+    for i in tx:
+        if i.count(s)>0:
+            return False
+    return True
+print(PDF[0].name)
+
+tx=[c(PDF[0]).raw for c in READER.converters]
+
+f=tx.pop()
+s=""
+l=[]
+
+for i in f:
+    s+=i
+    if alone(s):
+        l.append(s[:-1])
+        s=i
+
+print(l)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
