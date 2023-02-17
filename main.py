@@ -18,6 +18,12 @@ from text import Text
 #-----------------Données statiques-----------------
 
 CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
+DESTINATION_DIRECTORY = "Artefacts/Sprint_2/titre_auteurs_abstract"
+
+if len(sys.argv)>1 and sys.argv[1]!="_":
+    CURRENT_PDF_DIRECTORY=sys.argv[1]
+if len(sys.argv)>2 and sys.argv[2]!="_":
+    DESTINATION_DIRECTORY=sys.argv[2]
 
 
 #-----------------Variables globales-----------------
@@ -62,9 +68,9 @@ def sprint2(path):
     except:
         pass
     os.mkdir(path)
-    print(PDF)
     for file in PDF:
         READER.AW(file).saveSprint2(path,file.name)
+        #return
         
 
 
@@ -77,7 +83,7 @@ def sprint2(path):
 
 #test_converters_speed("Artefacts/Sprint_1/Text_outputs_des_differents_modules")
 
-sprint2("Artefacts/Sprint_2/titre_auteurs_abstract")
+sprint2(sys.argv[2])
         
 
 
