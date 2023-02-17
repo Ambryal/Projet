@@ -17,7 +17,6 @@ class Text:
     file = open (path, 'w', encoding="utf8")
     file.write(self.raw)
 
-<<<<<<< HEAD
   def saveSprint2(self,path,file):
     s=file
     r=self.raw.split("\n")
@@ -32,7 +31,4 @@ class Text:
     
     file = open (path+"/"+file+".txt", 'w', encoding="utf8")
     file.write(s)
-    
-    
-=======
->>>>>>> 07c31ac4064f08ebc1a4969c24c2932ec878a4ed
+    #test
