@@ -83,7 +83,7 @@ def sprint2(path):
 
 #test_converters_speed("Artefacts/Sprint_1/Text_outputs_des_differents_modules")
 
-sprint2(sys.argv[2])
+sprint2(DESTINATION_DIRECTORY)
         
 
 
