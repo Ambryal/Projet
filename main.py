@@ -69,6 +69,7 @@ def sprint2(path):
         pass
     os.mkdir(path)
     for file in PDF:
+        print(file.name+"...")
         READER.AW(file).saveSprint2(path,file.name)
         #return
         
