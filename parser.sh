@@ -1,11 +1,8 @@
-if [ -d Projet ]
+if [ -d venv ]
 then
-   cd Projet
    venv/bin/python main.py $@
 else
    echo "Installation en cours, veuillez patienter…"
-   git clone https://github.com/Ambryal/Projet.git
-   cd Projet
    python -m venv venv
    venv/bin/pip install pdfminer-six
    venv/bin/pip install pypdf2
