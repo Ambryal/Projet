@@ -3,11 +3,13 @@ Projet de conversion d'articles scientifiques du format PDF au format txt.
 
 Usage :
 
-venv/bin/python main.py [Dossier contenant les fichiers pdf] [Dossier de destination des fichiers texte]
+parser.sh [ -t | -x ] [SOURCE] [DEST]
 
 
-Click on the file you wish to download from GitHub to open the individual file. From here, right click the Raw button at the top of the file, select Save Link As… , choose the location on your computer where you want to save the file, and select Save .
+-t : Sortie sous forme de fichiers .txt
+-x : Sortie sous forme de fichiers .xml
 
-
+SOURCE : Dossier contenant les fichiers pdf
+DEST : Dossier de destination des fichiers texte
 
 
