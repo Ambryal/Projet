@@ -1,0 +1,13 @@
+<article>
+<preamble> Gonzalez_2018_Wisebe </preamble>
+<titre> WiSeBE: Window-Based Sentence </titre>
+<auteurs>
+<auteur>
+<name>Boundary EvaluationCarlos-Emiliano Gonz a´ lez-Gallardo 1,2( B) and Juan-Manuel Torres-Moreno 1,21 LIA - Universit´ e d’Avignon et des Pays de Vaucluse, 339 chemin des Meinajaries, 84140 Avignon, D´epartement de GIGL, E´cole Polytechnique de Montr´ eal,C.P. 6079, succ. Centre-ville, Montr´eal, Qu´ebec H3C 3A7, Canada</name>
+<mail>Francecarlos-emiliano.gonzalez-gallardo@alumni.univ-avignon.fr,</mail>
+<auteur>
+<name></name>
+<mail>juan-manuel.torres@univ-avignon.fr2</mail></auteurs>
+<abstract> Keywords: Sentence Boundary Detection · Evaluation Transcripts · Human judgment1	 IntroductionThe goal of Automatic Speech Recognition (ASR) is to transform spoken data into a written representation, thus enabling natural human-machine interaction [33] with further Natural Language Processing (NLP) tasks. Machine transla- tion, question answering, semantic parsing, POS tagging, sentiment analysis and automatic text summarization; originally developed to work with formal writ- ten texts, can be applied over the transcripts made by ASR systems [2,25,31]. However, before applying any of these NLP tasks a segmentation process called Sentence Boundary Detection (SBD) should be performed over ASR transcripts to reach a minimal syntactic information in the text.To measure the performance of a SBD system, the automatically segmented transcript is evaluated against a single reference normally done by a human. But c Springer Nature Switzerland AG 2018I. Batyrshin et al. (Eds.): MICAI 2018, LNAI 11289, pp. 119 131, 2018. https://doi.org/10.1007/978-3-030-04497-8_10 </abstract>
+<biblio> 
+</biblio></article>

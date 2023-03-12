@@ -17,13 +17,21 @@ from text import Text
 #-----------------Données statiques-----------------
 
 CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
-DESTINATION_DIRECTORY = "Artefacts/Sprint_2/titre_auteurs_abstract"
+DESTINATION_DIRECTORY = "Artefacts/Sprint_3/"
+FORMAT = "txt"
 
-if len(sys.argv)>1 and sys.argv[1]!="_":
-    CURRENT_PDF_DIRECTORY=sys.argv[1]
-if len(sys.argv)>2 and sys.argv[2]!="_":
-    DESTINATION_DIRECTORY=sys.argv[2]
-
+i=1
+if len(sys.argv)>i and sys.argv[i].startswith("-"):
+    if sys.argv[i]=="-x":
+        FORMAT = "xml"
+    i+=1
+if len(sys.argv)>i and sys.argv[i]!="_":
+    CURRENT_PDF_DIRECTORY=sys.argv[i]
+i+=1
+if len(sys.argv)>i and sys.argv[i]!="_":
+    DESTINATION_DIRECTORY=sys.argv[i]
+else:
+    DESTINATION_DIRECTORY+=FORMAT
 
 #-----------------Variables globales-----------------
 
@@ -57,11 +65,12 @@ def test_converters_speed(path):
         for file in PDF:
             converter(file).save(folder+"/"+file.name+".txt")
         print("Total time : ",int(now()-time),"s\n")
+  
 
-#Fonction répondant au Sprint2
+#Fonction répondant au Sprint3
 #Elle est assez bricolée et n'est ici que pour être fonctionelle
 #Le projet sera refondu complètement
-def sprint2(path):
+def sprint3(path,format):
     try:
         shutil.rmtree(path)
     except:
@@ -69,7 +78,7 @@ def sprint2(path):
     os.mkdir(path)
     for file in PDF:
         print(file.name+"...")
-        READER.AW(file).saveSprint2(path,file.name)
+        READER.AW(file).saveSprint3(path,file.name,format)
         #return
         
 
@@ -82,8 +91,7 @@ def sprint2(path):
 #-----------------Exécution-----------------
 
 #test_converters_speed("Artefacts/Sprint_1/Text_outputs_des_differents_modules")
-
-sprint2(DESTINATION_DIRECTORY)
+sprint3(DESTINATION_DIRECTORY,FORMAT)
         
 
 
