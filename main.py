@@ -81,7 +81,10 @@ def sprint3(path,format):
         READER.AW(file).saveSprint3(path,file.name,format)
         #return
         
-
+def test():
+    for file in PDF:
+        READER.MINER(file)
+        return
 
 #-----------------Fonctions de Display-----------------
 
@@ -91,9 +94,65 @@ def sprint3(path,format):
 #-----------------Exécution-----------------
 
 #test_converters_speed("Artefacts/Sprint_1/Text_outputs_des_differents_modules")
-sprint3(DESTINATION_DIRECTORY,FORMAT)
-        
+#sprint3(DESTINATION_DIRECTORY,FORMAT)
 
+import fitz
+    
+def shatter(pdf):
+    print(pdf.path)
+    fonts=[]
+    results = []
+    pdf = fitz.open(pdf.path)
+    for page in pdf:
+        results.append([])
+        para={"text":""}
+        s=page.get_text()
+        for block in page.get_text("dict")["blocks"]:
+            if "lines" in block.keys():
+                for span in block['lines']:
+                    for lines in span['spans']:
+                        f=str(lines['size'])+lines['font']
+                        l=lines['text']
+                        if f not in fonts:
+                            fonts.append(f)
+                        f=fonts.index(f)
+                        if "font" not in para:
+                            para["font"]=f
+                            para["size"]=lines['size']
+                        if para["font"]!=f:
+                            results[-1].append(para)
+                            para={"text":"","font":f,"size":lines['size']}
+                        while s.startswith("\n"):
+                            if para["text"]!="":
+                                para["text"]+="\n"
+                            s=s[1:]
+                        if s.startswith(l):
+                            para["text"]+=l
+                            while para["text"].startswith(" "):
+                                para["text"]=para["text"][1:]
+                        else:
+                            print("Erreur de lecture :\n"+l+"\n"+s[:100])
+                            sys.exit()
+                        s=s[len(l):]
+        results[-1].append(para)
+    pdf.close()
+    for i in results:
+        for j in i:
+            print("----------------------------------","Police :",+j["font"],"        Taille : "+str(round(j["size"])))
+            print(j["text"])
+    sys.exit()
+    return results
+
+shatter(PDF[0])
+
+for i in PDF:
+    shatter(i)
+
+
+#print(s,t)
+
+
+#test()
 
 
 

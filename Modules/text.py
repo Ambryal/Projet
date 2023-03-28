@@ -2,9 +2,9 @@ import os
 
 #Objet représentant une traduction en format texte
 class Text:
-  def __init__(self):
+  def __init__(self,raw=""):
     #texte brut
-    self.raw = ""
+    self.raw = raw
     #texte paginé
     self.pages = []
 
