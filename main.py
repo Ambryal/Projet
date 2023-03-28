@@ -136,14 +136,14 @@ def shatter(pdf):
                         s=s[len(l):]
         results[-1].append(para)
     pdf.close()
-    for i in results:
-        for j in i:
+    for i in results[:1]:
+        for j in i[:40]:
             print("----------------------------------","Police :",+j["font"],"        Taille : "+str(round(j["size"])))
             print(j["text"])
     sys.exit()
     return results
 
-shatter(PDF[0])
+shatter(PDF[11])
 
 for i in PDF:
     shatter(i)
