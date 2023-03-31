@@ -3,8 +3,9 @@ from tag import Tag
 class Classeur(dict):
 
   tags={
-    "nom":Tag("Nom","<balise>"),
-    "titre":Tag("Titre","<balise>"),
+    "article":Tag("","article"),
+    "nom":Tag("Nom","preambule"),
+    "titre":Tag("Titre","titre"),
     }
     
   
@@ -15,13 +16,39 @@ class Classeur(dict):
 
     self["titre"]=carnet.getTitre()
 
-  def saveAsTxt(self,path="test"):
 
+  def saveAsTxt(self,path):
     s=""
     for i in self:
       s+=Classeur.tags[i].nom+" : \n\n"+self[i]+"\n\n\n"
       
-    self.save(path+".txt",s)
+    self.save(path+"/"+self.pdf.name+".txt",s)
+
+  def balise(self,l):
+    s=""
+    if type(l[0])==list:
+      for i in l:
+        s+=self.balise(i)
+    else:
+      t=Classeur.tags[l[0]]
+      s+=t.baliseDebut
+      if len(l)==1:
+        s+=self[l[0]]
+      elif type(l[1])==str:
+        s+=l[1]
+      else:
+        s+=self.balise(l[1])
+      s+=t.baliseFin
+    return s
+
+  def saveAsXml(self,path):
+    syntaxe=[
+      "article",[
+        ["nom"],
+        ["titre"]
+        ]
+      ]
+    self.save(path+"/"+self.pdf.name+".xml",self.balise(syntaxe))
 
 
   def save(self,path,valeur):

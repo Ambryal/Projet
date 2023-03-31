@@ -1,0 +1,10 @@
+Nom : 
+
+Boudin-Torres-2006
+
+
+Titre : 
+
+A Scalable MMR Approach to Sentence Scoring for Multi-Document Update Summarization
+
+

@@ -17,7 +17,7 @@ from classeur import Classeur
 #-----------------Données statiques-----------------
 
 CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
-DESTINATION_DIRECTORY = "Artefacts/Sprint_3/"
+DESTINATION_DIRECTORY = "Artefacts/Sprint_4/"
 FORMAT = "txt"
 
 i=1
@@ -33,27 +33,37 @@ if len(sys.argv)>i and sys.argv[i]!="_":
 else:
     DESTINATION_DIRECTORY+=FORMAT
 
+
 #-----------------Variables globales-----------------
 
 #Liste des pdf à traduire
 PDF=[Pdf(file) for file in glob.glob(CURRENT_PDF_DIRECTORY+"/*.pdf")]
 
-#-----------------Outils-----------------
+print("PDF détectés :_n\n")
+for i in range(len(PDF)):
+    print(i,PDF[i].name)
+    
+print("Tapez le numéro ou le nom des PDF à traduire séparés d'espaces, ou ne tapez rien pour tout traduire.")
 
+SELECTION=input().lower()
 
+for i in reversed(sorted([pdf.name.lower() for pdf in PDF], key=len)):
+    SELECTION=SELECTION.replace(i,str([pdf.name.lower() for pdf in PDF].index(i)))
+
+SELECTION=SELECTION.split(" ")
 
 #-----------------Exécution-----------------
 
 
-    
-c=Carnet(PDF[0])
+for i, pdf in enumerate(PDF):
+    if str(i) in SELECTION:
+        print("Extraction de "+pdf.name+"...")
+        c=Classeur(Carnet(pdf))
+        if FORMAT=="txt":
+            c.saveAsTxt(DESTINATION_DIRECTORY)
+        else:
+            c.saveAsXml(DESTINATION_DIRECTORY)
 
-Classeur(c).saveAsTxt()
-
-#print(s,t)
-
-
-#test()
 
 
 
