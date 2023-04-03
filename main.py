@@ -43,7 +43,7 @@ print("PDF détectés :\n")
 for i in range(len(PDF)):
     print(i,PDF[i].name)
     
-print("Tapez le numéro ou le nom des PDF à traduire séparés d'espaces, ou ne tapez rien pour tout traduire.")
+print("Tapez le numéro ou le nom des PDF à traduire séparés d'espaces, ou ne tapez rien pour tout traduire.\n")
 
 SELECTION=input().lower()
 
@@ -56,7 +56,7 @@ SELECTION=SELECTION.split(" ")
 
 
 for i, pdf in enumerate(PDF):
-    if str(i) in SELECTION:
+    if str(i) in SELECTION or SELECTION==[""]:
         print("Extraction de "+pdf.name+"...")
         c=Classeur(Carnet(pdf))
         if FORMAT=="txt":
@@ -65,7 +65,8 @@ for i, pdf in enumerate(PDF):
             c.saveAsXml(DESTINATION_DIRECTORY)
 
 
-
+print("\nTerminé !")
+sleep(10)
 
 
 
