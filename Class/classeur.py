@@ -1,7 +1,12 @@
-from tag import Tag
-
 class Classeur(dict):
+  
+  class Tag():
 
+    def __init__(self,nom,balise):
+      self.nom=nom
+      self.baliseDebut="<"+balise+">\n"
+      self.baliseFin="</"+balise+">\n"
+    
   tags={
     "article":Tag("","article"),
     "nom":Tag("Nom","preambule"),
