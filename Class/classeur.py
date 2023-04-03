@@ -17,7 +17,7 @@ class Classeur(dict):
   def __init__(self,carnet):
     self.pdf=carnet.pdf
 
-    self["nom"]=self.pdf.name
+    self["nom"]=self.pdf.name+".pdf"
 
     self["titre"]=carnet.getTitre()
 

@@ -18,7 +18,7 @@ from classeur import Classeur
 
 CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
 DESTINATION_DIRECTORY = "Artefacts/Sprint_4/"
-FORMAT = "txt"
+FORMAT = "xml"
 
 i=1
 if len(sys.argv)>i and sys.argv[i].startswith("-"):
