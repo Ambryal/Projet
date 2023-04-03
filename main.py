@@ -39,7 +39,7 @@ else:
 #Liste des pdf à traduire
 PDF=[Pdf(file) for file in glob.glob(CURRENT_PDF_DIRECTORY+"/*.pdf")]
 
-print("PDF détectés :_n\n")
+print("PDF détectés :\n")
 for i in range(len(PDF)):
     print(i,PDF[i].name)
     
