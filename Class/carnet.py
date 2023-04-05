@@ -5,7 +5,17 @@ class Carnet(list):
   def __init__(self,pdf):
     self.pdf=pdf
     self.pages=[]
+    
     self.fonts=[]
+    self.premisse=[]
+    self.parts=[]
+
+    self.policeTitre=""
+    self.corpsMax=1000000
+    self.corpsMin=-1
+    self.corpsMaxParts=1000000
+    self.corpsMinParts=-1
+    
 
     pdf = pdf.open()
     for page in pdf:
@@ -48,14 +58,16 @@ class Carnet(list):
     if bloc.font not in self.fonts:
       self.fonts.append(bloc.font)
     bloc.font=self.fonts.index(bloc.font)+1
+    bloc.text=correct(bloc.text)
     self.pages[-1].append(bloc.fixe())
     self.append(bloc.fixe())
 
+#SUPPOSÉ : Le titre est toujours la suite d'éléments de la police la plus grande.
   def getTitre(self):
     max=-1
-    for i in range(len(self)):
-      if self[i].size>max:
-        max=self[i].size
+    for i, bloc in enumerate(self):
+      if bloc.size>max:
+        max=bloc.size
     while self[0].size!=max:
       self.pop(0)
       while len(self.pages[0])==0:
@@ -63,7 +75,254 @@ class Carnet(list):
       self.pages[0].pop(0)
     return sansRetour(self[0])
     
+#SUPPOSÉ : Le mail est toujours dans la premisse
+#          Les mails sont toujours dans la même police
+#          Le mail est l'ensemble des éléments contenant "@" dans la police du 1er élément contenant "@".
+#FALLBACK (retour vide) : Remplacer *Q*.* par *@*.* et recommencer.
 
+  def getMail(self):
+
+    mails=[]
+    
+    premisse=self.getPremisse()
+    res={}
+    for i, bloc in enumerate(premisse):
+      if "@" in bloc:
+        if bloc.size not in res:
+          res[bloc.size]=[]
+        res[bloc.size].append(i)
+    for size in res:
+      for i in res[size]:
+        bloc=premisse[i]
+        for word in sansRetour(bloc).split(" "):
+          if "@" in word:
+            mails.append(word)
+            premisse[i].text=premisse[i].text.replace(word,"")
+        premisse[i]=premisse[i].fixe()
+      break
+      
+    return mails
+
+  
+#SUPPOSÉ : Les noms sont toujours dans la premisse
+#          Il y a autant de noms que de mails
+#          Ils sont dans le même ordre
+#          Un nom est écrit sur une ligne
+#          Les noms sont toujours dans la même police
+  def getNom(self,mail):
+    premisse=self.getPremisse()
+    fonts=[]
+    res=[0,["" for _ in mail],["" for _ in mail],""]
+    for i, bloc in enumerate(premisse):
+      s=bloc.size
+      if s not in fonts:
+        fonts.append(s)
+        l=[]
+        for j, b in enumerate(premisse):
+          if b.size==s:
+              for k in b.split("\n"):
+                if 2<=len(k.split(" "))<=4:
+                  l.append(k)
+        self.findNom(mail,res,l,1,s)
+        
+    for i, bloc in enumerate(premisse):
+      if bloc.size==res[3]:
+        for name in res[2]:
+          premisse[i].text=premisse[i].text.replace(name,"")
+        premisse[i]=premisse[i].fixe()
+        
+    return clean(res[2])
+
+
+  
+#SUPPOSÉ : Les affiliations sont toujours dans la premisse
+#          Il y a autant d'affiliations que de mails
+#          Elles sont dans le même ordre
+#          Les affiliations sont toujours dans la même police
+  def getUniv(self,mail):
+
+    mots_clefs=["univ",
+                "labo",
+                "cole",
+                "school",
+                ]
+    
+    premisse=self.getPremisse()
+    fonts=[]
+    res=[]
+    for i, bloc in enumerate(premisse):
+      s=bloc.size
+      if s not in fonts:
+        fonts.append(s)
+        l=[]
+        for j, b in enumerate(premisse):
+          if b.size==s:
+              for k in b.split("\n"):
+                for mc in mots_clefs:
+                  if mc in k.lower():
+                    l.append(k)
+                    break
+                else:
+                  if len(l)>0:
+                    l[-1]+="\n"+k
+        if len(l)>len(res):
+          res=l
+          
+    for i, bloc in enumerate(premisse):
+      for adresse in res:
+        for univ in adresse.split("\n"):
+          premisse[i].text=premisse[i].text.replace(univ,"")
+          premisse[i]=premisse[i].fixe()
+
+    for i in range(len(res)):
+      res[i]=sansRetour(res[i])
+
+    while len(res)<len(mail):
+      res=[res[0]]+res
+      
+    while len(res)>len(mail):
+      res[(len(res)-1)%len(mail)]+="\n"+res.pop()
+    
+    return clean(res)
+
+  def findNom(self,mail,res,l,proba,size):
+    if len(mail)==0 or len(l)<len(mail):
+      return
+    for i in range(len(l)):
+      res[1][len(res[1])-len(mail)]=l[i]
+      new_proba=proba*similarite(l[i],mail[0])
+      if len(mail)>1:
+        self.findNom(mail[1:],res,l[i+1:],new_proba,size)
+      elif new_proba>res[0]:
+        res[0]=new_proba
+        res[3]=size
+        for i in range(len(res[1])):
+          res[2][i]=res[1][i]
+
+
+#SUPPOSÉ : Les parties ont des titres numérotés, tous de la même police
+  def getParts(self):
+    langues=[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
+             ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"]]
+
+    fonts=[]
+    res=[0,0,"",[]]
+        
+    if len(self.parts)==0:
+      for i, bloc in enumerate(self):
+        s=bloc.size
+        if s not in fonts:
+          fonts.append(s)
+          for k, l in enumerate(langues):
+            c=0
+            r=[]
+            long=[0,0,0]
+            for j, b in enumerate(self):
+              long[0]+=len(b)
+              if b.size==s:
+                if b.startswith(str(l[c])):
+                  c+=1
+                  long[1]+=long[2]
+                  long[2]=0
+                r.append([b,""])
+              elif len(r)>0:
+                r[-1][1]+="\n"+b
+                long[2]+=len(b)
+            if long[1]>0 and long[0]/long[1]<2 and c>res[0]:
+              res=[c,k,s,r]
+      self.policeTitre=res[2]
+      self.parts=res[3]
+      
+    return self.parts
+
+  def findPart(self,l,reverse=False):
+
+    exact=""
+    if reverse:
+      exact=self.findPartReverse(l)
+    
+    for i, part in enumerate(self.getParts()):
+      for keyword in l:
+        if exact==part[0] or (not reverse and keyword in part[0].lower()):
+          if reverse:
+            self.corpsMaxParts=min(self.corpsMaxParts,i)
+          else:
+            self.corpsMinParts=max(self.corpsMinParts,i)
+          return part[1][1:]
+    flag=False
+    res=""
+    for i, part in enumerate(self):
+      if flag:
+        if part.size==policeTitre or (policeTitre==None and len(res)>1000):
+          return res
+        res+=part
+      for keyword in l:
+        if exact==part or (not reverse and keyword in part.lower()):
+          if reverse:
+            self.corpsMax=min(self.corpsMax,i)
+          else:
+            self.corpsMin=max(self.corpsMin,i)
+          flag=True
+
+    return "N/A"
+
+  def findPartReverse(self,l):
+
+    for part in reversed(self.getParts()):
+      for keyword in l:
+        if keyword in part[0].lower():
+          return part[0]
+
+    for part in reversed(self):
+      for keyword in l:
+        if isShort(part) and (keyword in part.lower()):
+          return part
+
+    return "N/A"
+
+
+
+  def getAbstract(self):
+    return self.findPart(["bstract"])
+
+  def getIntro(self):
+    return self.findPart(["ntro"])
+
+  def getDiscu(self):
+    return self.findPart(["iscussion"],True)
+
+  def getConclu(self):
+    return self.findPart(["onclusion"],True)
+
+  def getBiblio(self):
+    return self.findPart(["eference"],True)
+
+  def getCorps(self):
+    s=""
+    if self.corpsMinParts!=-1:
+      for i in range(max(0,self.corpsMinParts+1),min(self.corpsMaxParts,len(self.getParts()))):
+        s+="\n"+self.getParts()[i][0]+self.getParts()[i][1]
+      return s[1:]
+    else:
+      for i in range(max(0,self.corpsMin),min(self.corpsMax,len(self()))):
+        s+="\n"+s
+      return s[1:]
+    
+  def getPremisse(self):
+    if len(self.premisse)==0:
+      for bloc in self:
+        if isLong(bloc):
+          break
+        else:
+          self.premisse.append(bloc)
+    return self.premisse
+        
+  def shift(self):
+    while len(self.pages[0])==0:
+      self.pages.pop(0)
+    self.pages[0].pop(0)
+    return self.pop(0)
+    
   def print(self, page=None, bloc=None):
     if page==None:
       l=self
@@ -74,6 +333,73 @@ class Carnet(list):
       
     for i in l:
       print(i.print())
+      
+def similarite(a,b):
+  n=[0,0]
+  for i in b.split("@")[0]:
+    w=i.lower()
+    for j in a.split(" "):
+      s=j.lower()
+      while len(s)>0 and len(w)>0:
+        if s[0]==w[0]:
+          w=w[1:]
+          n[1]+=1
+        n[0]+=1
+        s=s[1:]
+  return n[1]/n[0]
+
+def clean(l):
+  for i in range(len(l)):
+    while "  " in l[i]:
+      l[i]=l[i].replace("  "," ")
+  return l
+
+def correct(s):
+  accents=[ ["e","`","è"],
+            ["e","´","é"],
+            ["e","́","é"],
+            ["e","^","ê"],
+            ["e","¨","ë"],
+
+            ["a","`","à"],
+            ["a","´","á"],
+            ["a","́","á"],
+            ["a","^","â"],
+            ["a","¨","ä"],
+
+            ["i","`","ì"],
+            ["i","´","í"],
+            ["i","́","í"],
+            ["i","^","î"],
+            ["i","¨","ï"],
+
+            ["o","`","ò"],
+            ["o","´","ó"],
+            ["o","́","ó"],
+            ["o","^","ô"],
+            ["o","¨","ö"],
+
+            ["u","`","ù"],
+            ["u","´","ú"],
+            ["u","́","ú"],
+            ["u","^","û"],
+            ["u","¨","ü"],
+            ]
+  for i in accents:
+    s=s.replace(i[1]+i[0],i[2])
+    s=s.replace(i[1]+i[0].upper(),i[2].upper())
+
+  for i in accents:
+    s=s.replace(i[0]+i[1],i[2])
+    s=s.replace(i[0].upper()+i[1],i[2].upper())
+
+  return s
+
+def isShort(s):
+  return s.count("\n")<2
+
+def isLong(s):
+  return s.count("\n")>5 and len(s)>70
 
 def sansRetour(s):
   return s.replace("\n"," ")

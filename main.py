@@ -17,13 +17,15 @@ from classeur import Classeur
 #-----------------Données statiques-----------------
 
 CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
-DESTINATION_DIRECTORY = "Artefacts/Sprint_4/"
+DESTINATION_DIRECTORY = "Artefacts/Sprint_5/"
 FORMAT = "xml"
+SELECTION = "9"#None
+SLEEP_TIME=1000000
 
 i=1
 if len(sys.argv)>i and sys.argv[i].startswith("-"):
-    if sys.argv[i]=="-x":
-        FORMAT = "xml"
+    if sys.argv[i]=="-t":
+        FORMAT = "txt"
     i+=1
 if len(sys.argv)>i and sys.argv[i]!="_":
     CURRENT_PDF_DIRECTORY=sys.argv[i]
@@ -43,9 +45,11 @@ print("PDF détectés :\n")
 for i in range(len(PDF)):
     print(i,PDF[i].name)
     
-print("Tapez le numéro ou le nom des PDF à traduire séparés d'espaces, ou ne tapez rien pour tout traduire.\n")
+print("Tapez le nu07méro ou le nom des PDF à traduire séparés d'espaces, ou ne tapez rien pour tout traduire.\n")
 
-SELECTION=input().lower()
+if SELECTION==None:
+    SELECTION=input().lower()
+    SLEEP_TIME=0
 
 for i in reversed(sorted([pdf.name.lower() for pdf in PDF], key=len)):
     SELECTION=SELECTION.replace(i,str([pdf.name.lower() for pdf in PDF].index(i)))
@@ -58,6 +62,7 @@ SELECTION=SELECTION.split(" ")
 for i, pdf in enumerate(PDF):
     if str(i) in SELECTION or SELECTION==[""]:
         print("Extraction de "+pdf.name+"...")
+        #Carnet(pdf).print(40)
         c=Classeur(Carnet(pdf))
         if FORMAT=="txt":
             c.saveAsTxt(DESTINATION_DIRECTORY)
@@ -66,7 +71,7 @@ for i, pdf in enumerate(PDF):
 
 
 print("\nTerminé !")
-sleep(10)
+sleep(SLEEP_TIME)
 
 
 

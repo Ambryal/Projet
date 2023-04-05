@@ -11,6 +11,20 @@ class Classeur(dict):
     "article":Tag("","article"),
     "nom":Tag("Nom","preamble"),
     "titre":Tag("Titre","titre"),
+
+    "auteurs":Tag("","auteurs"),
+    "auteur":Tag("","auteur"),
+    "mail":Tag("Mails des auteurs","mail"),
+    "noms":Tag("Noms des auteurs","nom"),
+    "univ":Tag("Affiliations des auteurs","affiliation"),
+
+    "abstract":Tag("Abstract","abstract"),
+    "intro":Tag("Introduction","introduction"),
+    "discu":Tag("Discussion","discussion"),
+    "biblio":Tag("Bibliographie","biblio"),
+    "conclu":Tag("Conclusion","conclusion"),
+    
+    "corps":Tag("Corps","corps"),
     }
     
   
@@ -21,17 +35,44 @@ class Classeur(dict):
 
     self["titre"]=carnet.getTitre()
 
+    self["mail"]=carnet.getMail()
+
+    self["noms"]=carnet.getNom(self["mail"])
+
+    self["univ"]=carnet.getUniv(self["mail"])
+    
+    self["abstract"]=carnet.getAbstract()
+
+    self["intro"]=carnet.getIntro()
+
+    self["discu"]=carnet.getDiscu()
+
+    self["conclu"]=carnet.getConclu()
+
+    self["biblio"]=carnet.getBiblio()
+
+    self["corps"]=carnet.getCorps()
+
 
   def saveAsTxt(self,path):
     s=""
     for i in self:
-      s+=Classeur.tags[i].nom+" : \n\n"+self[i]+"\n\n\n"
+      if tage[i].nom!="":
+        s+=Classeur.tags[i].nom+" : \n\n"
+        if type(self[i])==str:
+          s+=self[i]
+        else:
+          for j in self[i]:
+            s+=j+"\n"
+        s+="\n\n"
       
     self.save(path+"/"+self.pdf.name+".txt",s)
 
   def balise(self,l):
     s=""
-    if type(l[0])==list:
+    if len(l)==0:
+      pass
+    elif type(l[0])==list:
       for i in l:
         s+=self.balise(i)
     else:
@@ -50,7 +91,23 @@ class Classeur(dict):
     syntaxe=[
       "article",[
         ["nom"],
-        ["titre"]
+        ["titre"],
+        ["auteurs",
+          [
+            ["auteur",
+              [["noms",self["noms"][i]],
+               ["mail",self["mail"][i]],
+               ["univ",self["univ"][i]],
+               ]
+              ]
+           for i in range(len(self["mail"]))]
+          ],
+        ["abstract"],
+        ["intro"],
+        ["corps"],
+        ["discu"],
+        ["conclu"],
+        ["biblio"],
         ]
       ]
     self.save(path+"/"+self.pdf.name+".xml",self.balise(syntaxe))
