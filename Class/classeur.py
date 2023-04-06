@@ -67,7 +67,19 @@ class Classeur(dict):
         s+="\n\n"
       
     self.save(path+"/"+self.pdf.name+".txt",s)
-
+    
+  XMLechap={"&":"&amp;",
+           '"':"&quot;",
+           "'":"&apos;",
+           "<":"&lt;",
+           ">":"&gt;"
+           }
+  
+  def echape(self,s):
+    for cha in self.XMLechap:
+      s=s.replace(cha,self.XMLechap[cha])
+    return s
+  
   def balise(self,l):
     s=""
     if len(l)==0:
@@ -79,9 +91,9 @@ class Classeur(dict):
       t=Classeur.tags[l[0]]
       s+=t.baliseDebut
       if len(l)==1:
-        s+=self[l[0]]
+        s+=self.echape(self[l[0]])
       elif type(l[1])==str:
-        s+=l[1]
+        s+=self.echape(l[1])
       else:
         s+=self.balise(l[1])
       s+=t.baliseFin
@@ -110,6 +122,7 @@ class Classeur(dict):
         ["biblio"],
         ]
       ]
+    
     self.save(path+"/"+self.pdf.name+".xml",self.balise(syntaxe))
 
 
@@ -117,3 +130,6 @@ class Classeur(dict):
     file = open (path, 'w', encoding="utf8")
     file.write(valeur)
     file.close()
+
+
+   

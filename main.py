@@ -19,7 +19,7 @@ from classeur import Classeur
 CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
 DESTINATION_DIRECTORY = "Artefacts/Sprint_5/"
 FORMAT = "xml"
-SELECTION = "9"#None
+SELECTION = "das_martins"#None
 SLEEP_TIME=1000000
 
 i=1
@@ -62,7 +62,7 @@ SELECTION=SELECTION.split(" ")
 for i, pdf in enumerate(PDF):
     if str(i) in SELECTION or SELECTION==[""]:
         print("Extraction de "+pdf.name+"...")
-        #Carnet(pdf).print(40)
+        Carnet(pdf).print(1,40)
         c=Classeur(Carnet(pdf))
         if FORMAT=="txt":
             c.saveAsTxt(DESTINATION_DIRECTORY)

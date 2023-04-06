@@ -11,12 +11,14 @@ class Carnet(list):
     self.parts=[]
 
     self.policeTitre=""
+    
     self.corpsMax=1000000
     self.corpsMin=-1
     self.corpsMaxParts=1000000
     self.corpsMinParts=-1
-    
 
+    self.posMail=[]
+    
     pdf = pdf.open()
     for page in pdf:
         self.addPage()
@@ -29,12 +31,15 @@ class Carnet(list):
                         font=str(lines['size'])+lines['font']
                         size=lines['size']
                         line=lines['text']
+                        #pos=((lines['bbox'][0]+lines['bbox'][2])/2,(lines['bbox'][1]+lines['bbox'][3])/2)
+                        pos=lines["origin"]
                         if bloc.font==None:
                             bloc.font=font
                             bloc.size=size
+                            bloc.pos=pos
                         if bloc.font!=font:
                             self.addBloc(bloc)
-                            bloc=Bloc(font=font,size=size)
+                            bloc=Bloc(font=font,size=size,pos=pos)
                         while source.startswith("\n"):
                             if bloc.text!="":
                                 bloc.text+="\n"
@@ -86,19 +91,45 @@ class Carnet(list):
     
     premisse=self.getPremisse()
     res={}
+
+    lastBloc=""
+    
     for i, bloc in enumerate(premisse):
       if "@" in bloc:
-        if bloc.size not in res:
-          res[bloc.size]=[]
-        res[bloc.size].append(i)
-    for size in res:
-      for i in res[size]:
+        if bloc.font not in res:
+          res[bloc.font]=[]
+          for j,b in enumerate(premisse):
+            if b.font==bloc.font:
+              res[bloc.font].append(j)
+    for font in res:
+      for i in res[font]:
         bloc=premisse[i]
-        for word in sansRetour(bloc).split(" "):
+        for n,word in enumerate(sansRetour(bloc).split(" ")):
           if "@" in word:
-            mails.append(word)
+            if word.startswith("@"):
+              if n!=0:
+                lastBloc=" ".join(sansRetour(bloc).split(" ")[0:n])
+              if lastBloc=="":
+                if i==0:
+                  lastBloc="_"
+                else:
+                  lastBloc=premisse[i-1]
+              x=lastBloc.split(",")
+              for person in x:
+                for cha in "{}[]() ":
+                  person=person.replace(cha,"")
+                if person=="":
+                  person="_"
+                mails.append(person+word)
+                self.posMail.append(bloc.pos)
+                if i!=0:
+                  premisse[i-1]=premisse[i-1].fixe()
+            else:
+              mails.append(word)
+              self.posMail.append(bloc.pos)
             premisse[i].text=premisse[i].text.replace(word,"")
         premisse[i]=premisse[i].fixe()
+        lastBloc=premisse[i]
       break
       
     return mails
@@ -114,76 +145,24 @@ class Carnet(list):
     fonts=[]
     res=[0,["" for _ in mail],["" for _ in mail],""]
     for i, bloc in enumerate(premisse):
-      s=bloc.size
+      s=bloc.font
       if s not in fonts:
         fonts.append(s)
         l=[]
         for j, b in enumerate(premisse):
-          if b.size==s:
+          if b.font==s:
               for k in b.split("\n"):
                 if 2<=len(k.split(" "))<=4:
                   l.append(k)
         self.findNom(mail,res,l,1,s)
         
     for i, bloc in enumerate(premisse):
-      if bloc.size==res[3]:
+      if bloc.font==res[3]:
         for name in res[2]:
           premisse[i].text=premisse[i].text.replace(name,"")
         premisse[i]=premisse[i].fixe()
         
     return clean(res[2])
-
-
-  
-#SUPPOSÉ : Les affiliations sont toujours dans la premisse
-#          Il y a autant d'affiliations que de mails
-#          Elles sont dans le même ordre
-#          Les affiliations sont toujours dans la même police
-  def getUniv(self,mail):
-
-    mots_clefs=["univ",
-                "labo",
-                "cole",
-                "school",
-                ]
-    
-    premisse=self.getPremisse()
-    fonts=[]
-    res=[]
-    for i, bloc in enumerate(premisse):
-      s=bloc.size
-      if s not in fonts:
-        fonts.append(s)
-        l=[]
-        for j, b in enumerate(premisse):
-          if b.size==s:
-              for k in b.split("\n"):
-                for mc in mots_clefs:
-                  if mc in k.lower():
-                    l.append(k)
-                    break
-                else:
-                  if len(l)>0:
-                    l[-1]+="\n"+k
-        if len(l)>len(res):
-          res=l
-          
-    for i, bloc in enumerate(premisse):
-      for adresse in res:
-        for univ in adresse.split("\n"):
-          premisse[i].text=premisse[i].text.replace(univ,"")
-          premisse[i]=premisse[i].fixe()
-
-    for i in range(len(res)):
-      res[i]=sansRetour(res[i])
-
-    while len(res)<len(mail):
-      res=[res[0]]+res
-      
-    while len(res)>len(mail):
-      res[(len(res)-1)%len(mail)]+="\n"+res.pop()
-    
-    return clean(res)
 
   def findNom(self,mail,res,l,proba,size):
     if len(mail)==0 or len(l)<len(mail):
@@ -198,6 +177,64 @@ class Carnet(list):
         res[3]=size
         for i in range(len(res[1])):
           res[2][i]=res[1][i]
+
+  
+#SUPPOSÉ : Les affiliations sont toujours dans la premisse
+#          Il y a autant d'affiliations que de mails
+#          Elles sont dans le même ordre
+#          Les affiliations sont toujours dans la même police
+  def getUniv(self,mail):
+
+    mots_clefs=["univ",
+                "labo",
+                "cole",
+                "school",
+                "nstitu",
+                ]
+    
+    premisse=self.getPremisse()
+    fonts=[]
+    res=[]
+    for i, bloc in enumerate(premisse):
+      s=bloc.font
+      if s not in fonts:
+        fonts.append(s)
+        l=[]
+        for j, b in enumerate(premisse):
+          if b.font==s:
+              for k in b.split("\n"):
+                for mc in mots_clefs:
+                  if mc in k.lower():
+                    l.append([k,b.pos])
+                    break
+                else:
+                  if len(l)>0:
+                    l[-1][0]+="\n"+k
+        if len(l)>len(res):
+          res=l
+          
+    for i, bloc in enumerate(premisse):
+      for adresse in res:
+        for univ in adresse[0].split("\n"):
+          premisse[i].text=premisse[i].text.replace(univ,"")
+          premisse[i]=premisse[i].fixe()
+
+    for i in range(len(res)):
+      res[i][0]=sansRetour(res[i][0])
+
+    univ=["" for _ in mail]
+
+    for i in res:
+      univ[plus_pres(i[1],self.posMail)]+="\n"+i[0]
+
+    for i in range(len(univ)):
+      if univ[i]=="":
+        univ[i]=res[plus_pres(self.posMail[i],[j[1] for j in res])][0]
+      else:
+        univ[i]=univ[i][1:]
+    
+    return clean(univ)
+
 
 
 #SUPPOSÉ : Les parties ont des titres numérotés, tous de la même police
@@ -220,6 +257,9 @@ class Carnet(list):
             for j, b in enumerate(self):
               long[0]+=len(b)
               if b.size==s:
+                if c>len(l)-1:
+                  long=[0,0,0]
+                  break
                 if b.startswith(str(l[c])):
                   c+=1
                   long[1]+=long[2]
@@ -253,7 +293,7 @@ class Carnet(list):
     res=""
     for i, part in enumerate(self):
       if flag:
-        if part.size==policeTitre or (policeTitre==None and len(res)>1000):
+        if part.size==self.policeTitre or (self.policeTitre==None and len(res)>1000):
           return res
         res+=part
       for keyword in l:
@@ -333,7 +373,16 @@ class Carnet(list):
       
     for i in l:
       print(i.print())
-      
+
+
+def plus_pres(p,l):
+  r=[0,100000000]
+  for i,q in enumerate(l):
+    distance=(p[0]-q[0])**2+(p[1]-q[1])**2
+    if distance<r[1]:
+      r=[i,distance]
+  return r[0]
+  
 def similarite(a,b):
   n=[0,0]
   for i in b.split("@")[0]:
