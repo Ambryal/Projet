@@ -53,7 +53,6 @@ class Classeur(dict):
 
     self["corps"]=carnet.getCorps()
 
-
   def saveAsTxt(self,path):
     s=""
     for i in self:

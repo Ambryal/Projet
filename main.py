@@ -19,7 +19,7 @@ from classeur import Classeur
 CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
 DESTINATION_DIRECTORY = "Artefacts/Sprint_5/"
 FORMAT = "xml"
-SELECTION = "das_martins"#None
+SELECTION = "5"#None
 SLEEP_TIME=1000000
 
 i=1
@@ -45,7 +45,7 @@ print("PDF détectés :\n")
 for i in range(len(PDF)):
     print(i,PDF[i].name)
     
-print("Tapez le nu07méro ou le nom des PDF à traduire séparés d'espaces, ou ne tapez rien pour tout traduire.\n")
+print("Tapez le numéro ou le nom des PDF à traduire séparés d'espaces, ou ne tapez rien pour tout traduire.\n")
 
 if SELECTION==None:
     SELECTION=input().lower()
@@ -62,7 +62,8 @@ SELECTION=SELECTION.split(" ")
 for i, pdf in enumerate(PDF):
     if str(i) in SELECTION or SELECTION==[""]:
         print("Extraction de "+pdf.name+"...")
-        Carnet(pdf).print(1,40)
+        #Carnet(pdf).print(40)
+        #sys.exit()
         c=Classeur(Carnet(pdf))
         if FORMAT=="txt":
             c.saveAsTxt(DESTINATION_DIRECTORY)

@@ -1,4 +1,5 @@
 from bloc import Bloc
+from random import shuffle
 
 class Carnet(list):
   
@@ -141,6 +142,10 @@ class Carnet(list):
 #          Un nom est écrit sur une ligne
 #          Les noms sont toujours dans la même police
   def getNom(self,mail):
+    
+    if mail==[]:
+      return mail
+
     premisse=self.getPremisse()
     fonts=[]
     res=[0,["" for _ in mail],["" for _ in mail],""]
@@ -152,9 +157,15 @@ class Carnet(list):
         for j, b in enumerate(premisse):
           if b.font==s:
               for k in b.split("\n"):
+                while k.startswith(" "):
+                  k=k[1:]
+                while k.endswith(" "):
+                  k=k[:-1]
                 if 2<=len(k.split(" "))<=4:
                   l.append(k)
-        self.findNom(mail,res,l,1,s)
+        for _ in range(int(1000/(max(1,len(l))**2))):
+          self.findNom(mail,res,l,1,s)
+          shuffle(l)
         
     for i, bloc in enumerate(premisse):
       if bloc.font==res[3]:
@@ -172,11 +183,12 @@ class Carnet(list):
       new_proba=proba*similarite(l[i],mail[0])
       if len(mail)>1:
         self.findNom(mail[1:],res,l[i+1:],new_proba,size)
-      elif new_proba>res[0]:
-        res[0]=new_proba
-        res[3]=size
-        for i in range(len(res[1])):
-          res[2][i]=res[1][i]
+      else:
+        if new_proba>res[0]:
+          res[0]=new_proba
+          res[3]=size
+          for i in range(len(res[1])):
+            res[2][i]=res[1][i]
 
   
 #SUPPOSÉ : Les affiliations sont toujours dans la premisse
@@ -184,6 +196,9 @@ class Carnet(list):
 #          Elles sont dans le même ordre
 #          Les affiliations sont toujours dans la même police
   def getUniv(self,mail):
+
+    if mail==[]:
+      return mail
 
     mots_clefs=["univ",
                 "labo",
@@ -206,10 +221,13 @@ class Carnet(list):
                 for mc in mots_clefs:
                   if mc in k.lower():
                     l.append([k,b.pos])
+                    streak=True
                     break
                 else:
-                  if len(l)>0:
+                  if len(l)>0 and streak:
                     l[-1][0]+="\n"+k
+          else:
+            streak=False
         if len(l)>len(res):
           res=l
           
@@ -244,6 +262,7 @@ class Carnet(list):
 
     fonts=[]
     res=[0,0,"",[]]
+    lastLine=""
         
     if len(self.parts)==0:
       for i, bloc in enumerate(self):
@@ -257,27 +276,44 @@ class Carnet(list):
             for j, b in enumerate(self):
               long[0]+=len(b)
               if b.size==s:
-                if c>len(l)-1:
+                if c>len(l)-1 or (len(r)>0 and len(r[-1])>200):
                   long=[0,0,0]
                   break
-                if b.startswith(str(l[c])):
+                rattrapage=lastLine!="" and lastLine.size!=s and (lastLine.split("\n")[-1].endswith(l[c]) or lastLine.split("\n")[-1].startswith(l[c]))
+                if b.startswith(l[c]) or rattrapage:
                   c+=1
                   long[1]+=long[2]
                   long[2]=0
-                r.append([b,""])
+                  r.append([b,""])
+                  if rattrapage:
+                    r[-1][0]+=lastLine
+                else:
+                  if len(r)>0:
+                    if r[-1][1]=="":
+                      r[-1][0]+=" "+b
+                    else:
+                      r[-1][1]+=" "+b
+                      long[2]+=len(b)
               elif len(r)>0:
-                r[-1][1]+="\n"+b
-                long[2]+=len(b)
-            if long[1]>0 and long[0]/long[1]<2 and c>res[0]:
+                if r[-1][0]==str(l[c-1]):
+                  r[-1][0]+=" "+b
+                else:
+                  r[-1][1]+="\n"+b
+                  long[2]+=len(b)
+              if b=="\n" or b=="":
+                lastLine=""
+              else:
+                lastLine=b
+            if long[1]>0 and long[0]/long[1]<2 and (res[2]=='' or float(s)>float(res[2])) and c>1:#c>res[0]:
               res=[c,k,s,r]
       self.policeTitre=res[2]
-      self.parts=res[3]
-      
+      self.parts=res[3][:-1]
+
     return self.parts
 
-  def findPart(self,l,reverse=False):
+  def findPart(self,l,reverse=False,dontStop=False):
 
-    exact=""
+    exact=None
     if reverse:
       exact=self.findPartReverse(l)
     
@@ -293,9 +329,11 @@ class Carnet(list):
     res=""
     for i, part in enumerate(self):
       if flag:
-        if part.size==self.policeTitre or (self.policeTitre==None and len(res)>1000):
+        if ((part.size==self.policeTitre and len(res)>100) or (self.policeTitre==None and len(res)>1000)) and not dontStop:
           return res
         res+=part
+        if i==len(self)-1:
+          return res
       for keyword in l:
         if exact==part or (not reverse and keyword in part.lower()):
           if reverse:
@@ -315,7 +353,10 @@ class Carnet(list):
 
     for part in reversed(self):
       for keyword in l:
-        if isShort(part) and (keyword in part.lower()):
+        firstLine=part.lower().split("\n")
+        firstLine.append("")
+        firstLine=firstLine[0]
+        if (isShort(part) and (keyword in part.lower())) or (len(firstLine)<15 and keyword in firstLine.lower()):
           return part
 
     return "N/A"
@@ -335,7 +376,7 @@ class Carnet(list):
     return self.findPart(["onclusion"],True)
 
   def getBiblio(self):
-    return self.findPart(["eference"],True)
+    return self.findPart(["eference","bliogr"],True,True)
 
   def getCorps(self):
     s=""
@@ -344,8 +385,8 @@ class Carnet(list):
         s+="\n"+self.getParts()[i][0]+self.getParts()[i][1]
       return s[1:]
     else:
-      for i in range(max(0,self.corpsMin),min(self.corpsMax,len(self()))):
-        s+="\n"+s
+      for i in range(max(0,self.corpsMin),min(self.corpsMax,len(self))):
+        s+="\n"+self[i]
       return s[1:]
     
   def getPremisse(self):
@@ -384,6 +425,8 @@ def plus_pres(p,l):
   return r[0]
   
 def similarite(a,b):
+  if a=="" or a==" ":
+    return 0
   n=[0,0]
   for i in b.split("@")[0]:
     w=i.lower()
@@ -448,7 +491,7 @@ def isShort(s):
   return s.count("\n")<2
 
 def isLong(s):
-  return s.count("\n")>5 and len(s)>70
+  return s.count("\n")>5 and len(s)>500
 
 def sansRetour(s):
   return s.replace("\n"," ")
