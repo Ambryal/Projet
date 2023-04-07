@@ -58,11 +58,10 @@ SELECTION=SELECTION.split(" ")
 
 #-----------------Exécution-----------------
 
-
 for i, pdf in enumerate(PDF):
     if str(i) in SELECTION or SELECTION==[""]:
         print("Extraction de "+pdf.name+"...")
-        #Carnet(pdf).print(40)
+        #Carnet(pdf).print(1,40)
         #sys.exit()
         c=Classeur(Carnet(pdf))
         if FORMAT=="txt":

@@ -70,16 +70,19 @@ class Carnet(list):
 
 #SUPPOSÉ : Le titre est toujours la suite d'éléments de la police la plus grande.
   def getTitre(self):
-    max=-1
-    for i, bloc in enumerate(self):
-      if bloc.size>max:
-        max=bloc.size
-    while self[0].size!=max:
-      self.pop(0)
-      while len(self.pages[0])==0:
-        self.pages.pop(0)
-      self.pages[0].pop(0)
-    return sansRetour(self[0])
+    max,n=-1,0
+    for j in range(len(self.pages)):
+      for i, bloc in enumerate(self.pages[j]):
+        n+=1
+        if bloc.size>max and len(bloc)>1:
+          max=bloc.size
+      if n>40:
+        while self[0].size!=max:
+          self.pop(0)
+          while len(self.pages[0])==0:
+            self.pages.pop(0)
+          self.pages[0].pop(0)
+        return sansRetour(self[0])
     
 #SUPPOSÉ : Le mail est toujours dans la premisse
 #          Les mails sont toujours dans la même police
@@ -156,7 +159,7 @@ class Carnet(list):
         l=[]
         for j, b in enumerate(premisse):
           if b.font==s:
-              for k in b.split("\n"):
+              for k in b.replace(",","\n").replace(";","\n").split("\n"):
                 while k.startswith(" "):
                   k=k[1:]
                 while k.endswith(" "):
@@ -261,42 +264,47 @@ class Carnet(list):
              ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"]]
 
     fonts=[]
-    res=[0,0,"",[]]
+    res=[0,0,"",[],0,0]
     lastLine=""
+    lastBloc=""
         
     if len(self.parts)==0:
       for i, bloc in enumerate(self):
-        s=bloc.size
-        if s not in fonts:
-          fonts.append(s)
+        f=bloc.font
+        if f not in fonts:
+          lastLine=lastBloc
+          fonts.append(f)
           for k, l in enumerate(langues):
             c=0
             r=[]
-            long=[0,0,0]
+            long=[0,0,0,0]
             for j, b in enumerate(self):
               long[0]+=len(b)
-              if b.size==s:
-                if c>len(l)-1 or (len(r)>0 and len(r[-1])>200):
-                  long=[0,0,0]
+              if b.font==f:
+                if c>len(l)-1:
+                  long=[0,0,0,0]
                   break
-                rattrapage=lastLine!="" and lastLine.size!=s and (lastLine.split("\n")[-1].endswith(l[c]) or lastLine.split("\n")[-1].startswith(l[c]))
+                rattrapage=lastLine!="" and lastLine.font!=bloc.font and (lastLine.split("\n")[-1].endswith(l[c]) or lastLine.split("\n")[-1].startswith(l[c]))
                 if b.startswith(l[c]) or rattrapage:
                   c+=1
                   long[1]+=long[2]
                   long[2]=0
                   r.append([b,""])
                   if rattrapage:
-                    r[-1][0]+=lastLine
+                    r[-1][0]=lastLine.split("\n")[-1]+r[-1][0]
+                    long[3]+=len(r[-1][0])
                 else:
                   if len(r)>0:
-                    if r[-1][1]=="":
-                      r[-1][0]+=" "+b
+                    if r[-1][1]=="" and len(r[-1][0])<200:
+                        r[-1][0]+=" "+b
+                        long[3]+=len(b)
                     else:
                       r[-1][1]+=" "+b
                       long[2]+=len(b)
               elif len(r)>0:
                 if r[-1][0]==str(l[c-1]):
                   r[-1][0]+=" "+b
+                  long[3]+=len(b)
                 else:
                   r[-1][1]+="\n"+b
                   long[2]+=len(b)
@@ -304,8 +312,9 @@ class Carnet(list):
                 lastLine=""
               else:
                 lastLine=b
-            if long[1]>0 and long[0]/long[1]<2 and (res[2]=='' or float(s)>float(res[2])) and c>1:#c>res[0]:
-              res=[c,k,s,r]
+            if long[1]>0 and long[0]/long[1]<2 and (res[4]=='' or (float(bloc.size)>float(res[4]))) and c>1:#c>res[0]:
+              res=[c,k,f,r,bloc.size,long[3]/max(0,len(r))]
+        lastBloc=bloc
       self.policeTitre=res[2]
       self.parts=res[3][:-1]
 
@@ -329,7 +338,7 @@ class Carnet(list):
     res=""
     for i, part in enumerate(self):
       if flag:
-        if ((part.size==self.policeTitre and len(res)>100) or (self.policeTitre==None and len(res)>1000)) and not dontStop:
+        if ((part.font==self.policeTitre and len(res)>100) or (self.policeTitre=="" and len(res)>1000)) and not dontStop:
           return res
         res+=part
         if i==len(self)-1:
@@ -350,14 +359,17 @@ class Carnet(list):
       for keyword in l:
         if keyword in part[0].lower():
           return part[0]
-
-    for part in reversed(self):
-      for keyword in l:
-        firstLine=part.lower().split("\n")
-        firstLine.append("")
-        firstLine=firstLine[0]
-        if (isShort(part) and (keyword in part.lower())) or (len(firstLine)<15 and keyword in firstLine.lower()):
-          return part
+        
+    for tour in range(2):
+      for part in reversed(self):
+        if tour==1 or part.font==self.policeTitre:
+          for keyword in l:
+            firstLine=part.lower().split("\n")
+            firstLine.append("")
+            firstLine=firstLine[0]
+            if (isShort(part) and (keyword in part.lower())) or (len(firstLine)<15 and keyword in firstLine.lower()):
+              return part
+    
 
     return "N/A"
 
@@ -391,11 +403,13 @@ class Carnet(list):
     
   def getPremisse(self):
     if len(self.premisse)==0:
+      mailFound=False
       for bloc in self:
-        if isLong(bloc):
+        if isLong(bloc) and mailFound:
           break
-        else:
-          self.premisse.append(bloc)
+        if "@" in bloc:
+          mailFound=True
+        self.premisse.append(bloc)
     return self.premisse
         
   def shift(self):
@@ -451,30 +465,35 @@ def correct(s):
             ["e","´","é"],
             ["e","́","é"],
             ["e","^","ê"],
+            ["e","ˆ","ê"],
             ["e","¨","ë"],
 
             ["a","`","à"],
             ["a","´","á"],
             ["a","́","á"],
             ["a","^","â"],
+            ["a","ˆ","â"],
             ["a","¨","ä"],
 
             ["i","`","ì"],
             ["i","´","í"],
             ["i","́","í"],
             ["i","^","î"],
+            ["i","ˆ","î"],
             ["i","¨","ï"],
 
             ["o","`","ò"],
             ["o","´","ó"],
             ["o","́","ó"],
             ["o","^","ô"],
+            ["o","ˆ","ô"],
             ["o","¨","ö"],
 
             ["u","`","ù"],
             ["u","´","ú"],
             ["u","́","ú"],
             ["u","^","û"],
+            ["u","ˆ","û"],
             ["u","¨","ü"],
             ]
   for i in accents:
