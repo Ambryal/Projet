@@ -1,0 +1,224 @@
+<article><preamble>On_the_Morality_of_Artificial_Intelligence.pdf</preamble>
+<titre>arXiv:1912.11945v1  [cs.CY]  26 Dec 2019</titre>
+<auteurs></auteurs>
+<abstract>4
+ConclusionTechnology in general, and ML more speciﬁcally, carries a great potential for change and disruption. While
+neither of these is guaranteed to make the world a better place, this potential can most deﬁnitely be used
+to have a positive impact on the world. In the present article, we have illustrated some inspiring projects
+that aim to make the world a better place and by using the powerful techniques and approaches that ML has
+brought forward. We believe that as ML researchers and practitioners, we have the responsibility to leverage
+our (super)powers to contribute to these efforts. This can be done by connecting with established actors from
+industry and policy or experts from other relevant disciplines, by learning from their past experiences, and
+by working together to propose innovative solutions to major problems, deployed in places where they will
+have a positive impact.
+We live in a world with many global and local challenges and issues that are in constant evolution, and
+it is easy to be overwhelmed by this ﬂux of information and focus on a small sandbox in which we feel
+safe and in control, in order to develop and study the aspects of ML that interest us most. But it is naive
+9</abstract>
+<introduction>2
+Ethics and AI - Existing InitiativesIn recent years, there have been numerous initiatives which have taken one of two major approaches to
+fostering the ethical practice of AI: (1) Proposing principles guiding the socially responsible development
+of AI or (2) Raising concerns about the social impact of AI. We will describe both approaches in the current
+section, as well as giving examples of notable initiatives and projects which have adopted either of the
+approaches.11For a more complete overview of different global ML ethics initiatives, see a recent review in Jobin et al. [2019]22.1
+Deﬁning Principles for Practicing AI ResponsiblyThe topic of ethical research and practice in technology has been gaining momentum in different corners of
+the computing community in recent years, and the various initiatives that have been proposed are indicative
+of the interest and the concern that many members share. For instance, in the United States, the Association
+for Computing Machinery (ACM) has proposed a Code of Ethics and Professional Conduct, to be followed
+by all members of the association and to guide them in their usage of computer science [Gotterbarn et al.,
+2018]. A similar initiative was undertaken by the Royal Statistical Society (RSS) in the United Kingdom,
+which has created a practical guide for practitioners regarding the ethical use of mathematics [RSS, 2019].
+In the present section, we will address the two most relevant and extensive initiatives to establish ethical
+guidelines for AI research and practice: the Montreal Declaration for Responsible Development of AI and
+the IEEE report for Ethically Aligned Design.</introduction>
+<corps>While changes in our climate can be abstract, quantiﬁed in degrees of warming or tons of CO2, climate
+change will also have very concrete impacts on society, for instance by decreasing crop yield, increasing
+the frequency of extreme weather events such as hurricanes and storms, and impacting biodiversity. There
+are a myriad of ways in which ML can help face these, whether it be by analyzing real-time images and
+recordings of ecosystems to detect species [Duhart et al., 2018] and deforestation [McDowell et al., 2015],
+improving disaster preparation and response by generating real-time maps from satellite imagery [Voigt
+et al., 2007] and even setting an optimal price on carbon to accelerate the transition to a low-carbon energy
+economy [Wei et al., 2018]. Finally, while we are far from being able to predict the exact impact that
+increasing the carbon tax will have on the different levels of society and industry (i.e. federal and regional
+governments, local and international companies, and individuals), this is a worthwhile area of research and
+exploration, with potentially huge consequences in helping political leaders make more informed choices
+in addressing the climate crisis. It is therefore useful to continue gathering data and building trust between
+members of the political ecosystem and ML practitioners to learn from each other and to facilitate the
+deployment of technological solutions in setting government policies.
+On an individual level, there are many reasons why individuals cannot, or will not, act on climate change,
+either common misconceptions regarding the fact that individuals cannot make meaningful impact on a
+global problem, or cognitive biases that increase an individual’s psychological distance to climate change.
+In the ﬁrst case, ML-infused tools to estimate the carbon footprint of individuals and households [Jones and
+Kammen, 2011] and to model individual behavior with regards to sustainable lifestyle choices and technolo-
+gies [Carr-Cornish et al., 2011] can be very useful if they are sufﬁciently accurate and deployed on a large
+scale. Finally, minimizing psychological distance to the future effects of climate change is a promising way
+to reduce cognitive bias – in this regard, it is possible to use images generated using Generative Adversarial
+Networks (GANs) which represent the impacts of extreme events on locations that have personal value to
+the viewer [Schmidt et al., 2019]. A crucial part of developing ML tools for individuals is, once again,
+working with multidisciplinary experts in psychology, scientiﬁc communication, and user design to ensure
+that the tools created reach the largest possible audience and maximize their positive impact.</corps>
+<discussion>N/A</discussion>
+<conclusion>Technology in general, and ML more speciﬁcally, carries a great potential for change and disruption. While
+neither of these is guaranteed to make the world a better place, this potential can most deﬁnitely be used
+to have a positive impact on the world. In the present article, we have illustrated some inspiring projects
+that aim to make the world a better place and by using the powerful techniques and approaches that ML has
+brought forward. We believe that as ML researchers and practitioners, we have the responsibility to leverage
+our (super)powers to contribute to these efforts. This can be done by connecting with established actors from
+industry and policy or experts from other relevant disciplines, by learning from their past experiences, and
+by working together to propose innovative solutions to major problems, deployed in places where they will
+have a positive impact.
+We live in a world with many global and local challenges and issues that are in constant evolution, and
+it is easy to be overwhelmed by this ﬂux of information and focus on a small sandbox in which we feel
+safe and in control, in order to develop and study the aspects of ML that interest us most. But it is naive
+9</conclusion>
+<biblio>Robert G Abbott. Automated expert modeling for automated student evaluation. InInternational Confer-
+ence on Intelligent Tutoring Systems, pages 1–10. Springer, 2006.
+M Allen, P Antwi-Agyei, F Aragon-Durand, M Babiker, P Bertoldi, M Bind, S Brown, M Buckeridge,
+I Camilloni, A Cartwright, et al. Technical summary: Global warming of 1.5c. an ipcc special report
+on the impacts of global warming of 1.5c above pre-industrial levels and related global greenhouse gas
+emission pathways, in the context of strengthening the global response to the threat of climate change,
+sustainable development, and efforts to eradicate poverty, 2019.
+Julia
+Angwin,
+Jeff
+Larson,
+Surya
+Mattu,
+and
+Lauren
+Kirchner.
+Machine
+bias,
+propub-
+lica.https://www.propublica.org/article/machine-bias-risk-assessments-
+in-criminal-sentencing, 2016. Accessed: 2019-11-25.
+Filippo Arcadu, Fethallah Benmansour, Andreas Maunz, Jeff Willis, Zdenka Haskova, and Marco Prunotto.
+Deep learning algorithm predicts diabetic retinopathy progression in individual patients.NPJ digital
+medicine, 2(1):1–9, 2019.
+UN General Assembly. Universal declaration of human rights.UN General Assembly, 302(2), 1948.
+Tolga Bolukbasi, Kai-Wei Chang, James Y Zou, Venkatesh Saligrama, and Adam T Kalai. Man is to
+computer programmer as woman is to homemaker? debiasing word embeddings. InAdvances in neural
+information processing systems, pages 4349–4357, 2016.
+Joy Buolamwini and Timnit Gebru. Gender shades: Intersectional accuracy disparities in commercial gen-
+der classiﬁcation. InConference on fairness, accountability and transparency, pages 77–91, 2018.
+Simone Carr-Cornish, Peta Ashworth, John Gardner, and Stephen J Fraser.
+Exploring the orientations
+which characterise the likely public acceptance of low emission energy technologies.Climatic change,
+107(3-4):549–565, 2011.
+Devendra Singh Chaplot, Eunhee Rhim, and Jihie Kim. Predicting student attrition in moocs using senti-
+ment analysis and neural networks. InAIED Workshops, volume 53, pages 54–57, 2015.
+Cristina Conati, Kaska Porayska-Pomsta, and Manolis Mavrikis. Ai in education needs interpretable ma-
+chine learning: Lessons from open learner modelling.arXiv preprint arXiv:1807.00154, 2018.
+Jeffrey Dastin. Amazon scraps secret ai recruiting tool that showed bias against women, reuters business
+news.https://www.reuters.com/article/us-amazon-com-jobs-automation-
+insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-
+against-women-idUSKCN1MK08G, 2018. Accessed: 2019-11-25.
+Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei. Imagenet: A large-scale hierarchical
+image database. In2009 IEEE conference on computer vision and pattern recognition, pages 248–255.
+Ieee, 2009.
+Clement Duhart, Gershon Dublon, Brian Mayton, and Joseph Paradiso.
+Deep learning locally trained
+wildlife sensing in real acoustic wetland environment. InInternational Symposium on Signal Processing
+and Intelligent Recognition Systems, pages 3–14. Springer, 2018.
+10Ashish Dutt, Maizatul Akmar Ismail, and Tutut Herawan. A systematic review on educational data mining.IEEE Access, 5:15991–16005, 2017.
+Marzyeh Ghassemi, Tristan Naumann, Peter Schulam, Andrew L Beam, and Rajesh Ranganath. Opportu-
+nities in machine learning for healthcare.arXiv preprint arXiv:1806.00388, 2018.
+Jeffrey Alan Golden. Deep learning algorithms for detection of lymph node metastases from breast cancer:
+helping artiﬁcial intelligence be seen.Jama, 318(22):2184–2186, 2017.
+Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron
+Courville, and Yoshua Bengio. Generative adversarial nets. InAdvances in neural information processing
+systems, pages 2672–2680, 2014.
+Don W Gotterbarn, Amy Bruckman, Catherine Flick, Keith Miller, and Marty J Wolf. Acm code of ethics:
+a guide for positive action, 2018.
+Brian W Head et al. Wicked problems in public policy.Public policy, 3(2):101, 2008.
+Yasmeen Hitti, Eunbee Jang, Ines Moreno, and Carolyne Pelletier. Proposed taxonomy for gender bias in
+text; a ﬁltering methodology for the gender generalization subtype. InProceedings of the First Workshop
+on Gender Bias in Natural Language Processing, pages 8–17, 2019.
+Jordan Hoffmann, Louis Maestrati, Yoshihide Sawada, Jian Tang, Jean Michel Sellier, and Yoshua Bengio.
+Data-driven approach to encoding and decoding 3-d crystal structures.arXiv preprint arXiv:1909.00949,
+2019.
+IEEE. Ieee standard review — ethically aligned design: A vision for prioritizing human wellbeing with
+artiﬁcial intelligence and autonomous systems. In2017 IEEE Canada International Humanitarian Tech-
+nology Conference (IHTC), pages 197–201. IEEE, 2017.
+Anna Jobin, Marcello Ienca, and Effy Vayena. Artiﬁcial intelligence: the global landscape of ethics guide-
+lines.arXiv preprint arXiv:1906.11668, 2019.
+Christopher M Jones and Daniel M Kammen. Quantifying carbon footprint reduction opportunities for us
+households and communities.Environmental science &amp; technology, 45(9):4088–4095, 2011.
+Lynn H Kaack, George H Chen, and M Granger Morgan. Truck trafﬁc monitoring with satellite images. InProceedings of the Conference on Computing &amp; Sustainable Societies, pages 155–164. ACM, 2019.
+Yann LeCun, Léon Bottou, Yoshua Bengio, Patrick Haffner, et al.
+Gradient-based learning applied to
+document recognition.Proceedings of the IEEE, 86(11):2278–2324, 1998.
+Kelly Levin, Benjamin Cashore, Steven Bernstein, and Graeme Auld. Overcoming the tragedy of super
+wicked problems: constraining our future selves to ameliorate global climate change.Policy sciences, 45
+(2):123–152, 2012.
+Nate G McDowell, Nicholas C Coops, Pieter SA Beck, Jeffrey Q Chambers, Chandana Gangodagamage,
+Jeffrey A Hicke, Cho-ying Huang, Robert Kennedy, Dan J Krofcheck, Marcy Litvak, et al.
+Global
+satellite monitoring of climate-induced vegetation disturbances.Trends in plant science, 20(2):114–123,
+2015.
+Roger Nkambou, Riichiro Mizoguchi, and Jacqueline Bourdeau.Advances in intelligent tutoring systems,
+volume 308. Springer Science &amp; Business Media, 2010.
+Silvio Nocera, Cayetano Ruiz-Alarcón-Quintero, and Federico Cavallaro. Assessing carbon emissions from
+road transport through trafﬁc ﬂow estimators.Transportation Research Part C: Emerging Technologies,
+95:125–148, 2018.
+Benjamin D Nye. Intelligent tutoring systems by and for the developing world: A review of trends and
+approaches for educational technology in a global context.International Journal of Artiﬁcial Intelligence
+in Education, 25(2):177–203, 2015.
+11I Perisic.
+How artiﬁcial intelligence is shaking up the job market.https://www.weforum.org/
+agenda/2018/09/artificial-intelligence-shaking-up-job-market/, 2018. Ac-
+cessed: 2019-11-25.
+Rimma Pivovarov, Adler J Perotte, Edouard Grave, John Angiolillo, Chris H Wiggins, and Noémie Elhadad.
+Learning probabilistic phenotypes from heterogeneous ehr data.Journal of biomedical informatics, 58:
+156–165, 2015.
+Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. Why should i trust you?: Explaining the predic-
+tions of any classiﬁer. InProceedings of the 22nd ACM SIGKDD international conference on knowledge
+discovery and data mining, pages 1135–1144. ACM, 2016.
+David Rolnick, Priya L Donti, Lynn H Kaack, Kelly Kochanski, Alexandre Lacoste, Kris Sankaran, An-
+drew Slavin Ross, Nikola Milojevic-Dupont, Natasha Jaques, Anna Waldman-Brown, Alexandra Luc-
+cioni, et al. Tackling climate change with machine learning.arXiv preprint arXiv:1906.05433, 2019.
+RSS.
+A guide for ethical data science.https://www.actuaries.org.uk/system/files/
+field/document/An%20Ethical%20Charter%20for%20Date%20Science%20WEB%
+20FINAL.PDF., 2019. Accessed: 2019-11-25.
+Victor Schmidt, Alexandra Luccioni, S Karthik Mukkavilli, Narmada Balasooriya, Kris Sankaran, Jennifer
+Chayes, and Yoshua Bengio. Visualizing the consequences of climate change using cycle-consistent
+adversarial networks.arXiv preprint arXiv:1905.03709, 2019.
+Lars Wilko Sommer, Tobias Schuchert, and Jürgen Beyerer. Fast deep vehicle detection in aerial images.
+In2017 IEEE Winter Conference on Applications of Computer Vision (WACV), pages 311–319. IEEE,
+2017.
+Patrick Suppes and Mona Morningstar. Computer-assisted instruction.Science, 166(3903):343–350, 1969.
+M Szczepánski.
+Economic impacts of artiﬁcial intelligence (ai), european parliamentary research ser-
+vice, pe 637.967.http://europarl.europa.eu/RegData/etudes/BRIE/2019/637967/
+EPRS_BRI(2019)637967_EN.pdf, 2019. Accessed: 2019-11-25.
+UNHCR.
+The
+sustainable
+development
+goals
+and
+addressing
+statelessness.https://
+www.refworld.org/docid/58b6e3364.html, 2017. Accessed: 2019-11-25.
+José R Vázquez-Canteli and Zoltán Nagy.
+Reinforcement learning for demand response: A review of
+algorithms and modeling techniques.Applied energy, 235:1072–1089, 2019.
+Stefan Voigt, Thomas Kemper, Torsten Riedlinger, Ralph Kieﬂ, Klaas Scholte, and Harald Mehl. Satellite
+image analysis for disaster and crisis-management support.IEEE transactions on geoscience and remote
+sensing, 45(6):1520–1528, 2007.
+Cyril Voyant, Gilles Notton, Soteris Kalogirou, Marie-Laure Nivet, Christophe Paoli, Fabrice Motte, and
+Alexis Fouilloy. Machine learning methods for solar radiation forecasting: A review.Renewable Energy,
+105:569–582, 2017.
+Sun Wei, Zhang Chongchong, and Sun Cuiping. Carbon pricing prediction based on wavelet transform
+and k-elm optimized by bat optimization algorithm in china ets: the case of shanghai and hubei carbon
+markets.Carbon Management, 9(6):605–617, 2018.
+James Wexler, Mahima Pushkarna, Tolga Bolukbasi, Martin Wattenberg, Fernanda Viégas, and Jimbo Wil-
+son. The what-if tool: Interactive probing of machine learning models.IEEE transactions on visualiza-
+tion and computer graphics, 26(1):56–65, 2019.
+Jenna Wiens, Suchi Saria, Mark Sendak, Marzyeh Ghassemi, Vincent X Liu, Finale Doshi-Velez, Kenneth
+Jung, Katherine Heller, David Kale, Mohammed Saeed, et al. Do no harm: a roadmap for responsible
+machine learning for health care.Nature medicine, 25(9):1337–1340, 2019.
+Rich Zemel, Yu Wu, Kevin Swersky, Toni Pitassi, and Cynthia Dwork. Learning fair representations. InInternational Conference on Machine Learning, pages 325–333, 2013.
+12</biblio>
+</article>

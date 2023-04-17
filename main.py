@@ -16,10 +16,10 @@ from classeur import Classeur
 
 #-----------------Données statiques-----------------
 
-CURRENT_PDF_DIRECTORY = "res/tests/Corpus_2021/PDF"
-DESTINATION_DIRECTORY = "Artefacts/Sprint_5/"
+CURRENT_PDF_DIRECTORY = "res/tests/Corpus TEST"#"res/tests/Corpus_2021/PDF"
+DESTINATION_DIRECTORY = "Artefacts/Sprint_6/"
 FORMAT = "xml"
-SELECTION = "5"#None
+SELECTION = ""#None
 SLEEP_TIME=1000000
 
 i=1

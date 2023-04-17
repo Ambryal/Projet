@@ -249,10 +249,11 @@ class Carnet(list):
       univ[plus_pres(i[1],self.posMail)]+="\n"+i[0]
 
     for i in range(len(univ)):
-      if univ[i]=="":
-        univ[i]=res[plus_pres(self.posMail[i],[j[1] for j in res])][0]
-      else:
-        univ[i]=univ[i][1:]
+      if len(res)>0:
+        if univ[i]=="":
+          univ[i]=res[plus_pres(self.posMail[i],[j[1] for j in res])][0]
+        else:
+          univ[i]=univ[i][1:]
     
     return clean(univ)
 
