@@ -24,13 +24,13 @@ class Carnet(list):
     self.premisse=[]
     #Parties du Document (1.1, 1.2,2.1, etc...)
     self.parts=[]
-    #Police du titre
+    #Police du titre des chapitres
     self.policeTitre=""
 
     #Évaluation de la position du corps
-    #(Fallback lorsque les parties n'ont pas pu être détectées)
     self.corpsMax=1000000
     self.corpsMin=-1
+    #Fallback si les chapitres n'ont pas pu être détectés
     self.corpsMaxParts=1000000
     self.corpsMinParts=-1
 
@@ -76,11 +76,11 @@ class Carnet(list):
         self.addBloc(bloc)
     pdf.close()
 
-  #Ajout d'une page au carnet
+#Ajout d'une page au carnet
   def addPage(self):
     self.pages.append([])
 
-  #Ajout d'un bloc au carnet
+#Ajout d'un bloc au carnet
   def addBloc(self,bloc):
     #Contrôle de la Police
     if bloc.font not in self.fonts:
@@ -92,7 +92,7 @@ class Carnet(list):
     #Ajout à l'objet
     self.append(bloc.fixe())
     
-  #Détection du Titre
+#Détection du Titre
   def getTitre(self):
     max,n=-1,0
     #Détection du bloc de police maximale dans les premiers blocs
@@ -108,20 +108,22 @@ class Carnet(list):
           while len(self.pages[0])==0:
             self.pages.pop(0)
           self.pages[0].pop(0)
-        #Retour du titre sans retour à la ligne
+        #Renvoi du titre sans retour à la ligne
         return sansRetour(self[0])
 
-  #Détection des mails
+#Détection des mails
   def getMail(self):
 
     mails=[]
 
     #Les mails sont recherchés dans la prémisse
     premisse=self.getPremisse()
-    res={}
 
+    #Éléments techniques
+    res={}
     lastBloc=""
-    
+
+    #Détection des polices contenant des "@"
     for i, bloc in enumerate(premisse):
       if "@" in bloc:
         if bloc.font not in res:
@@ -129,11 +131,14 @@ class Carnet(list):
           for j,b in enumerate(premisse):
             if b.font==bloc.font:
               res[bloc.font].append(j)
+              
+    #Détection de la bonne police parmi celles-ci
     for font in res:
       for i in res[font]:
         bloc=premisse[i]
         for n,word in enumerate(sansRetour(bloc).split(" ")):
           if "@" in word:
+            #Cas (nom1,nom2,nom3)@ubs.fr
             if word.startswith("@"):
               if n!=0:
                 lastBloc=" ".join(sansRetour(bloc).split(" ")[0:n])
@@ -144,6 +149,7 @@ class Carnet(list):
                   lastBloc=premisse[i-1]
               x=lastBloc.split(",")
               for person in x:
+                #Types de parenthèses
                 for cha in "{}[]() ":
                   person=person.replace(cha,"")
                 if person=="":
@@ -155,6 +161,7 @@ class Carnet(list):
             else:
               mails.append(word)
               self.posMail.append(bloc.pos)
+            #Suppression des mails dans le carnet
             premisse[i].text=premisse[i].text.replace(word,"")
         premisse[i]=premisse[i].fixe()
         lastBloc=premisse[i]
@@ -163,54 +170,65 @@ class Carnet(list):
     return mails
 
   
-#SUPPOSÉ : Les noms sont toujours dans la premisse
-#          Il y a autant de noms que de mails
-#          Ils sont dans le même ordre
-#          Un nom est écrit sur une ligne
-#          Les noms sont toujours dans la même police
+#Détection des noms
   def getNom(self,mail):
-    
+
+    #Fallback si les mails n'ont pas été détectés
     if mail==[]:
       return mail
 
+    #Les noms sont détéctés dans la prémisse
     premisse=self.getPremisse()
+    
+    #Éléments techniques
     fonts=[]
     res=[0,["" for _ in mail],["" for _ in mail],""]
+
     for i, bloc in enumerate(premisse):
       s=bloc.font
+      #Évaluation de la police la plus adéquate pour représenter les noms
       if s not in fonts:
         fonts.append(s)
         l=[]
         for j, b in enumerate(premisse):
           if b.font==s:
+              #Séparation des noms par ",",";","\n"
               for k in b.replace(",","\n").replace(";","\n").split("\n"):
                 while k.startswith(" "):
                   k=k[1:]
                 while k.endswith(" "):
                   k=k[:-1]
+                #Si le nom est entre 2 et 4 mots, il est candidat
                 if 2<=len(k.split(" "))<=4:
                   l.append(k)
+        #Heuristique permutant l'ordre des noms et évaluant leur pertinence
         for _ in range(int(1000/(max(1,len(l))**2))):
           self.findNom(mail,res,l,1,s)
           shuffle(l)
-        
+
+    #Suppression des noms dans le carnet
     for i, bloc in enumerate(premisse):
       if bloc.font==res[3]:
         for name in res[2]:
           premisse[i].text=premisse[i].text.replace(name,"")
         premisse[i]=premisse[i].fixe()
-        
+
+    #Renvoi des noms sans double espace
     return clean(res[2])
 
+#Fonction récursive évaluant la pertinence d'une association noms-mails
   def findNom(self,mail,res,l,proba,size):
     if len(mail)==0 or len(l)<len(mail):
       return
     for i in range(len(l)):
+      #Évaluation de la pertinence d'un nom
       res[1][len(res[1])-len(mail)]=l[i]
       new_proba=proba*similarite(l[i],mail[0])
       if len(mail)>1:
+        #Récursivité
         self.findNom(mail[1:],res,l[i+1:],new_proba,size)
       else:
+        #Fin de récursivité : évaluation de la pertinence globale
         if new_proba>res[0]:
           res[0]=new_proba
           res[3]=size
@@ -218,15 +236,14 @@ class Carnet(list):
             res[2][i]=res[1][i]
 
   
-#SUPPOSÉ : Les affiliations sont toujours dans la premisse
-#          Il y a autant d'affiliations que de mails
-#          Elles sont dans le même ordre
-#          Les affiliations sont toujours dans la même police
+#Détection des affiliations
   def getUniv(self,mail):
 
+    #Fallback si les mails n'ont pas été détectés
     if mail==[]:
       return mail
 
+    #Mots clefs caractérisant une affiliation
     mots_clefs=["univ",
                 "labo",
                 "cole",
@@ -234,9 +251,13 @@ class Carnet(list):
                 "nstitu",
                 ]
     
+    #Les affiliations sont détéctées dans la prémisse
     premisse=self.getPremisse()
+    
+    #Éléments techniques
     fonts=[]
     res=[]
+    
     for i, bloc in enumerate(premisse):
       s=bloc.font
       if s not in fonts:
@@ -245,6 +266,7 @@ class Carnet(list):
         for j, b in enumerate(premisse):
           if b.font==s:
               for k in b.split("\n"):
+                #Détection des mots clefs
                 for mc in mots_clefs:
                   if mc in k.lower():
                     l.append([k,b.pos])
@@ -257,21 +279,23 @@ class Carnet(list):
             streak=False
         if len(l)>len(res):
           res=l
-          
+
+    #Suppression des affiliations dans le carnet
     for i, bloc in enumerate(premisse):
       for adresse in res:
         for univ in adresse[0].split("\n"):
           premisse[i].text=premisse[i].text.replace(univ,"")
           premisse[i]=premisse[i].fixe()
 
+    #Suppression des retours à la ligne
     for i in range(len(res)):
       res[i][0]=sansRetour(res[i][0])
 
     univ=["" for _ in mail]
 
+    #Attribution des affiliations aux différents auteurs
     for i in res:
       univ[plus_pres(i[1],self.posMail)]+="\n"+i[0]
-
     for i in range(len(univ)):
       if len(res)>0:
         if univ[i]=="":
@@ -283,11 +307,13 @@ class Carnet(list):
 
 
 
-#SUPPOSÉ : Les parties ont des titres numérotés, tous de la même police
+#Détection des chapitres de l'article
   def getParts(self):
+    #Type de numérotations
     langues=[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
              ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"]]
 
+    #Éléments techniques
     fonts=[]
     res=[0,0,"",[],0,0]
     lastLine=""
@@ -296,12 +322,14 @@ class Carnet(list):
     if len(self.parts)==0:
       for i, bloc in enumerate(self):
         f=bloc.font
+        #Détection de la police des titres
         if f not in fonts:
           lastLine=lastBloc
           fonts.append(f)
           for k, l in enumerate(langues):
             c=0
             r=[]
+            #Valeurs permettant d'établir la pertinence de la police
             long=[0,0,0,0]
             for j, b in enumerate(self):
               long[0]+=len(b)
@@ -315,10 +343,12 @@ class Carnet(list):
                   long[1]+=long[2]
                   long[2]=0
                   r.append([b,""])
+                  #Fallback si le numéro est dans la dernière ligne du bloc précedent
                   if rattrapage:
                     r[-1][0]=lastLine.split("\n")[-1]+r[-1][0]
                     long[3]+=len(r[-1][0])
                 else:
+                  #Extraction du titre du chapitre
                   if len(r)>0:
                     if r[-1][1]=="" and len(r[-1][0])<200:
                         r[-1][0]+=" "+b
@@ -337,6 +367,7 @@ class Carnet(list):
                 lastLine=""
               else:
                 lastLine=b
+            #Évaluation de la pertinence de la police
             if long[1]>0 and long[0]/long[1]<2 and (res[4]=='' or (float(bloc.size)>float(res[4]))) and c>1:#c>res[0]:
               res=[c,k,f,r,bloc.size,long[3]/max(0,len(r))]
         lastBloc=bloc
@@ -344,14 +375,18 @@ class Carnet(list):
       self.parts=res[3][:-1]
 
     return self.parts
-
+  
+#Détection d'une partie du document par mots clefs
   def findPart(self,l,reverse=False,dontStop=False):
 
+    #Recherche exacte dans le cas où findPartReverse est utilisé
     exact=None
     if reverse:
       exact=self.findPartReverse(l)
-    
+      
+    #Recherche dans les chapitres
     for i, part in enumerate(self.getParts()):
+      #Détection des mots clefs
       for keyword in l:
         if exact==part[0] or (not reverse and keyword in part[0].lower()):
           if reverse:
@@ -359,15 +394,19 @@ class Carnet(list):
           else:
             self.corpsMinParts=max(self.corpsMinParts,i)
           return part[1][1:]
+        
     flag=False
     res=""
+    #Fallback si la partie n'était pas dans les chapitres
     for i, part in enumerate(self):
       if flag:
+        #Extraction de la partie
         if ((part.font==self.policeTitre and len(res)>100) or (self.policeTitre=="" and len(res)>1000)) and not dontStop:
           return res
         res+=part
         if i==len(self)-1:
           return res
+      #Détection des mots clefs
       for keyword in l:
         if exact==part or (not reverse and keyword in part.lower()):
           if reverse:
@@ -375,74 +414,95 @@ class Carnet(list):
           else:
             self.corpsMin=max(self.corpsMin,i)
           flag=True
-
+          
+    #Echec
     return "N/A"
-
+  
+#Méthode semblable à findPart mais recherchant depuis la fin du document
   def findPartReverse(self,l):
-
+    
+    #Recherche dans les chapitres
     for part in reversed(self.getParts()):
+      #Détection des mots clefs
       for keyword in l:
         if keyword in part[0].lower():
+          #Renvoi du titre exact de chapitre à chercher pour findPart
           return part[0]
-        
+
+    #Recherche dans les éléments ayant la police des chapitres
+    #Puis dans tous les éléments pouvant être assimilés à un titre
     for tour in range(2):
       for part in reversed(self):
         if tour==1 or part.font==self.policeTitre:
+          #Détection des mots clefs
           for keyword in l:
             firstLine=part.lower().split("\n")
             firstLine.append("")
             firstLine=firstLine[0]
             if (isShort(part) and (keyword in part.lower())) or (len(firstLine)<15 and keyword in firstLine.lower()):
+              #Renvoi du titre exact de chapitre à chercher pour findPart
               return part
     
-
+    #Echec
     return "N/A"
 
 
-
+#Détection de l'Abstract
   def getAbstract(self):
     return self.findPart(["bstract"])
-
+  
+#Détection de l'Introduction
   def getIntro(self):
     return self.findPart(["ntro"])
 
+#Détection de la Discussion
   def getDiscu(self):
     return self.findPart(["iscussion"],True)
 
+#Détection de la Conclusion
   def getConclu(self):
     return self.findPart(["onclusion"],True)
 
+#Détection de la Bibliographie
   def getBiblio(self):
     return self.findPart(["eference","bliogr"],True,True)
 
+#Détection de l'Abstract
   def getCorps(self):
     s=""
+    #Détection du corps via les chapitres
     if self.corpsMinParts!=-1:
       for i in range(max(0,self.corpsMinParts+1),min(self.corpsMaxParts,len(self.getParts()))):
         s+="\n"+self.getParts()[i][0]+self.getParts()[i][1]
       return s[1:]
     else:
+      #Fallback si les chapitres n'ont pas pû être détectés
       for i in range(max(0,self.corpsMin),min(self.corpsMax,len(self))):
         s+="\n"+self[i]
       return s[1:]
-    
+
+#Détection de la prémisse
   def getPremisse(self):
     if len(self.premisse)==0:
       mailFound=False
+      #Parcours du carnet
       for bloc in self:
+        #Renvoi si des mails ont été détectés et que le bloc est un paragraphe
         if isLong(bloc) and mailFound:
           break
         if "@" in bloc:
           mailFound=True
         self.premisse.append(bloc)
     return self.premisse
-        
+
+#Suppression du premier élément du carnet
   def shift(self):
     while len(self.pages[0])==0:
       self.pages.pop(0)
     self.pages[0].pop(0)
     return self.pop(0)
-    
+
+#Affichage
   def print(self, page=None, bloc=None):
     if page==None:
       l=self
@@ -454,7 +514,7 @@ class Carnet(list):
     for i in l:
       print(i.print())
 
-
+#Évaluation de la distance physique entre deux éléments
 def plus_pres(p,l):
   r=[0,100000000]
   for i,q in enumerate(l):
@@ -462,7 +522,8 @@ def plus_pres(p,l):
     if distance<r[1]:
       r=[i,distance]
   return r[0]
-  
+
+#Évaluation de la distance syntaxique entre deux éléments
 def similarite(a,b):
   if a=="" or a==" ":
     return 0
@@ -479,12 +540,14 @@ def similarite(a,b):
         s=s[1:]
   return n[1]/n[0]
 
+#Suppression des double espaces
 def clean(l):
   for i in range(len(l)):
     while "  " in l[i]:
       l[i]=l[i].replace("  "," ")
   return l
 
+#Correction des caractères accentués
 def correct(s):
   accents=[ ["e","`","è"],
             ["e","´","é"],
@@ -531,12 +594,15 @@ def correct(s):
 
   return s
 
+#Caractérisation d'un bloc court
 def isShort(s):
   return s.count("\n")<2
 
+#Caractérisation d'un bloc long
 def isLong(s):
   return s.count("\n")>5 and len(s)>500
 
+#Suppression des retours à la ligne
 def sansRetour(s):
   return s.replace("\n"," ")
 
