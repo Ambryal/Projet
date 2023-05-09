@@ -12,22 +12,32 @@ comme des mails, une intro, etc...
 class Carnet(list):
   
   def __init__(self,pdf):
+    #Lien vers le pdf source
     self.pdf=pdf
+    #Pages
     self.pages=[]
-    
-    self.fonts=[]
-    self.premisse=[]
-    self.parts=[]
 
+    #Initialisation de listes utiles par la suite
+    #Liste des polices
+    self.fonts=[]
+    #Prémisse : Liste des Blocs avant l'Abstract
+    self.premisse=[]
+    #Parties du Document (1.1, 1.2,2.1, etc...)
+    self.parts=[]
+    #Police du titre
     self.policeTitre=""
-    
+
+    #Évaluation de la position du corps
+    #(Fallback lorsque les parties n'ont pas pu être détectées)
     self.corpsMax=1000000
     self.corpsMin=-1
     self.corpsMaxParts=1000000
     self.corpsMinParts=-1
 
+    #Position des Blocs correspondant aux mails
     self.posMail=[]
-    
+
+    #Création des blocs par analyse de la sortie de pymupdf
     pdf = pdf.open()
     for page in pdf:
         self.addPage()
@@ -36,11 +46,12 @@ class Carnet(list):
         for group in page.get_text("dict")["blocks"]:
             if "lines" in group.keys():
                 for span in group['lines']:
+                    #Parcours des lignes du pdf et regroupement de celles-ci
+                    #en un seul Bloc tant qu'elles ont la même Police
                     for lines in span['spans']:
                         font=str(lines['size'])+lines['font']
                         size=lines['size']
                         line=lines['text']
-                        #pos=((lines['bbox'][0]+lines['bbox'][2])/2,(lines['bbox'][1]+lines['bbox'][3])/2)
                         pos=lines["origin"]
                         if bloc.font==None:
                             bloc.font=font
@@ -58,49 +69,54 @@ class Carnet(list):
                             while bloc.text.startswith(" "):
                                 bloc.text=bloc.text[1:]
                         else:
+                            #Erreur presque impossible venant de pymupdf
                             print("Erreur de lecture :\n"+line+"\n"+source[:100])
                             sys.exit()
                         source=source[len(line):]
         self.addBloc(bloc)
     pdf.close()
-    
+
+  #Ajout d'une page au carnet
   def addPage(self):
     self.pages.append([])
 
-    
+  #Ajout d'un bloc au carnet
   def addBloc(self,bloc):
+    #Contrôle de la Police
     if bloc.font not in self.fonts:
       self.fonts.append(bloc.font)
     bloc.font=self.fonts.index(bloc.font)+1
     bloc.text=correct(bloc.text)
+    #Ajout à la dernière page
     self.pages[-1].append(bloc.fixe())
+    #Ajout à l'objet
     self.append(bloc.fixe())
-
-#SUPPOSÉ : Le titre est toujours la suite d'éléments de la police la plus grande.
+    
+  #Détection du Titre
   def getTitre(self):
     max,n=-1,0
+    #Détection du bloc de police maximale dans les premiers blocs
     for j in range(len(self.pages)):
       for i, bloc in enumerate(self.pages[j]):
         n+=1
         if bloc.size>max and len(bloc)>1:
           max=bloc.size
+      #Suppression du texte précédant le titre
       if n>40:
         while self[0].size!=max:
           self.pop(0)
           while len(self.pages[0])==0:
             self.pages.pop(0)
           self.pages[0].pop(0)
+        #Retour du titre sans retour à la ligne
         return sansRetour(self[0])
-    
-#SUPPOSÉ : Le mail est toujours dans la premisse
-#          Les mails sont toujours dans la même police
-#          Le mail est l'ensemble des éléments contenant "@" dans la police du 1er élément contenant "@".
-#FALLBACK (retour vide) : Remplacer *Q*.* par *@*.* et recommencer.
 
+  #Détection des mails
   def getMail(self):
 
     mails=[]
-    
+
+    #Les mails sont recherchés dans la prémisse
     premisse=self.getPremisse()
     res={}
 
