@@ -10,6 +10,7 @@ Usage :
 -x : Sortie sous forme de fichiers .xml
 
 SOURCE : Dossier contenant les fichiers pdf
+
 DEST : Dossier de destination des fichiers texte
 
 
