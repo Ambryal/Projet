@@ -1,7 +1,7 @@
 #-----------------Modules distribués-----------------
 import sys
 from time import sleep
-import glob, os
+import glob, osx
 import shutil
 from datetime import datetime
 
@@ -19,9 +19,10 @@ from classeur import Classeur
 CURRENT_PDF_DIRECTORY = "res/tests/Corpus TEST"#"res/tests/Corpus_2021/PDF"
 DESTINATION_DIRECTORY = "Artefacts/Sprint_6/"
 FORMAT = "xml"
-SELECTION = ""#None
+SELECTION = None
 SLEEP_TIME=1000000
-
+print(sys.argv)
+print("_____________")
 i=1
 if len(sys.argv)>i and sys.argv[i].startswith("-"):
     if sys.argv[i]=="-t":
@@ -41,6 +42,11 @@ else:
 #Liste des pdf à traduire
 PDF=[Pdf(file) for file in glob.glob(CURRENT_PDF_DIRECTORY+"/*.pdf")]
 
+if len(PDF)==0:
+    print("Aucun pdf détecté...")
+    sleep(5)
+    sys.exit()
+    
 print("PDF détectés :\n")
 for i in range(len(PDF)):
     print(i,PDF[i].name)
