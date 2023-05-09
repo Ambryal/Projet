@@ -1,6 +1,14 @@
 from bloc import Bloc
 from random import shuffle
 
+"""
+Objet héritant de la classe Liste modélisant un PDF sous forme à la fois d'une
+liste de Blocs et d'une liste de pages (elles-mêmes une liste de Blocs).
+
+Il possède toutes les méthodes qui permettront d'interpréter ses éléments
+comme des mails, une intro, etc...
+"""
+
 class Carnet(list):
   
   def __init__(self,pdf):
