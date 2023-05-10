@@ -1,10 +1,10 @@
 <article><preamble>BLESS.pdf</preamble>
 <titre>How we BLESSed distributional semantic evaluation</titre>
-<auteurs><auteur><nom>Marco Baroni</nom>
+<auteurs><auteur><name>Marco Baroni</name>
 <mail>marco.baroni@unitn.it</mail>
 <affiliation>University of Trento Trento, Italy</affiliation>
 </auteur>
-<auteur><nom>Alessandro Lenci</nom>
+<auteur><name>Alessandro Lenci</name>
 <mail>alessandro.lenci@ling.unipi.it</mail>
 <affiliation>University of Pisa Pisa, Italy</affiliation>
 </auteur>
@@ -1630,17 +1630,14 @@ Eneko Agirre, Enrique Alfonseca, Keith Hall, Jana
 Kravalova, Marius Pasc¸a, and Aitor Soroa. 2009. A
 study on similarity and relatedness using distributional
 and WordNet-based approaches.
-InProceedings of
-HLT-NAACL, pages 19–27, Boulder, CO.
+InProceedings ofHLT-NAACL, pages 19–27, Boulder, CO.
 Abdulrahman Almuhareb. 2006.Attributes in Lexical
 Acquisition. Phd thesis, University of Essex.
 Marco Baroni and Alessandro Lenci.
 2010.
 Dis-
 tributional
-Memory:
-A
-general
+Memory:Ageneral
 framework
 for
 corpus-based semantics.Computational Linguistics,
@@ -1690,8 +1687,7 @@ Research Methods, 37(4):547–559.
 George Miller and Walter Charles. 1991. Contextual cor-
 relates of semantic similarity.Language and Cogni-
 tive Processes, 6(1):1–28.
-Gregory Murphy. 2002.The Big Book of Concepts. MIT
-Press, Cambridge, MA.
+Gregory Murphy. 2002.The Big Book of Concepts. MITPress, Cambridge, MA.
 Timothy Rogers and James McClelland. 2004.Seman-
 tic Cognition: A Parallel Distributed Processing Ap-
 proach. MIT Press, Cambridge, MA.

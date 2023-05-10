@@ -1,10 +1,249 @@
 <article><preamble>IPM1481.pdf</preamble>
 <titre>Information Processing and Management</titre>
-<auteurs></auteurs>
-<abstract>CORTEX(Torres-Moreno, St-Onge, Gagnon, El-Bèze, &amp; Bellot, 2009, 2001), an efﬁcient state-of-art summa-
-rization system, in order to retain the more informative segments of the CL.
-Each document of the application is transmitted to theCORTEX</abstract>
-<introduction>11
+<auteurs><auteur><name>Rémy Kessler</name>
+<mail>remy.kessler@univ-avignon.fr</mail>
+<affiliation>LIA/Université d’Avignon et des Pays de Vaucluse, 339 chemin des Meinajariès, 84911 Avignon, France</affiliation>
+</auteur>
+<auteur><name>Nicolas Béchet</name>
+<mail>nicolas.bechet@inria.fr</mail>
+<affiliation>École Polytechnique de Montréal, CP 6079, succ. Centre-ville, Montréal (Québec) Canada H3C 3A7</affiliation>
+</auteur>
+<auteur><name>Mathieu Roche</name>
+<mail>mathieu.roche@lirmm.fr</mail>
+<affiliation>LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+</auteur>
+<auteur><name>Juan-Manuel Torres-Moreno</name>
+<mail>res@univ-avignon.fr</mail>
+<affiliation>LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+</auteur>
+<auteur><name>Marc El-Bèze</name>
+<mail>marc.elbeze@univ-avignon.fr</mail>
+<affiliation>LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+</auteur>
+</auteurs>
+<abstract>The evolution of the job market has resulted in traditional methods of recruitment becom-
+ing insufﬁcient. As it is now necessary to handle volumes of information (mostly in the
+form of free text) that are impossible to process manually, an analysis and assisted catego-
+rization are essential to address this issue. In this paper, we present a combination of the
+E-Gen andCORTEXsystems. E-Gen aims to perform analysis and categorization of job offers
+together with the responses given by the candidates. E-Gen system strategy is based on
+vectorial and probabilistic models to solve the problem of proﬁling applications according
+to a speciﬁc job offer.CORTEXis a statistical automatic summarization system. In this work,
+E-Gen uses Cortex as a powerful ﬁlter to eliminate irrelevant information contained in
+candidate answers. Our main objective is to develop a system to assist a recruitment
+consultant and the results obtained by the proposed combination surpass those of E-Gen
+in standalone mode on this task.�2012 Elsevier Ltd. All rights reserved.</abstract>
+<introduction>The evolution of the job market has resulted in that traditional methods of recruitment becoming insufﬁcient. The
+Internet has introduced a new way of managing human resources. Theoretically, shifting job search and recruitment activ-
+ities to the Internet improves the quality of job matching by reducing search costs, increasing contact opportunities and
+rationalizing the screening process of job applicants (Marchal, Mellet, &amp; Rieucau, 2007). Over the last few years, there has
+been a signiﬁcant expansion of online recruitment (e.g. August 2003: 177,000 job offers, May 2008: 500,000 job offers).
+1
+The Internet has become essential in this process because it allows a better ﬂow of information, either through job search
+sites or by e-mail exchanges. Nowadays, job seekers can send their curriculum vitae (CV) directly to companies (by e-mail
+or uploaded to dedicated servers on the Web). The job search task is becoming easier and less time consuming. The Internet
+makes every user a potential job seeker. Employees may be constantly in search of new career opportunities and job candi-
+dates may provide more interaction than can be managed efﬁciently by companies (Bourse, LeclFre, Morin, &amp; Trichet, 2004).
+As intellectual capital has become one of the most strategic assets of successful organizations in the last decade, the capa-
+bility of managing people’s expertise, skills and experience represents a key factor in facing up to the increasing competitive-
+ness of the global market (Colucci et al., 2003). Even though a browser has become a universal and easy tool for users, they
+0306-4573/$ - see front matter
+�
+2012 Elsevier Ltd. All rights reserved.
+http://dx.doi.org/10.1016/j.ipm.2012.03.002
+⇑
+Corresponding author.
+E-mail addresses:
+remy.kessler@univ-avignon.fr (R. Kessler), nicolas.bechet@inria.fr (N. Béchet), mathieu.roche@lirmm.fr (M. Roche), juan-manuel.tor-
+res@univ-avignon.fr (J.-M. Torres-Moreno), marc.elbeze@univ-avignon.fr (M. El-Bèze).
+1
+http://www.keljob.com.
+Information Processing and Management 48 (2012) 1124–1135
+Contents lists available at SciVerse ScienceDirect
+Information Processing and Management
+journal homepage: www.elsevier.com/locate/infoproman
+Author&apos;s personal copy
+frequently have to enter data into Web forms from paper sources and the need to ‘‘copy and paste’’ data between different
+applications is symptomatic of the issues of data integration. In this context, electronic recruitment tends to automate match-
+ing between the published information about the candidates and job offers. The
+Laboratoire Informatique d’Avignon
+(LIA),
+2
+the
+Laboratoire d’Informatique, de Robotique et de Microélectronique de Montpellier
+(LIRMM),
+3
+and Aktor Interactive
+4
+are developing
+the E-Gen system to resolve this issue. E-Gen is a Natural Language Processing (NLP) and Information Retrieval (IR) system
+composed of three main modules:
+1. The ﬁrst one extracts the information from a corpus of e-mails of job offers from Aktor’s database.
+2. The second module analyses the candidate’s answers (i.e. splitting e-mails into cover letter (CL) and curriculum vitae).
+3. The third module analyses and computes a relevant ranking of the candidate’s answers.
+Our ﬁrst work (Kessler, Torres-Moreno, &amp; El-Bèze, 2007) presented the ﬁrst module: the identiﬁcation of different parts
+of a job offer and the extraction of relevant information (type of contract, salary, localization, etc.). The second module
+analyses the content of a candidate’s e-mail, using a combination of rules and machine learning methods (Support Vector
+Machines, SVM) and was presented in Kessler, Torres-Moreno, and El-Bèze (2008b). Furthermore, it separates the distinct
+parts of CV and CL with a precision of 0.98 and a recall of 0.96. Reading a large number of candidate answers for a job is a
+very time consuming task for a recruiting consultant. In order to facilitate this task, we propose a system capable of pro-
+viding an initial evaluation of candidate answers according to various criteria. We do not seek the best or even a good can-
+didate as no scoring is involved, but simply a candidate who has a close application to those already selected. Our previous
+work (Kessler, Béchet, Roche, El-Bèze, &amp; Torres-Moreno, 2009) presented an approach based on a process of relevance feed-
+back, permitting a reinforcement learning (Sutton &amp; Barto, 1998). In this paper, we present an original combination of the
+E-Gen and
+CORTEX
+systems. Each document contains a number of additional information, present in many applications and
+which is partially removed by classical pre-processing. Each application added by the process of relevance feedback adds
+relevant information but also multiplies additional information.
+CORTEX
+allows us to ﬁlter these sentences and keep only the
+most relevant sentences at the evaluation step. Some related studies are brieﬂy discussed in Section 2. Section 3 shows a
+general system overview. In Section 4, we describe the E-Gen pre-processing task, the strategy used to rank the candidate
+answers with relevance feedback and the coupling of E-Gen with the
+CORTEX
+summarization system. In Section 5, we present
+statistics about the textual corpus, experimental protocol, an example of CL summary generated by
+CORTEX
+, and several
+results.</introduction>
+<corps>2. Related work
+Many approaches have been proposed in the literature to reduce the costly and tedious task of managing human re-
+sources. Candidate answers to a job offer come as
+ad hoc
+documents, and require semantic approaches to analyse them.
+The
+BONOM
+system is based on an indexing method (Morin, LeclFre, &amp; Trichet, 2004; Cazalens &amp; Lamarre, 2001). This
+method consists in using distributional attributes of documents to locate each part for the ﬁnal indexation of the
+document.
+A semantic-based method to select candidate answers and to discuss the economic impacts on the German government
+was proposed by Tolksdorf, Mocho, Heese, Oldakowski, and Christian (2006). In the same way (Gorenak &amp; Mlaker KaF, 2010),
+perform a comparison between Slovenian, German, and British online job advertisements (ads). More recently (Marchal et
+al., 2007), present a comparison between French and English job search sites and newspapers as well as the various short-
+coming of current matching systems. They propose a comparative analysis of job offers posted on the Internet with those
+posted in newspapers and they observe that search engine toolkits have a considerable impact on ad content which is gen-
+erally more standardized and quantiﬁed than before.
+Mocho, Paslaru, and Simperl (2006) discuss the relevance of a common ontology (HR ontology) to work efﬁciently with
+this kind of document. Using the same model (Dorn &amp; Naz, 2007), outline a HR-XML based prototype dedicated to the job
+search task. The prototype selects and favors relevant information (paycheck, topic, abilities, etc.) from many job-service
+websites, such as
+Jobs.net
+,
+aftercollege.com
+,
+Directjobs.com
+, etc. Bourse et al. (2004) describe an efﬁcient model
+and a management tool used for the selection of candidate-answers. They propose a prototype job portal which uses seman-
+tically annotated job offers and applicants to obtain a more accurate job search with query approximation.
+The limitations of current systems for automatic selection of candidate answers are presented in Rafter, Bradley, and Smyt
+(2000). They propose a system based on collaborative ﬁlters (
+ACF
+) to automatically select proﬁles of candidate answers on
+the JobFinder website. Enrica and Iezzi (2006) present a model for ranking skills in the ﬁeld of information technology in Italy
+with multidimensional scaling and cluster analysis. In the same way, Colucci et al. (2003) present a semantic based approach
+to the issue of skills detection in an ontology supported framework. Based on Description Logics formalization and reasoning,
+they propose a skill matching approach with contradiction matches and partial matches between skill proﬁles. Loth et al.
+2
+http://www.lia.univ-avignon.fr.
+3
+http://www.lirmm.fr.
+4
+A French recruitment agency specialized in recruiting on the internet, (http://www.aktor.fr).
+R. Kessler et al. / Information Processing and Management 48 (2012) 1124–1135
+1125
+Author&apos;s personal copy
+(2010) combine, through the SIRE project (Semantics-Internet-Recruitment-Employment) a linguistic approach and machine
+learning methods to perform an extraction of key terms of job ads in order to improve the categorization of each job offer.
+The study of the most relevant document – the CV – to use it automatically has been a major subject of research. Ben
+Abdessalem Karaa (2009) presents a system for analyzing and structuring CVs with an extension of General Architecture
+of Text Engineering (GATE
+5
+). They obtain good results in precision/recall for each part of the document (personal information,
+experience, skill, and so forth) on a small corpus of CVs in French. Yahiaoui, Boufaı¨da, and Prié (2006) provide a semantic ap-
+proach to generating some annotations of CVs and job offers with the help of a specialized ontology to match graduates and the
+level of a job offer. They present interesting results on a sample of data. Clech and Zighed (2003) propose a data mining ap-
+proach. Their aim is to build automats which recognize CV topologies and candidate/job offer proﬁles. A ﬁrst step differentiates
+the CV of employed executives from other CV. They use a speciﬁc term extraction to obtain a categorization with the C4.5 deci-
+sion tree algorithm (Quilan, 1993). This method focuses on the speciﬁcity of selected terms or concepts, such as education level
+or relevant abilities, to build a classiﬁer. The results of this method are still poor (an accuracy between 0.5–0.6 of correctly cat-
+egorized CV). Roche and Kodratoff (2006) and Roche and Prince (2008) have made a terminology study of corpus composed of
+CVs (of the Vediorbis company (http://www.vediorbis.com)). Their approach extracts collocations from a CV corpus based on
+syntactic patterns such as Noun-Noun, Adjective-Noun, etc. Then, these collocations are ranked according to relevance to build
+a specialized ontology.
+There are few studies on the treatment of the cover letter. Audras and Ganascia (2006) use cover letters to detect the
+usual errors in the ﬁeld of acquisition of written French as a foreign language. The approach proposed is the detection of
+syntactic patterns particular to a group of learners, and which are absent or little used among native speakers. The study
+focuses in part on cover letter writing. Among the innovative solutions on the market, Twitter
+6
+has launched the job search
+site http://www.twitterjobsearch.com based on the concept of short messages (less than 140 characters) and ZaPoint
+7
+with an
+original solution, SkillsMapper, which transforms each CV into graphic format with various curves (training, education, etc.). In
+this paper, we present an approach to the application ranking by using a combination of similarity measures, relevance feedback
+and summaries of a CV and CL. Our approach is distinguished from other work by a purely statistical approach as well as rein-
+forcement learning through the process of relevance feedback.
+3. System overview
+Nowadays technology proposes new approaches to the online employment market. E-Gen is a system which meets this
+challenge as fast and judiciously as possible. We chose emails as the input format, which is the most frequent mode of com-
+munication in this ﬁeld. An e-mail inbox receives messages sometimes with an attached ﬁle containing the job offer. When a
+job offer is published online, a particular segmentation is required by the job search sites. Firstly, the job offer language is
+identiﬁed by using
+n
+-grams. Then, E-Gen parses the e-mail, splits the job offer into thematic segments, and retrieves relevant
+information (contract, salary, starting date, location, etc.) to generate an XML document for the job offer. Subsequently, a
+ﬁltering and lemmatisation process is applied to the text, and is represented in a vector space model (VSM). A categorization
+of text segments (preamble, skills or proﬁle, mission) is obtained by using a SVM classiﬁer (Fan, Chen, &amp; Lin, 2005). This pre-
+liminary classiﬁcation is then transmitted to a ‘‘corrective’’ post-process which improves the quality of the solution (Module
+1, described in Kessler et al., 2007). Preliminary experiments showed that segment categorization without segment position
+in job posting is not enough and may be a source of errors. In order to avoid this kind of error, we have decided to consider
+each job posting as produced by a succession of states in a Markov machine and we have applied a post-processing, based on
+the Viterbi algorithm (Viterbi, 1967). During the publication of a job offer, Aktor generates a temporary e-mail address for
+applying to the job. Each e-mail is redirected to human resources software (Gestmax
+8
+) to be read by a recruiting consultant.
+At this step, E-Gen analyses the candidate’s answers to identify each part of the application and extracts the text from the e-mail
+and attached ﬁles (by using wvWare
+9
+and pdftotext
+10
+).
+After a pre-processing task, we use a combination of rules and machine learning methods to separate each distinct part
+(CV or CL). We use a vector representation of each document with a label (CV or CL). With a learning set of 2.000 documents
+of each type, the system gets very good performance (F-score between 0.95 and 0.98). This process (Module 2 represented by
+the lowest box in Fig. 1) is more fully described in Kessler et al. (2008b). Once the CL and CV have been identiﬁed, the
+CORTEX
+system is applied to each document (Cover Letter and CV) and a summary is generated by concatenating high-scoring sen-
+tences. Afterwards, E-Gen performs an automated proﬁling of this application by using measures of similarity and a small
+number of applications that have been previously validated as relevant by a recruitment consultant (Module 3). The whole
+chain is summarized in Fig. 1.
+5
+http://gate.ac.uk/.
+6
+http://twitter.com.
+7
+http://www.zapoint.com.
+8
+http://www.gestmax.fr.
+9
+http://wvware.sourceforge.net.
+10
+http://www.bluem.net/downloads/pdftotext_en.
+1126
+R. Kessler et al. / Information Processing and Management 48 (2012) 1124–1135
+Author&apos;s personal copy
+4. Coupling E-Gen proﬁling module and the
+CORTEX system
+4.1. E-Gen proﬁling module
+4.1.1. Linguistic pre-processing
+Firstly, we remove information such as e-mail adresses, the names of candidates, addresses, names of cities in order to
+ensure that the applications become anonymous. Then, classic pre-processing is applied to textual information (job offer,
+CV, and CL). French accents are deleted and capital letters are converted to lower case. This pre-processing task is performed
+to obtain a representation well suited for the Vector Space Model (VSM). In order to avoid the introduction of noise into the
+models, the following items are also deleted: verbs and functional words (to be, to have, to need, etc.), common expressions
+with a stop word
+11
 list (for example, that is, each of, etc.), numbers (in numeric and/or textual format), symbols such as ‘‘$’’, ‘‘#’’,
 ‘‘
 ⁄
@@ -15,16 +254,21 @@ sent the collection of documents through the bag-of-words paradigm (a matrix of 
 didate answer (rows)). To improve ﬁltering, we tried parsing applications with different signiﬁcant terms (like ‘‘Personal
 Information’’, ‘‘Education’’, ’’Work Experience’’, etc.) and extract only paragraphs with the relevant information, but initial tests
 showed a decline in results due to the great variability of signiﬁant terms and order of paragraphs.
-4.1.2. Proximity between applications and job offer using similarity measures After the step of linguistic pre-processing, each document is transformed into a vector with weights characterizing the
+4.1.2. Proximity between applications and job offer using similarity measures
+After the step of linguistic pre-processing, each document is transformed into a vector with weights characterizing the
 frequency of terms
-Tf . Some tests with
-Tf-idf (Salton &amp; Mcgill, 1986) were made but they offered no improvement. We have
+Tf
+. Some tests with
+Tf-idf
+(Salton &amp; Mcgill, 1986) were made but they offered no improvement. We have
 established a strategy using measures of similarity, to rank all applications in relation to a job offer. We combined different
 similarity measures between the candidate’s answers (CV and CL) and the associated job offer. We decided to use several
 similarity measures as deﬁned in Bernstein, Kaufmann, Kiefer, and Bnrki (2005): Cosine (Eq. (1)), which calculates the angle
 between job offer and each candidate answer, Minkowski distances (Eq. (2)) (
-p = 1 for Manhattan,
-p = 2 for Euclidean). The
+p
+= 1 for Manhattan,
+p
+= 2 for Euclidean). The
 last measure used is Okabis (Eq. (3)) (Bellot &amp; El-Bèze, 2001). Based on the formula of Okapi (Robertson, Walker, Jones, Han-
 cock-Beaulieu, &amp; Gatford, 1994), this measure is often used in Information Retrieval. To combine these measures, we use an
 Algorithm Decision (AD) (Boudin &amp; Torres Moreno, 2007), which weights the values obtained by each measure of similarity.
@@ -117,6 +361,7 @@ d
 1
 1
 þ
+
 P
 n
 i
@@ -143,6 +388,7 @@ j
 ;
 d
 Þ ¼
+
 P
 i
 2
@@ -179,21 +425,32 @@ M
 d
 ð
 3
-Þ where
-j is a job offer,
-d is a candidate answer,
-i a term,
+Þ
+where
 j
-i and
+is a job offer,
 d
-i occurrence of
-i respectively in
-j and
-d , and
+is a candidate answer,
+i
+a term,
+j
+i
+and
+d
+i
+occurrence of
+i
+respectively in
+j
+and
+d
+, and
 M
-d their average
+d
+their average
 size.
-4.1.3. Relevance Feedback We previously changed the system to incorporate a process of Relevance Feedback (Sparck Jones, 1970). Relevance Feed-
+4.1.3. Relevance Feedback
+We previously changed the system to incorporate a process of Relevance Feedback (Sparck Jones, 1970). Relevance Feed-
 back is a standard method used particulary for manual query reformulation. For example, the user carefully checks the an-
 swer set resulting from an initial query, and then reformulates the query. Rocchio’s algorithm (Rocchio, 1971) and variations
 have found wide usage in Information Retrieval and related areas such as Text Categorisation (Joachims, 1997). Relevance
@@ -240,17 +497,24 @@ n
 Þ
 ð
 4
-Þ where
-j is a job offer,
-d is a candidate’s response,
+Þ
+where
+j
+is a job offer,
+d
+is a candidate’s response,
 p
-i is a
-relevant candidate’s response,
-n are numbers of retained applications
+i
+is a relevant
+candidate’s response,
+n
+are numbers of retained applications
 for Relevance Feedback and
-k is the concatenation operator.
+k
+is the concatenation operator.
 The results, presented in Kessler et al. (2009) and hereafter called
-ISMIS Result showed an improvement in the quality of
+ISMIS Result
+showed an improvement in the quality of
 the ranking obtained for each application added to the process of relevance feedback. However, we suspected that a lot of
 unnecessary information was still kept in the evaluation and we wanted to use a ﬁlter to take into account the content of
 sentences. Each document contains additional information (hobbies, greeting and complimentary close, etc.) and standard
@@ -258,28 +522,36 @@ pre-processing only partially removes it. The idea was to use a system of automa
 a powerful ﬁlter capable of removing non-essential information contained in CV and Cover Letters.
 4.2. The
 CORTEX
-summarization system Automatic summarization is useful to cope with ever increasing volumes of information. An abstract is, by far, the most
+summarization system
+Automatic summarization is useful to cope with ever increasing volumes of information. An abstract is, by far, the most
 concrete and recognized kind of text condensation. However, the CV is already a kind of summary, with a very important
 structure. We suspect that the ﬁltering system of automatic summarization may not be useful in this case. Since the CL is
 in free text, we used
-CORTEX (Torres-Moreno, St-Onge, Gagnon, El-Bèze, &amp; Bellot, 2009, 2001), an efﬁcient state-of-art summa-
+CORTEX
+(Torres-Moreno, St-Onge, Gagnon, El-Bèze, &amp; Bellot, 2009, 2001), an efﬁcient state-of-art summa-
 rization system, in order to retain the more informative segments of the CL.
 Each document of the application is transmitted to the
-CORTEX system which provides a summary based on the requested
+CORTEX
+system which provides a summary based on the requested
 size.
-CORTEX is a document extract summarization system using an optimal decision algorithm that combines several metrics.
+CORTEX
+is a document extract summarization system using an optimal decision algorithm that combines several metrics.
 These metrics result from processing statistical and informational algorithms on the document vector space representation.
 Fig. 2 presents an overview of the system.
 The idea is to represent the text in an appropriate vectorial space and apply numeric processings to it. In order to reduce
 complexity, a pre-processing of the document is performed: words are ﬁltered, lemmatized, and stemmed. Based on the
 terms that remain in the text after ﬁltering, a frequency matrix
-c is built in the following way: Each element
+c
+is built in the following way: Each element
 c
 l
-i of this matrix
+i
+of this matrix
 represents the number of occurrences of the word
-i in the sentence
-l .
+i
+in the sentence
+l
+.
 13
 JobFinder (http://www.jobﬁnder.com).
 1128
@@ -384,10 +656,14 @@ i
 g
 ð
 5
-Þ Another matrix
-n , called
-a binary virtual or
-presence matrix , is deﬁned as:
+Þ
+Another matrix
+n
+, called
+a binary virtual
+or
+presence matrix
+, is deﬁned as:
 n
 l
 i
@@ -405,23 +681,31 @@ elsewhere
 )
 ð
 6
-Þ Each line of these matrices represents a sentence of the text. Matrices
-c and
+Þ
+Each line of these matrices represents a sentence of the text. Matrices
 c
-T are the frequency matrix of the sentences
+and
+c
+T
+are the frequency matrix of the sentences
 and frequency matrix of the titles respectively.
 The
-CORTEX system can use up to
-C = 11 metrics (Torres-Moreno, Velazquez-Morales, &amp; Meunier, 2002) to evaluate the sen-
+CORTEX
+system can use up to
+C
+= 11 metrics (Torres-Moreno, Velazquez-Morales, &amp; Meunier, 2002) to evaluate the sen-
 tence’s relevance.
 The system scores each sentence with a decision algorithm which relies on the normalized metrics. Two averages are cal-
 culated, a positive
 k
-s &gt; 0.5, and a negative
+s
+&gt; 0.5, and a negative
 k
-s &lt; 0.5 tendency (the case
+s
+&lt; 0.5 tendency (the case
 k
-s = 0.5 is ignored). The following algorithm combines
+s
+= 0.5 is ignored). The following algorithm combines
 the vote of each metric:
 P
 s
@@ -457,6 +741,7 @@ P
 s
 b
 ¼
+
 P
 C
 v
@@ -483,9 +768,12 @@ s
 0
 :
 5
-C is the number of metrics and
-v is the index of the metrics. The value given to each sentence
-s is calculated with:
+C
+is the number of metrics and
+v
+is the index of the metrics. The value given to each sentence
+s
+is calculated with:
 if
 P
 s
@@ -495,76 +783,99 @@ P
 s
 b
 �
-� then
+�
+then
 Score
 cortex
 s
-¼ 0
-:</introduction>
-<corps>5 þ
+¼
+0
+:
+5
+þ
+
 P
 s
 a
 =
-C : retain
-s else
+C
+: retain
+s
+else
 Score
 cortex
 s
-¼ 0
-: 5
+¼
+0
+:
+5
 �
+
 P
 s
 b
 =
-C : not retain
+C
+: not retain
 s
 Fig. 2.
 CORTEX
 overview.
 R. Kessler et al. / Information Processing and Management 48 (2012) 1124–1135
 1129
-Author&apos;s personal copy The sentences are then ranked according to the obtained values. Depending on the desired compression rate, the sorted
+Author&apos;s personal copy
+The sentences are then ranked according to the obtained values. Depending on the desired compression rate, the sorted
 sentences will be used to produce the summary. The
-CORTEX system is applied to each document (Cover Letter) and a sum-
+CORTEX
+system is applied to each document (Cover Letter) and a sum-
 mary is generated by concatenating high-scoring sentences. We generated several abstracts with a variable compression rate
 (5%, 10%, 20%,
-. . . , 50%, 75% of the size of the documents, in sentences) in order to test the impact of our powerful ﬁlter on the
+. . .
+, 50%, 75% of the size of the documents, in sentences) in order to test the impact of our powerful ﬁlter on the
 E-Gen system. The entire process chain is illustrated in Fig. 1. The best compression rates are generally with 30% (Torres-
 Moreno et al., 2009). The results are presented in Section 5.3.
-5. Experiments We selected a data subset from Aktor’s database composed of 1917 candidates. This subset is called the
-Mission Corpus . It
+5. Experiments
+We selected a data subset from Aktor’s database composed of 1917 candidates. This subset is called the
+Mission Corpus
+. It
 has a size of 10 MB of raw texts and contains 1,375,000 words. The
-Mission Corpus is composed of a set of 12 job offers cov-
+Mission Corpus
+is composed of a set of 12 job offers cov-
 ering various themes (jobs in accountancy, business, computer science, etc.) and their candidates. Each Job Offer is associated
-with at least six candidates identiﬁed as
-relevant . As described in Kessler et al. (2008a), each document is segmented to keep
-the relevant parts (we remove the description of the company (D) for the job offer). Each candidate answer is tagged as
-rel-
-evant or
-irrelevant . A
-relevant value corresponds to a potential candidate for a speciﬁc job chosen by the recruiting consul-
-tant. An
-irrelevant value is associated with an unsuitable candidate for the job (this is a decision made by the manager of a
+with at least six candidates identiﬁed as relevant
+. As described in Kessler et al. (2008a), each document is segmented to keep
+the relevant parts (we remove the description of the company (D) for the job offer). Each candidate answer is tagged as rel-
+evant
+or irrelevant
+. A relevant
+value corresponds to a potential candidate for a speciﬁc job chosen by the recruiting consul-
+tant. An irrelevant
+value is associated with an unsuitable candidate for the job (this is a decision made by the manager of a
 human resources company). Our study was conducted on French job offers because the French market represents Aktor’s
 main activity. Table 1 shows a few statistics about the
-Mission Corpus .
-5.1. Example of CL summaries Fig. 3 presents
+Mission Corpus
+.
+5.1. Example of CL summaries
+Fig. 3 presents
 14
-an example of an original Cover Letter and Fig. 4. Its corresponding summary
+an example of an original Cover Letter and Fig. 4. Its
+corresponding summary
 15
 generated by the
 CORTEX
 sys-
-tem with a 30% compression rate (in number of sentences). All the documents of
-Mission Corpus were previously made anonymous. We observe that the original CL contains a
+tem with a 30% compression rate (in number of sentences).
+All the documents of
+Mission Corpus
+were previously made anonymous. We observe that the original CL contains a
 number of useless information for ranking, such as addresses, phone numbers or form of address at the beginning or
 end of the letter. The last part of the CL is generally as ‘‘Yours faithfully’’, ‘‘Yours sincerely’’, ‘‘Best regards’’, all of which
 represent irrelevant information. We further observe in Fig. 4 that the summary obtained with
-CORTEX removes all this
+CORTEX
+removes all this
 information.
-5.2. Experimental protocol We measured the similarity between a job offer and its candidate’s responses. These measures (Section 4.1.2) rank the
+5.2. Experimental protocol
+We measured the similarity between a job offer and its candidate’s responses. These measures (Section 4.1.2) rank the
 candidate’s answers by computing a similarity between a job offer and the associated candidate answers. We use the
 ROC curves to evaluate the quality of the ranking obtained. ROC curves (Ferri, Flach, &amp; Hernandez-Orallo, 2002) come from
 the ﬁeld of signal processing. They are used in medicine to evaluate the validity of diagnostic tests. In our case, ROC curves
@@ -598,7 +909,8 @@ knowing how to deal with late settlement of invoices.
 – provide advice particularly important in times of assessment, all thanks to my seriousness, my strength and my analysis.
 1130
 R. Kessler et al. / Information Processing and Management 48 (2012) 1124–1135
-Author&apos;s personal copy Area Under the Curve (AUC) can be interpreted as the effectiveness of a measurement of interest. In the case of candidate
+Author&apos;s personal copy
+Area Under the Curve (AUC) can be interpreted as the effectiveness of a measurement of interest. In the case of candidate
 answers ranking, a perfect ROC curve corresponds to obtaining all relevant candidate answers at the beginning of the list
 and all irrelevant ones at the end. This situation corresponds to AUC = 1. The diagonal line corresponds to the performance
 of a random system, progress of the rate of relevant candidates being accompanied by an equivalent degradation in the rate
@@ -681,18 +993,23 @@ Fig. 4.
 Summary of Cover Letter (see Fig. 3) at a 30% compression rate.
 R. Kessler et al. / Information Processing and Management 48 (2012) 1124–1135
 1131
-Author&apos;s personal copy of interest to order candidate’s answers consists in obtaining the highest AUC value. This is strictly equivalent to minimizing
+Author&apos;s personal copy
+of interest to order candidate’s answers consists in obtaining the highest AUC value. This is strictly equivalent to minimizing
 the sum of the ranks of the relevant candidate’s answers. ROC curves are resistant to imbalance (for example, an imbalance
 in the number of positive and negative examples) (Roche &amp; Kodratoff, 2006). For each job offer, we evaluated the quality of
 the ranking obtained by this method. Candidate answers considered are only those composed of CV and CL.
-5.3. Results In this section, we present the results obtained by combining the
-CORTEX system with the E-Gen ranking application.
-CORTEX was used as an additional ﬁlter which generates a summary of each document before E-Gen evaluation. We keep the struc-
+5.3. Results
+In this section, we present the results obtained by combining the
+CORTEX
+system with the E-Gen ranking application.
+CORTEX
+was used as an additional ﬁlter which generates a summary of each document before E-Gen evaluation. We keep the struc-
 ture of data for job offers as described in Kessler et al. (2008a). A job offer is composed of a Description (D), a Title (T), a
 Mission (M), and a Proﬁle (P). For these experiments, we use two combinations of a job offer content, keeping only Title, Mis-
 sion, Proﬁle (TMP) and all information of a job offer (DTMP). Results are presented in Tables 2 and 3. Each column presents a
 part of the application with different sizes of summaries for each line (75%, 50%,
-. . . , 5%). Full text is a result obtained with
+. . .
+, 5%). Full text is a result obtained with
 100% of the document and was published previously in Kessler et al. (2008a, 2009).
 Table 2 presents results obtained for each part of the application separately. We observe that AUC of CVs remains below
 the baseline whatever the percentage of compression. We notice however a gradual decrease in AUC scores depending on the
@@ -713,8 +1030,9 @@ Feedback process. Table 4 presents the results obtained with different sizes of 
 application added to the job offer, RF2 two applications added to the job offer, etc.). Each application added with the rele-
 vance feedback process consists in a full CV and a summary of the cover letter with a compression rate of 30%. A random
 distribution of applications produces an AUC approximately at 0.5 like explained in Fawcett (2006). We compare
-ISMIS Result with those obtained using a summary of the cover letter. Each test is carried out 100 times with a random distribution of
-relevant applications for Relevance Feedback. Then we compute an average of AUC scores obtained (the curve shows the
+ISMIS Result
+with those obtained using a summary of the cover letter. Each test is carried out 100 times with a random distribution of relevant
+applications for Relevance Feedback. Then we compute an average of AUC scores obtained (the curve shows the
 Table 2
 Results of CL or CV according to the compression rate of Cortex and part of job offer (with or without Description part).
 CORTEX
@@ -815,65 +1133,73 @@ TMP
 0.649
 1132
 R. Kessler et al. / Information Processing and Management 48 (2012) 1124–1135
-Author&apos;s personal copy average for each size). In fact, we compute the Residual Ranking (Billerbeck &amp; Zobel, 2006): Documents that are used for Rel-
+Author&apos;s personal copy
+average for each size). In fact, we compute the Residual Ranking (Billerbeck &amp; Zobel, 2006): Documents that are used for Rel-
 evance Feedback are removed from the collection before ranking with the reformulated query. We assume that the Rele-
 vance Feedback process would behave as a reinforcement learning (Sutton &amp; Barto, 1998) but it is impossible to
 experiment RF
-n with
-n &gt; 6 with this corpus because the number of
-relevant candidates is too small for some job offers
+n
+with
+n
+&gt; 6 with this corpus because the number of relevant
+candidates is too small for some job offers
 (see Table 1). We observe a slight improvement in results for almost any size of Relevance Feedback. We are conscious that
 the performance gain is low, however, it conﬁrms previous results on the Cover Letter. Fig. 5 shows this improvement. This
 ﬁgure conﬁrms that the addition of just one relevant candidate (RF1) enables the AUC value to be enhanced (i.e. an improve-
 ment of 0.5–1.2%). This Relevance Feedback (i.e. RF1) is not very time-consuming for the expert.
 Fig. 6 shows detailed results of one test. For clarity reasons, we present only 3 of the 12 jobs of our dataset in order to
 compare results with and without
-CORTEX (for each job,
-RFC are AUC scores with
-CORTEX and
-RF without
-CORTEX ).
+CORTEX
+(for each job,
+RFC
+are AUC scores with
+CORTEX
+and
+RF
+without
+CORTEX
+).
 For standard system, we observe a positive progress from 1% to 10% for 10 jobs between RF0 and RF1 (e.g. ﬁve jobs have
 an improvement between 5% and 10%). Note that between RF0 and RF6, 6 jobs have a signiﬁcant positive progress between
 10% and 12%. The combination of the E-Gen and
-CORTEX systems improve standard system results for ﬁve jobs from 1% to 5%
+CORTEX
+systems improve standard system results for ﬁve jobs from 1% to 5%
 between RF0 and RF1. Between RF0 and RF6, the Cortex version improves E-Gen’s results for eight jobs from 1% to 5%.
 The study of the results shows that job offer 31702 contains some relevant applications with a bad labeling (CV are la-
 beled CL and CL are only a hyperlink to a CV). The reduction of information on the main document of the application leads
 the system version using summaries to degrade the AUC scores. Job offer 34861 shows a good improvement with each size of
 relevance feedback (RF0:0.65, RF1:0.70, RF6:0.73) and with
-CORTEX (RF0:0.68, RF1:0.72, RF6:0.79). The detailed study of re-
+CORTEX
+(RF0:0.68, RF1:0.72, RF6:0.79). The detailed study of re-
 sults shows that job offer 33746 contains some empty applications labeled relevant. This leads the system with and without
-CORTEX to degrade ﬁnal results. In the same way, an application added without CL explains the identical score in RF2 between
-RF and RFC for job offer 31274.
-6. Conclusion and future work</corps>
+CORTEX
+to degrade ﬁnal results. In the same way, an application added without CL explains the identical score in RF2 between
+RF and RFC for job offer 31274.</corps>
 <discussion>N/A</discussion>
 <conclusion>Job offer processing is a difﬁcult and highly subjective task. The retrieval of relevant information concerning job descrip-
 tions and skills is not a trivial task (Loth et al., 2010) and results on this type of document have been quite low (Clech &amp;Table 4Comparison of AUC score for each size of Relevance Feedback withCORTEXsummarization system.Size of Relevance FeedbackISMIS resultFull CV and CL summary 30% compression rate
 Random distribution
 0.500
-0.500
-RF0
-0.642
-0.653
-RF1
-0.654
-0.658
-RF2
-0.657
-0.659
-RF3
-0.659
-0.661
-RF4
-0.659
-0.659
-RF5
-0.660
-0.662
-RF6
-0.6610.663
-Fig. 5.Results of Relevance Feedback with and without summaries of CL.R. Kessler et al. / Information Processing and Management 48 (2012) 1124–11351133Author&apos;s personal copy</conclusion>
+0.500RF00.642
+0.653RF10.654
+0.658RF20.657
+0.659RF30.659
+0.661RF40.659
+0.659RF50.660
+0.662RF60.6610.663
+Fig. 5.Results of Relevance Feedback with and without summaries of CL.R. Kessler et al. / Information Processing and Management 48 (2012) 1124–11351133Author&apos;s personal copyZighed, 2003). The information we use in this kind of process is not well formated in natural language, but follows a conven-
+tional structure. This paper deals with theCORTEXsummarizer and the E-Gen system for processing job offers. E-Gen assists an
+employer in the recruitment task. This paper focuses on candidate answers to job offers. We rank the candidate answers by
+using different similarity measures and different document representations in a vector space model. We use a process of rel-
+evance feedback to perform reinforcement learning, whereby each new application added to the process assists in the deci-
+sion-making. We choose to evaluate the quality of our approaches by computingArea Under the Curve.CORTEXis a
+summarization system using an optimal decision algorithm that combines several metrics. We present the results obtained
+by combining both systems. AUC obtained with summarized cover letter at 30% of compression size and a full CV shows a
+slight improvement in the results. As future work, we plan to apply other techniques, such as ﬁnding discriminant features of
+irrelevant applications using the Rocchio algorithm (Rocchio, 1971), weighting the different parts of an application, etc. in
+order to improve results. We also plan to use a categorization of jobs to take into consideration similar jobs, such as ’’devel-
+oper’’ and ‘‘programmer’’. Finally we propose to measure the CV quality by building an evaluation on an Internet portal. Our
+aim with this evaluation is to present a job-seeker with a list of the most suitable job ads according to his proﬁle.</conclusion>
 <biblio>Audras, I., &amp; Ganascia, J.-G. (2006). Apprentissage du frantais langue TtrangFre et TALN: Analyses de corpus Tcrits a l’aide d’outils d’extraction automatique
 du langage. In J.-M. Viprey (Ed.),8Fmes JournTes d’Analyse de DonnTes Textuelles(pp. 67–78). Univ. de Franche ComtT, Besanton 2006.
 Bellot, P., &amp; El-Bèze, M. (2001). Classiﬁcation et segmentation de textes par arbres de dTcision. InTSI(Vol. 20, pp. 107–134). HermFs.
@@ -893,8 +1219,7 @@ Colucci, S., Di Noia, T., Di Sciascio, E., Donini, F. M., Mongiello, M., &amp; M
 descriptions.Journal of Universal Computer Science, Special issue on Skills Management, 9, 1437–1454.
 Dorn, J., &amp; Naz, T. (2007). Meta-search in human resource management. InProceedings of 4th international conference on knowledge systems ICKS’07
 Bangkok,Thailand(pp. 105–110).
-Enrica, A., &amp; Iezzi, D. F. (2006). Recruitment via web and information technology: A model for ranking the competences in job market. InJADT’2006,
-Besanton, France(pp. 79–88).
+Enrica, A., &amp; Iezzi, D. F. (2006). Recruitment via web and information technology: A model for ranking the competences in job market. InJADT’2006,Besanton, France(pp. 79–88).
 Fan, R.-E., Chen, P.-H., &amp; Lin, C.-J. (2005). Working set selection using the second order information for training SVM.Journal of Machine Learning Research,
 1889–1918.
 Fawcett, T. (2006). An introduction to ROC analysis.Pattern Recognition Letters, 27, 861–874.
@@ -906,8 +1231,7 @@ RF2
 RF3
 RF4
 RF5
-RF6
-0,40
+RF60,40
 0,45
 0,50
 0,55
@@ -951,18 +1275,8 @@ Salton, G., &amp; Mcgill, M. J. (1986).Introduction to modern information retrie
 Smyth, B., &amp; Bradley, K. (2003). Personalized information ordering: A case-study in online recruitment.Journal of Knowledge-Based Systems, 269–275.
 Sparck Jones, K. (1970). Some thoughts on classiﬁcation for retrieval.Journal of Documentation, 89–101.
 Sutton, R. S., &amp; Barto, A. G. (1998).Reinforcement learning: An introduction (adaptive computation and machine learning). The MIT Press.
-Tolksdorf,
-R.,
-Mocho,
-M.,
-Heese,
-R.,
-Oldakowski,
-R.,
-&amp;
-Christian,
-B.
-(2006).
+Tolksdorf,R.,Mocho,M.,Heese,R.,Oldakowski,R.,&amp;
+Christian,B.(2006).
 Semantic-Web-Technologien
 im
 Arbeitsvermittlungsprozess.Wirtschaftsinformatik, 17–26.

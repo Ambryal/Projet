@@ -1,14 +1,14 @@
 <article><preamble>b0e5c43edf116ce2909ae009cc27a1546f09.pdf</preamble>
 <titre>Inclusive yet Selective: Supervised Distributional Hypernymy Detection</titre>
-<auteurs><auteur><nom>Stephen Roller</nom>
+<auteurs><auteur><name>Stephen Roller</name>
 <mail>roller@cs.utexas.edu,</mail>
-<affiliation>The University of Texas at Austin</affiliation>
+<affiliation>Department of Computer Science</affiliation>
 </auteur>
-<auteur><nom>Katrin Erk</nom>
+<auteur><name>Katrin Erk</name>
 <mail>katrin.erk@mail.utexas.edu,</mail>
-<affiliation>The University of Texas at Austin</affiliation>
+<affiliation>Department of Linguistics</affiliation>
 </auteur>
-<auteur><nom>Gemma Boleda</nom>
+<auteur><name>Gemma Boleda</name>
 <mail>gemma.boleda@upf.edu</mail>
 <affiliation>The University of Texas at Austin</affiliation>
 </auteur>
@@ -242,6 +242,7 @@ u
 |
 r
 =1
+
 P
 (
 r
@@ -1475,8 +1476,7 @@ Lili Kotlerman, Ido Dagan, Idan Szpektor, and Maayan Zhitomirsky-geffet.
 2010.
 Directional distributional
 similarity for lexical inference.Natural Language Engineering, 16:359–389, 10.
-Alessandro Lenci and Giulia Benotto. 2012. Identifying hypernyms in distributional semantic spaces. In*SEM
-2012: The First Joint Conference on Lexical and Computational Semantics – Volume 1: Proceedings of the
+Alessandro Lenci and Giulia Benotto. 2012. Identifying hypernyms in distributional semantic spaces. In*SEM2012: The First Joint Conference on Lexical and Computational Semantics – Volume 1: Proceedings of the
 main conference and the shared task, and Volume 2: Proceedings of the Sixth International Workshop on Se-
 mantic Evaluation (SemEval 2012), pages 75–79, Montréal, Canada, 7-8 June. Association for Computational
 Linguistics.

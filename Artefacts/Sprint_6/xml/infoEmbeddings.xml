@@ -1,35 +1,59 @@
 <article><preamble>infoEmbeddings.pdf</preamble>
-<titre>arXiv:1904.08770v1  [cs.IR]  16 Apr 2019</titre>
-<auteurs><auteur><nom>3.1. TRAC Dataset</nom>
-<mail>(2013(@),</mail>
+<titre>An Empirical Evaluation of Text Representation Schemes on Multilingual Social Web to Filter the Textual Aggression</titre>
+<auteurs><auteur><name>Sandip Modha</name>
+<mail>sjmodha@gmail.com</mail>
+<affiliation></affiliation>
+</auteur>
+<auteur><name>and Prasenjit Majumder</name>
+<mail>prasenjit.majumder@gmail.com</mail>
 <affiliation></affiliation>
 </auteur>
 </auteurs>
-<abstract>N/A</abstract>
-<introduction>The Social Web is a great source for studying human interaction and behavior. In
-the last few years, there is an exponential growth in Social Media user base. Sensing
-content of Social Media like Facebook, Twitter, by the smart autonomous application
-empower its user community with real-time information which is unfolded across the
-diﬀerent part of the world. Social media provide the easiest and anonymous platform
-for common people to voice their opinion or view on a various entity like celebrity,
-politician, product, stock market etc or any social movement. Sometime such opinions
-might be aggressive in nature and propagate hate in the social media community.
-With the unprecedented increase in the user base of the social media and its avail-
-ability on the Smartphones, incidents like Hate speech, trolling, Cyberbullying, and
-Aggressive posts are increasing exponentially. A smart autonomous system is required
-which enable surveillance on the social media platform and detect such incidents.
-Some of the researchers look posts from the aspect like aggression Kumar Ritesh et
-al. (2018) to ﬁlter the contents. some of the posts contain words which might be qual-
-iﬁed as either highly or overly aggressive or have hidden aggression. Sometimes posts
-do not have any aggression. Based on these, posts or comments are categorized into
-three classes namely: ‘Overtly Aggressive‘, ‘Covertly Aggressive‘ and ‘Non-aggressive‘
-Kumar Ritesh et al. (2018). Henceforth, in the rest of the paper, we will denote these
-classes by these abbreviations namely: OAG, CAG, NAG respectively.Table 1 shows
-the sample posts belonging to these classes.
-Social Media, speciﬁcally Microblog has proved its importance during the disaster-
-related incidents like an earthquake, Hurricane and ﬂoods
+<abstract>Due to an exponential rise in the social media user base, incidents like hate speech,
+trolling, cyberbullying are also increasing and that lead hate speech detection prob-
+lem reshaped into diﬀerent tasks like Aggression detection, Fact detection. This
+paper attempt to study the eﬀectiveness of text representation schemes on two
+tasks namely: User Aggression and Fact Detection from the social media contents.
+In User Aggression detection, The aim is to identify the level of aggression from
+the contents generated in the Social media and written in the English, Devanagari
+Hindi and Romanized Hindi. Aggression levels are categorized into three predeﬁned
+classes namely: ‘Non-aggressive‘, ‘Overtly Aggressive‘, and ‘Covertly Aggressive‘.
+During the disaster-related incident, Social media like, Twitter is ﬂooded with mil-
+lions of posts. In such emergency situations, identiﬁcation of factual posts is impor-
+tant for organizations involved in the relief operation. We anticipated this problem
+as a combination of classiﬁcation and Ranking problem. This paper presents a com-
+parison of various text representation scheme based on BoW techniques, distributed
+word/sentence representation, transfer learning on classiﬁers. WeightedF1score is
+used as a primary evaluation metric. Results show that text representation using
+BoW performs better than word embedding on machine learning classiﬁers. While
+pre-trained Word embedding techniques perform better on classiﬁers based on deep
+neural net. Recent transfer learning model like ELMO, ULMFiT are ﬁne-tuned
+for the Aggression classiﬁcation task. However, results are not at par with pre-
+trained word embedding model. Overall, word embedding using fastText produce
+best weightedF1-score than Word2Vec and Glove. Results are further improved
+using pre-trained vector model. Statistical signiﬁcance tests are employed to en-
+sure the signiﬁcance of the classiﬁcation results. In the case of lexically diﬀerent
+test Dataset, other than training Dataset, deep neural models are more robust and
+perform substantially better than machine learning classiﬁers.Abbreviations:NLP:Natural
+Language
+Processing;
+BoW
+:Bag-of-Word;
+CNN:Convolution Neural Network;LSTM :Long Short-Term Memory.KEYWORDSAggression, Trolling, Bag-of-Words, Word Embedding, Transfer learning,
+Word2Vec, Glove, fastText, Signiﬁcance Test, Wilcoxon signed-rank, Student t-testCONTACT Sandip Modha. Email: sjmodha@gmail.com
+CONTACT Prasenjit Majumder. Email: prasenjit.majumder@gmail.comarXiv:1904.08770v1  [cs.IR]  16 Apr 2019Table 1.sample post for the each class.
+Post text
+Class Label
 1
-. Organizations involved
+She is simple girl and need not know politics. Let her vote to
+her choiceNAG2
+People talk about common man suﬀering all the time.This is
+the same country where thousands laid their lives for free-
+dom.Cant the common man endure little trouble to stand in
+queues for the greater goodCAG3
+Langove get out from this conversation. U are an uninvited
+dog hereOAG1. Introduction</abstract>
+<introduction>1 . Organizations involved
 in relief operation actively track posts related to situational information posted on
 Facebook and Twitter during the disaster. However, At the same time, social media
 is ﬂooded with lots of prayer and condolence messages. Posts which contain factual
@@ -45,9 +69,8 @@ a ﬁxed length vector. The BoW techniques generate very sparse and high dimensi
 space vector. Text representation using distributed word/sentence representation or
 word embedding is gain rapid momentum recently. In this paper, one of the objectives
 1
-https://phys.org/news/2018-08-social-media-bad-disaster-zones.html
-2
-Table 2.
+https://phys.org/news/2018-08-social-media-bad-disaster-zones.html</introduction>
+<corps>2 Table 2.
 sample post for the each class.
 Post text
 Class Label
@@ -59,8 +82,7 @@ Factual
 2
 PMOIndia Indian Government is doing every possible help to
 the earthquake victims and they need money so plz contribute
-Non-factual
-is to ﬁnd the best text representation scheme to model social web content for the
+Non-factual is to ﬁnd the best text representation scheme to model social web content for the
 machine learning classiﬁer and deep neural net. Various Text representation scheme
 based on BoW, word embedding and are studied empirically. We have reported result
 on popular word embedding technique like Word2vec, Glove and fastText on stan-
@@ -79,18 +101,14 @@ of various NLP tasks like Sentiment Analysis, Question/Answering, Textual Entail
 ment empirically. The main idea behind these methods is to train language model
 on the large corpus and ﬁne tune on the task-speciﬁc corpus. In this paper, We have
 evaluated the performance of these methods in the Aggression classiﬁcation tasks.
-1.1. Research Questions
-In this study, experiments are performed on the benchmark dataset with to answer
+1.1. Research Questions In this study, experiments are performed on the benchmark dataset with to answer
 the following questions
-•
-Which is the best Text Representation scheme to model text from the Social
+• Which is the best Text Representation scheme to model text from the Social
 Web?
-•
-Does pre-trained language model based on transfer learning better than pre-
+• Does pre-trained language model based on transfer learning better than pre-
 trained word embedding based on shallow transfer learning on Social media
 data?
-•
-Does Making too Deep Neural net make sense?
+• Does Making too Deep Neural net make sense?
 To answer all research question listed above, experiments are performed on two
 tasks namely: Aggression detection (Trolling Aggression and Cyberbullying (TRAC)
 dataset) Kumar et al. (2018) and Fact detection (FIRE iRMDI Dataset)Basu et al.
@@ -102,19 +120,16 @@ or Doc2vec Le, Quoc et al. (2014) perform very poor on our dataset and turn out 
 be the worst text representation scheme among all. We also found that model based
 on the deep neural net is more robust than machine learning classiﬁer when tested
 on lexically diﬀerent dataset than training Dataset. i.e. deep neural model substan-
-3
-tially outperforms machine learning classiﬁer on Twitter test Dataset while trained on
+3 tially outperforms machine learning classiﬁer on Twitter test Dataset while trained on
 Facebook Dataset in this evaluation.
 To validate our claims, statistical signiﬁcance tests are performed on weighted
 F
-1
--
+1 -
 score of the classiﬁer for each text representing scheme. Statistical inference is used
 to check evidence to support or reject these claims. Signiﬁcance tests like Wilcoxon
 signed-rank and Student t-test were carried out by comparing weighted
 F
-1
-score all
+1 score all
 the text representation scheme with the fastText pre-trained vector. In most of the
 cases, p-values are less than 0.05.
 The rest of the paper is organized as follows: In section 2, we review the relevant
@@ -123,9 +138,8 @@ the detail information about the various benchmark Datasets used in the experime
 Various Text Representation schemes are described in section 4. We formally describe
 the evaluation task and models in section 5. We report results in section 6 and present
 detail result analysis in section 7. We conclude the discussion and provide insight for
-the future work in section 8.</introduction>
-<corps>2. Related Work
-Bag-of-Words (BoW) (Harris et al. , 1954) is the oldest technique to represent the
+the future work in section 8.
+2. Related Work Bag-of-Words (BoW) (Harris et al. , 1954) is the oldest technique to represent the
 text of the documents in ﬁxed-length vectors with high dimensionality. Mikolov et.al
 (2013) proposed two architecture namely: skip-gram(SG) and continuous-bag-of word
 (CBOW) to learn high quality low dimensional word embedding. However, to gener-
@@ -154,17 +168,13 @@ with diﬀerent notion like aggression (Kumar Ritesh et al., 2018), cyberbullyin
 al. , 2012), sarcasm, trolling. Semeval (International workshop on semantic evalua-
 tion)(Rosenthal et al. , 2017) is one of the popular competition on sentiment analysis
 which is started since 2013. TRAC
+2 (Trolling, aggression, cyberbullying) workshop
 2
-(Trolling, aggression, cyberbullying) workshop
-2
-https://sites.google.com/view/trac1
-4
-(Kumar Ritesh et al., 2018) co-located with the International Conference of Com-
+https://sites.google.com/view/trac1 4 (Kumar Ritesh et al., 2018) co-located with the International Conference of Com-
 putational Linguistics (COLING 2018) redeﬁne hate speech detection task in terms
 of three type of aggression namely: Non-Aggression (NAG), Overly-Aggression(OAG)
 and Covertly Aggression (CAG).
-2.1. Sentiment Analysis
-During the initial year, there is a lack of standard dataset for comparative perfor-
+2.1. Sentiment Analysis During the initial year, there is a lack of standard dataset for comparative perfor-
 mance analysis. International Workshop on Semantic Evaluation 2013 (SemEval-2013)
 (Hltcoe et.al , 2013) was the ﬁrst forum who developed standard tweet dataset for the
 benchmarking of the various sentiment analysis system. Most of the team who had par-
@@ -181,19 +191,16 @@ tuned by deep learning model on a distant supervised corpus (Severyn et al. , 20
 In fourth edition SemEval-2016 (Nakov et al. , 2016),Team SwissCheese (Deriu et al.
 , 2016) was the ﬁrst ranked team with
 F
-1
-score around 63.3 %. Their approach was
+1 score around 63.3 %. Their approach was
 based on 2-layer convolution neural networks whose predictions are combined using a
 random forest classiﬁer. SemEval-2017 (Rosenthal et al. , 2017) was the ﬁfth edition,
 Team DataStories (Baziotis et al. , 2017) was the top-ranked team with AvgRec= 68.1
 and
 F
-1
-around=67.7 %. They use Long Short-Term Memory (LSTM) networks aug-
+1 around=67.7 %. They use Long Short-Term Memory (LSTM) networks aug-
 mented with two kinds of attention mechanisms, on top of word embedding pre-trained
 on a big collection of Twitter messages without using any hand-crafted features.
-2.2. Hate Speech/Cyberbullying/Aggression Detection
-Hate Speech Detection research attracts researchers from the diverse background
+2.2. Hate Speech/Cyberbullying/Aggression Detection Hate Speech Detection research attracts researchers from the diverse background
 like Computational linguistic, computer science, social science. The actual term hate
 speech was coined by Warner et al.
 (2012). Various Authors used diﬀerent notion
@@ -211,8 +218,7 @@ prehensive survey on hate speech. They have identiﬁed features like Surface fe
 sentiment, word generalization,lexical, linguistics etc. can be used by classiﬁer.
 Cyberbullying is the type bullying that occurs on social media platform or app via
 cellphone or any internet enabled device. xu et al. (2012) introduces Cyberbullying to
-5
-the NLP community. They have performed various binary classiﬁcation on tweets text
+5 the NLP community. They have performed various binary classiﬁcation on tweets text
 with bullying perspective to determine whether the user is cyberbully or not. They
 reported binary classiﬁcation accuracy around 81%. Kwok et al. (2013(@), authors
 performed classiﬁcation using NB classiﬁer on tweets based on two classes :racist and
@@ -241,21 +247,19 @@ Aroyehun et al. (2018) performed translation as data augmentation strategy. TRAC
 Dataset (Kumar et al. , 2018) was also augmented using translation and pseudo labeled
 using an external dataset on hate speech. they have reported best performance with
 LSTM and
-F
-1 score around 0.6415 on TRAC English dataset (Kumar et al. , 2018).
+F 1 score around 0.6415 on TRAC English dataset (Kumar et al. , 2018).
 Arroyo et al.
 (2018) implement ensemble of the Passive-Aggressive (PA) and SVM
 classiﬁers with character n-grams. TF-IDF weighting used for feature representation.
 FIRE initiative also gave importance text representation in Indian language since its
 inception. (Majumder et al. , 2008)(Majumder et al. , 2007).
 3. Dataset
-Experiments are performed on standard benchmarked Datasets to evaluate the perfor-
+3. DatasetExperiments are performed on standard benchmarked Datasets to evaluate the perfor-
 mance of various text representation scheme. For User Aggression detection problem,
 Trolling, Aggression and Cyberbullying TRAC (Kumar et al. , 2018) is considered for
 the experiments which contain post in English and code-mixed Hindi. For the Factual
 Detection task, experiments are performed on FIRE IRMiDis Dataset.
-3.1. TRAC Dataset
-TRAC (Trolling, Aggresion and Cyberbullying) consist of 15,001 aggression-annotated
+3.1. TRAC Dataset TRAC (Trolling, Aggresion and Cyberbullying) consist of 15,001 aggression-annotated
 Facebook Posts and Comments each in Hindi (Romanized and Devanagari script) and
 English for training and validation Kumar et al. (2018).
 6
@@ -327,8 +331,7 @@ Twitter mixed script Hindi Corpus
 1
 ,
 194
-3.2. FIRE IRMiDis Dataset
-Forum for Information Retrieval Evaluation, have introduced Microblog track since
+3.2. FIRE IRMiDis Dataset Forum for Information Retrieval Evaluation, have introduced Microblog track since
 2016 as Information Retrieval from Microblogs during Disasters (IRMiDis). IRMiDis
 track (Basu et al. , 2018) of FIRE is organized with the objective to extract factual
 or fact-checkable tweets during the disaster which might be helpful to the victims
@@ -339,7 +342,7 @@ detail statistics of FIRE IRMiDis Dataset. As we look at the table, There are on
 83 tweets is annotated with objective class. not a single tweet is annotated from the
 subjective class.
 4. Text Representation Schemes
-The main objective of this paper is an identiﬁcation of the best text representation
+4. Text Representation SchemesThe main objective of this paper is an identiﬁcation of the best text representation
 scheme for the Social media text which is very sparse and noisy in nature. Text rep-
 resentation is about representing documents in a numerical way so that they can be
 feed as an input to the classiﬁer. This numerical representation is in the form of the
@@ -359,10 +362,8 @@ Labelled Tweets
 83
 only tweets belong to Factual class
 Classes
-2
-7
-4.1. Bag-of-Word Model for Text Representation
-The Bag-of-words is the simple technique to represent the document or social media
+2 7
+4.1. Bag-of-Word Model for Text Representation The Bag-of-words is the simple technique to represent the document or social media
 posts in the vector form and also a very common feature extraction method from the
 text. Word count or TF/IDF weight of each n-gram word can be used as a features.
 The dimension of the vector is equal to the size of vocabulary of the text corpus
@@ -370,27 +371,23 @@ or dataset which results in very high dimensional sparse document vector. It is 
 common method used for the text representation in order to perform various NLP task
 like text classiﬁcation, clustering. However,the BoW methods ignore the word order
 which may lead to loss of the context.
-4.2. Word Embedding for Text representation
-Word Embedding is the text representation technique to represent the word in the low
+4.2. Word Embedding for Text representation Word Embedding is the text representation technique to represent the word in the low
 dimensional space so that semantically similar word have similar representation. Major
 word embedding techniques like Word2vec learn word embedding using shallow neural
 network. The fastText, extension of Word2vec, consider the morphological structure
 of the word.
-4.2.1. Word2Vec
-Word2vec (Mikolov et.al , 2013) is the unsupervised and predictive neural word em-
+4.2.1. Word2Vec Word2vec (Mikolov et.al , 2013) is the unsupervised and predictive neural word em-
 bedding technique to learn the word representation in the low dimensional space.
 Word2vec is a two-layer neural net that take text corpus as an input and output is a
 set of vectors. two novel model architectures: Skipgram and CBOW(Continuous bag
 of words) are proposed for computing continuous vector representations of words from
 very large data sets.
-4.2.2. Glove
-GloVe stands for Global vector for [Word Representation] (Pennington et.al. , 2014)is
+4.2.2. Glove GloVe stands for Global vector for [Word Representation] (Pennington et.al. , 2014)is
 an unsupervised method for learning word embedding. A Co-occurrence word matrix
 is created from the text corpus for the training and is reduced in low dimensional space
 which explain the variance of high dimensional data and provide word vector for each
 word.
-4.2.3. fastText
-fastText (Bojanowski et al. , 2017) is the neural word embedding technique which
+4.2.3. fastText fastText (Bojanowski et al. , 2017) is the neural word embedding technique which
 learn distributed low dimensional word embedding. Word2vec, Glove consider each
 word as single unit and ignore the morphological structure of the word. They are not
 able generate word embedding for the unseen or out of vocabulary word during the
@@ -398,11 +395,9 @@ training. fastText overcome this limitation of Word2vec and GLOVE by considering
 each word as N-gram of characters. A word vector for a word is computed from the
 sum of the n-gram characters. The range of N is typically 3 to 6. Since user on social
 media often make spelling error, typos, fastText will be more eﬀective then rest of two.
-4.3. Paragraph vector/Doc2vec
-Paragraph Vector is an unsupervised algorithm that learns ﬁxed-length feature rep-
+4.3. Paragraph vector/Doc2vec Paragraph Vector is an unsupervised algorithm that learns ﬁxed-length feature rep-
 resentations from variable-length pieces of texts, such as sentences, paragraphs, and
-8
-documents (Le, Quoc et al. , 2014). Paragraph vector represents each document by
+8 documents (Le, Quoc et al. , 2014). Paragraph vector represents each document by
 a dense vector which is trained to predict words in the document. Authors believe
 that Paragraph vector have the potential to overcome the weaknesses of bag-of-words
 models and claimed that Paragraph Vectors outperform bag-of-words models as well
@@ -415,8 +410,7 @@ a context paragraph. (ii) DBOW: This is the Doc2Vec model analogous to Skip-gram
 model in Word2Vec. The paragraph vectors are obtained by training a neural network
 on the task of predicting a probability distribution of words in a paragraph given a
 randomly-sampled word from the paragraph.
-4.4. Transfer Learning
-Transfer Learning in NLP is not as matured as compare to in Computer Vision. Trans-
+4.4. Transfer Learning Transfer Learning in NLP is not as matured as compare to in Computer Vision. Trans-
 fer learning is a method in which model is trained on large corpus for a particular task
 and use this pre-trained model for the similar task. There are two way to use transfer
 learning in NLP (i) Use of Pre-trained word embedding to initialize ﬁrst layer of neural
@@ -442,12 +436,11 @@ FiT) which is bi-LSTM model that is trained on a general language modeling (LM)
 task and then ﬁne tuned on text classiﬁcation. Results are reported on both transfer
 learning model on TRAC dataset (Kumar et al. , 2018).
 5. Evaluation Tasks
-We have benchmarked various text representation scheme on two specialized NLP
+5. Evaluation TasksWe have benchmarked various text representation scheme on two specialized NLP
 task namely: aggression detection and fact detection. Text Representation scheme are
 evaluated on machine learning and deep neural model.
 9
-5.1. Aggression Detection task
-The objective of this task is to identify type of aggression present in the text in
+5.1. Aggression Detection task The objective of this task is to identify type of aggression present in the text in
 both Englsih and code-mixed Hindi language. Aggression are classiﬁed into three
 level namely: ‘Overtly Aggressive‘ (OAG), ‘Covertly Aggressive‘ (CAG) and ‘Non-
 aggressive‘ (NAG). We have implemented all standard machine learning classiﬁers
@@ -457,26 +450,20 @@ scent(SGD), Random forest (RF), Ridge, AdaBoost, Perceptron, and various voting
 based ensemble with diﬀerent text representation schemes like count based, TF/IDF
 and word embedding to prepare baseline results. Various word embedding techniques
 like Word2Vec, Glove, fastText, Paragraph2Vec are studied.
-5.1.1. Problem statement
-Basically Aggression detection is a Text classiﬁcation problem. Formally, the task of
+5.1.1. Problem statement Basically Aggression detection is a Text classiﬁcation problem. Formally, the task of
 Text Classiﬁcation is stated as follows. Given a set of social media feed and a set of
 classes, We need to compute a function of the form:
-C
-=
-f
-(
+C =
+f (
 T,
-Ω)
-where f is the multi-class classiﬁer that is computed using training data, T is the
+Ω) where f is the multi-class classiﬁer that is computed using training data, T is the
 numeric representation of the text of the dataset, Ω is the set of parameters of the
 classiﬁer and C is the pre-deﬁne class-labels.
-5.1.2. Model Architectures and Hyperparameters
-In this subsection, we will discuss the architecture and hyperparameters of our deep
+5.1.2. Model Architectures and Hyperparameters In this subsection, we will discuss the architecture and hyperparameters of our deep
 neural model used for the classiﬁcation. Model learns feature from the input texts
 Ther is no need to design hand-crafted features which used to encode text into feature
 vector.
-5.1.2.1. Bidirectional LSTM.
-The ﬁrst model is based on the Bidirectional LSTM
+5.1.2.1. Bidirectional LSTM. The ﬁrst model is based on the Bidirectional LSTM
 include embedding layer with embed size 300, convert each word from the post into
 a ﬁxed length vector. short posts are padded with zero values. Subsequent layers
 includes Bidirectional LSTM layer with 50 memory units followed by one-dimensional
@@ -487,25 +474,21 @@ out layer is added between the last two layers to counter the overﬁtting with 
 length of posts in the dataset. No of features is equal to half of total vocabulary size.
 Models are trained for 10 epoch with batch size 128. Adam optimization algorithm is
 used to update network weights.
-5.1.2.2. Single LSTM with higher dropout.
-This model is based on the Long
+5.1.2.2. Single LSTM with higher dropout. This model is based on the Long
 Short Term Memory, a type of recurrent neural network with higher dropout. This
 model is having one embedding layer, one LSMT layer with a size 64 memory unit,
 and one fully connected hidden layer with Relu activation and size 256 and an output
 layer with softmax activation. Hyperparameters are same as discussed in the previous
 model. A dropout layer is added between the hidden layer and an output layer with
-10
-drop out rate 0.2 to address the overﬁtting issue.
-5.1.2.3. CNN Model.
-This model includes one embedding layer whose weights
+10 drop out rate 0.2 to address the overﬁtting issue.
+5.1.2.3. CNN Model. This model includes one embedding layer whose weights
 are initialized with fastText pre-trained vector with embed size is 300, followed by
 one-dimensional convolution layer with 100 ﬁlters of height 2 and stride 1 to target
 biagrams. In addition to this, Global Max Pooling layer added to fetch the maximum
 value from the ﬁlters which are feed to the fully connected hidden layer with size
 256, followed by output layer. ReLU and softmax activation function are used for the
 hidden layer and output layer respectively.
-5.1.2.4. CNN model with Multiple Convolution layer.
-This model includes
+5.1.2.4. CNN model with Multiple Convolution layer. This model includes
 embedding layer with embed size 300. Three one dimensional convolution layers with
 size 100 and diﬀerent ﬁlters with height 2,3,4 to target bigrams, trigrams, and four-
 grams features, followed by max pooling layer which concatenate max pooled result
@@ -514,8 +497,7 @@ nected hidden layer with size 250 and output layer with ReLu and softmax activat
 A Drop out layer is added between the last two layer with rate 0.2. Hyperparameters
 are same as discussed in the ﬁrst model. This model is similar to proposed by (Zhang
 et al. , 2015).
-5.2. Factual Post/Tweet Detection from Social Media
-During the emergency situation like earthquake or ﬂoods, Microblog plays a very
+5.2. Factual Post/Tweet Detection from Social Media During the emergency situation like earthquake or ﬂoods, Microblog plays a very
 important role as an anonymous communication medium. The various entity like,
 Volunteers, NGOs involved in relief operation always look for real-time information
 which contains facts instead of prayer and condolence messages. In more technical
@@ -525,13 +507,11 @@ tweets based upon the worthiness of facts. we considered this problem as a binar
 classiﬁcation problem plus pure IR Ranking problem. two classes can be labeled as
 factual and non-factual.
 the IRMiDis dataset
-3
-,which was prepared from the tweet posted during Nepal
+3 ,which was prepared from the tweet posted during Nepal
 earthquake 2015 Basu et al. (2018) is considered for the experiment. There are only
 83 fact checkable tweets in the dataset. Non-factual tweets are not available. Total no
 of tweets in the dataset is more than 50000.
-5.2.1. Preparation of Training Data
-Due to the unavailability of adequate training data, The ﬁrst task is to prepare
+5.2.1. Preparation of Training Data Due to the unavailability of adequate training data, The ﬁrst task is to prepare
 training data to train the deep neural model. We randomly choose 100 tweets from
 the dataset and labeled as a non-fact-checkable tweet and 83 fact-checkable tweets
 present in the dataset labeled as fact-checkable. We have trained our Convolution
@@ -541,15 +521,12 @@ tweets based upon the predicted probability of the fact-checkable class and sele
 top 2000 tweets. We have randomly selected tweets and gave relevance judgment
 based upon availability of factual information in ﬁrst 1000 tweets and manually
 3
-https://sites.google.com/site/irmidisﬁre2018/
-11
-extracted 300 tweets as non-fact-checkable tweets to minimize the false positives.
+https://sites.google.com/site/irmidisﬁre2018/ 11 extracted 300 tweets as non-fact-checkable tweets to minimize the false positives.
 Remaining 1700 tweets labeled as fact-checkable tweets. We selected the last 1700
 tweets with the least probability of the class fact-checkable and labeled them as
 non-fact-checkable tweets. So our Training corpus has 1783 fact-checkable and 2000
 non-fact-checkable tweets.
-5.2.2. Proposed Approach
-We have used word embedding to represent the text instead of bags-of-words. fastText
+5.2.2. Proposed Approach We have used word embedding to represent the text instead of bags-of-words. fastText
 (Mikolov et al. , 2018) pre-trained vector with 300 dimensions is used to initialize the
 weight matrix of the embedding layer of the network. We trained our CNN model on
 this training corpus with 10-fold cross-validation.The Model gives validation accuracy
@@ -557,7 +534,7 @@ around 94%. Finally, we run the model on the entire corpus and sorted the tweet 
 upon the predicted probability of the Fact-checkable class. Essentially this approach
 termed as weakly-supervise classiﬁcation.
 6. Results
-In this section, we ﬁrst present results of classiﬁers TRAC dataset Kumar et al.
+6. ResultsIn this section, we ﬁrst present results of classiﬁers TRAC dataset Kumar et al.
 (2018) with diﬀerent text representation scheme. Latter we present result on FIRE
 IRMiDis 2018 Dataset. Tweets are very noisy in nature contains user mentions, Hash-
 tags, Emojis, and URLs. We do not perform any kind of text pre-processing on tweets
@@ -565,8 +542,7 @@ in experiments with deep neural models. In experiments with machine learning cla
 ﬁer, before classiﬁcation, Hashtag symbol # and User mentions are dropped from the
 tweets. Non-ASCII characters and stop-words are removed from tweet text (Modha et
 al. , 2016).
-6.1. Results On TRAC Dataset
-Precision, Recall, and F1-score are the standard metrics which are used to evaluate the
+6.1. Results On TRAC Dataset Precision, Recall, and F1-score are the standard metrics which are used to evaluate the
 classiﬁer performance. We have evaluated 16 classiﬁers performance on 4 Datasets (2
 English+2 Hindi) with 10 Text Representation scheme(8 in the case of Hindi Dataset).
 Looking at such massive experiment, it is diﬃcult to report results in all the above
@@ -833,17 +809,15 @@ CNN
 NCNN
 0.5120
 0.4984
-0.5179
-the results achieved by classiﬁers on each text representation scheme.
+0.5179 the results achieved by classiﬁers on each text representation scheme.
 6.2. Information Retrieval from Microblogs during Disasters (IRMiDis)
-Dataset
-As discussed in the previous section 1, This task is classiﬁcation plus Ranking task.
+Dataset As discussed in the previous section 1, This task is classiﬁcation plus Ranking task.
 Table 13 shows our system results on IRMiDis dataset (Basu et al. , 2018) along with
 the rest of teams. nDCG overall is the primary metric for the evaluation. Our system
 substantially outperforms rest of team in the most of the metrics which justiﬁes our
 claim established on TRAC dataset (Kumar et al. , 2018)
 7. Result Analysis
-In this section, we will present the comprehensive result analysis and try to answer
+7. Result AnalysisIn this section, we will present the comprehensive result analysis and try to answer
 the research questions which framed before the experiments were performed. As we
 look at the table 6 7, and 8, Overall, LSTM and CNN with pre-trained fastText word
 embedding marginally outperform (around 2 % to 4%) standard machine learning
@@ -1253,8 +1227,7 @@ NCNN
 0.3338
 0.380
 0.3494
-0.4600
-14
+0.4600 14
 Table 11.
 F1 score on TRAC Facebook English Test Dataset using
 Transfer Learning methods
@@ -1407,8 +1380,7 @@ iitbhu irlab2
 0.0144
 0.0401
 0.3272
-0.6200
-15
+0.6200 15
 Figure 2.
 Heatmap on English Twitter Test Dataset Results.
 Table 14.
@@ -1455,11 +1427,9 @@ overall
 0.68
 0.56
 0.60
-916
-classiﬁers and ensemble of classiﬁer with respect to weighted
+916 classiﬁers and ensemble of classiﬁer with respect to weighted
 F
-1
-- score on Facebook
+1 - score on Facebook
 English corpus and substantially outperforms on Twitter English corpus. By and large
 similar results observed on code-mixed Hindi corpus as shown in table 9 and 10.
 Table 14 present the detailed comparative results of two classiﬁers: CNN model
@@ -1469,12 +1439,10 @@ than logistic regression at the individual class level and overall. It has been 
 evident that posts belong to CAG class are hard to classify and Malmasi, et al. (2017)
 reported that the same observation. Table 15 show posts which are miss-classiﬁed by
 logistic regression however, CNN model correctly classiﬁed them into the CAG class.
-7.1. Signiﬁcance Test
-To support our claim drawn in the previous section, signiﬁcance tests, like Wilcoxon
+7.1. Signiﬁcance Test To support our claim drawn in the previous section, signiﬁcance tests, like Wilcoxon
 signed-rank test and Student t-test were carried out by comparing Weighted
 F
-1
-score
+1 score
 of each classiﬁer for each text representation scheme with fastText pre-trained vector
 scheme. Table 16 and 17 summarizes the p-values of statistical signiﬁcance tests on
 16
@@ -1564,8 +1532,7 @@ P-Glove
 0.0002
 0.02
 0.08
-0.30
-English and Hindi Dataset respectively. In Wilcoxon signed-rank test, p-values of the
+0.30 English and Hindi Dataset respectively. In Wilcoxon signed-rank test, p-values of the
 results is less than 0.05 for Facebook English dataset and Twitter Hindi Dataset.
 However, On Twitter English dataset and Facebook Hindi Dataset, some of the p-
 values are higher than 0.05. In student t-test, we get mixed bag results. By and large,
@@ -1573,8 +1540,7 @@ our results are statistically signiﬁcant.
 In the following subsection, we will try to answer all the research questions framed
 during the experiments were planned.
 7.2.
-Best Text Representation scheme to model the text from Social web
-Text Representation is the primary task for to address any NLP task like Ques-
+Best Text Representation scheme to model the text from Social web Text Representation is the primary task for to address any NLP task like Ques-
 tion/answering, classiﬁcation etc. As dicusses in section 4, There are basically two
 text representing scheme:Bag-of-Word(BoW) with countvector, TF/IDF weighting
 and word embedding. Word2Vec (Mikolov et.al , 2013), Glove (Pennington et.al. ,
@@ -1626,9 +1592,7 @@ doc2vec-dbow
 0.003
 0.002
 0.001
-0.002
-17
-Results clearly show that models with fastText pre-trained vector outperform Glove
+0.002 17 Results clearly show that models with fastText pre-trained vector outperform Glove
 pre-trained vector on Facebook test dataset as well as the Twitter test dataset. the
 main reason behind the outperformance of fastText over Glove and Word2vec is that
 The fastText consider each word as N-gram characters. A word vector for a word
@@ -1644,8 +1608,7 @@ them on rest of three Datsets. Our participation (Majumder et al., 2018) in TRAC
 competition (Kumar Ritesh et al., 2018) FIRE Information Retrieval from Microblogs
 during Disasters (Basu et al. , 2018) track where our team performed well and secured
 top position.
-7.3. Transfer Learning Model vs Pre-trained Word Embedding Model
-Transfer learning is focused on storing knowledge gained while solving one problem and
+7.3. Transfer Learning Model vs Pre-trained Word Embedding Model Transfer learning is focused on storing knowledge gained while solving one problem and
 applying it to a diﬀerent but related problem. On many occasion, NLP researchers face
 the problem of unavailability of suﬃcient labeled data to train the model. With the
 advent of new transfer learning method like ELMO (Peters et al. , 2018) and Universal
@@ -1664,21 +1627,19 @@ In these experiments, we trained diﬀerent classiﬁer models on Facebook posts
 diﬀerence between Facebook and Twitter posts. From the results shown in Table 7 8
 and table 10, one can conclude that weighted
 F
-1
-score of standard machine learning
+1 score of standard machine learning
 classiﬁers are substantially lower in Twitter Dataset as compare to Facebook Dataset.
 While deep learning models perform better than machine learning classiﬁers for the
 Twitter Dataset. Thus, Deep learning models are more robust than machine learning
 classiﬁer across diverse datasets.
-7.4. Does Deeper Neural Net make Sense
-To answer this question, we designed ﬁrst CNN model with one convolution layer and
+7.4. Does Deeper Neural Net make Sense To answer this question, we designed ﬁrst CNN model with one convolution layer and
 other CNN model with 3 convolution layer with diﬀerent ﬁlters height. As we look
 at results shown in Table 6,7,8, and 9, one can conclude that by and large weighted
 F
-1
-score lower for CNN model with multiple convolution layer than CNN model with
+1 score lower for CNN model with multiple convolution layer than CNN model with
 single convolution layer.
-18</corps>
+18
+8. Conclusion</corps>
 <discussion>N/A</discussion>
 <conclusion>In this Paper, Multilingual Social media stream is studied with special kind of text
 features: Aggression and fact perspective. Exhaustive experiments are performed to
@@ -1729,15 +1690,12 @@ and Menczer, Filippo (2011).Predicting the political alignment of twitter users,
 Security, Risk and Trust (PASSAT) and 2011 IEEE Third Inernational Conference on Social
 Computing (SocialCom), 2011 IEEE Third International Conference on, pp.192–199.
 Davidson, Thomas and Warmsley, Dana and Macy, Michael and Weber, Ingmar (2017).Au-
-tomated Hate Speech Detection and the Problem of Oﬀensive Langemuage.Proceedings of
-ICWSM.
+tomated Hate Speech Detection and the Problem of Oﬀensive Langemuage.Proceedings ofICWSM.
 Deriu, Jan and Gonzenbach, Maurice and Uzdilli, Fatih and Lucchi, Aurelien and Luca, Valeria
 De and Jaggi, Martin (2016).Swisscheese at semeval-2016 task 4: Sentiment classiﬁcation
 using an ensemble of convolutional neural networks with distant supervision.Proceedings of
 the 10th international workshop on semantic evaluation,pp.1124–1128.
-Hltcoe, J (2013).Semeval-2013 task 2: Sentiment analysis in Twitter,vol-312 Atlanta, Georgia,
-USA.
-Howard, Jeremy &amp; Ruder, Sebastian 2018.Universal language model ﬁne-tuning for text clas-
+Hltcoe, J (2013).Semeval-2013 task 2: Sentiment analysis in Twitter,vol-312 Atlanta, Georgia,USA.Howard, Jeremy &amp; Ruder, Sebastian 2018.Universal language model ﬁne-tuning for text clas-
 siﬁcation”,arXiv preprint arXiv:1801.06146,
 Harris, Zellig S (1954),Distributional structureWord,10, number=2-3,pp.146–162,1954, Taylor
 &amp; Francis.
@@ -1756,8 +1714,7 @@ Majumder, Prasenjit and Mandl, Thomas and Modha Sandip (2018)Filtering Aggressio
 the Multilingual Social Media Feed Proceedings of the First Workshop on Trolling, Aggres-
 sion and Cyberbullying (TRAC-2018), pp. 199–207
 Malmasi, Shervin and Zampieri, Marcos (2017)Detecting Hate Speech in Social Media Pro-
-ceedings of the International Conference Recent Advances in Natural Language Processing
-(RANLP), pp.467–472.
+ceedings of the International Conference Recent Advances in Natural Language Processing(RANLP), pp.467–472.
 Malmasi, Shervin and Zampieri, Marcos (2018).Challenges in Discriminating Profanity from
 Hate Speech Journal of Experimental &amp; Theoretical Artiﬁcial Intelligencepp.1–16, vol-30,
 issue-2,Taylor &amp; Francis.
@@ -1769,8 +1726,7 @@ Armand (2018).Advances in Pre-Training Distributed Word Representations,Proceedi
 the International Conference on Language Resources and Evaluation (LREC 2018).
 Modha, Sandip and Agrawal, Krati and Verma, Deepali and Majumder, Prasenjit and Man-
 dalia, Chintak 2016.DAIICT at TREC RTS 2016: Live Push Notiﬁcation and Email Di-
-gest.,TREC.
-Mohammad, Saif M and Kiritchenko, Svetlana and Zhu, Xiaodan (2013).NRC-Canada: Build-
+gest.,TREC.Mohammad, Saif M and Kiritchenko, Svetlana and Zhu, Xiaodan (2013).NRC-Canada: Build-
 ing the state-of-the-art in sentiment analysis of tweets.arXiv preprint arXiv:1308.6242.
 Nakov, Preslav and Ritter, Alan and Rosenthal, Sara and Sebastiani, Fabrizio and Stoyanov,
 Veselin (2016).SemEval-2016 task 4: Sentiment analysis in Twitter,Proceedings of the 10th
@@ -1797,8 +1753,7 @@ pp.1–10,
 Severyn, Aliaksei and Moschitti, Alessandro (2015)Unitn: Training deep convolutional neural
 network for twitter sentiment classiﬁcation,Proceedings of the 9th international workshop
 on semantic evaluation (SemEval 2015), pp. 464–469.
-Tumasjan, Andranik and Sprenger, Timm Oliver and Sandner, Philipp G and Welpe, Isabell
-M (2010).Predicting elections with twitter: What 140 characters reveal about political sen-
+Tumasjan, Andranik and Sprenger, Timm Oliver and Sandner, Philipp G and Welpe, IsabellM (2010).Predicting elections with twitter: What 140 characters reveal about political sen-
 timent.,Icwsm, vol-10, number-1, pp. 178–185.
 Warner, William and Hirschberg, Julia (2012)Detecting hate speech on the world wide web,Proceedings of the Second Workshop on Language in Social Media,pp 19–26,Association for
 Computational Linguistics.
@@ -1813,6 +1768,5 @@ Maiti, Samaresh and Mitra, Sukanya and Sen, Aparajita and Pal, Sukomal.Text coll
 for FIRE,Proceedings of the 31st annual international ACM SIGIR conference on research
 and development in information retrieval,pp.699–700,ACM
 Majumdar, P and Mitra, Mandar and Parui, Swapan K and Bhattacharya,Initiative for indian
-language ir evaluation,The First International Workshop on Evaluating Information Access
-(EVIA)21</biblio>
+language ir evaluation,The First International Workshop on Evaluating Information Access(EVIA)21</biblio>
 </article>

@@ -52,7 +52,10 @@ class Carnet(list):
                         font=str(lines['size'])+lines['font']
                         size=lines['size']
                         line=lines['text']
-                        pos=lines["origin"]
+                        pos=lines["bbox"]
+                        if line.upper()==line and line.lower()!=line:
+                            font=font+"upper"
+                            size+=0.1
                         if bloc.font==None:
                             bloc.font=font
                             bloc.size=size
@@ -94,78 +97,91 @@ class Carnet(list):
     
 #Détection du Titre
   def getTitre(self):
-    max,n=-1,0
+    max,arg,n,titre=-1,0,0,""
     #Détection du bloc de police maximale dans les premiers blocs
     for j in range(len(self.pages)):
       for i, bloc in enumerate(self.pages[j]):
         n+=1
-        if bloc.size>max and len(bloc)>1:
+        if bloc.size>max and len(bloc)>1 and horizontal(bloc):
           max=bloc.size
+          arg=n
+          titre=bloc
       #Suppression du texte précédant le titre
       if n>40:
         while self[0].size!=max:
           self.pop(0)
-          while len(self.pages[0])==0:
-            self.pages.pop(0)
+          if len(self.pages[0])==0:
+            while len(self.pages[0])==0:
+              self.pages.pop(0)
+            self.pages[0].pop(0)
+            break
           self.pages[0].pop(0)
         #Renvoi du titre sans retour à la ligne
-        return sansRetour(self[0])
+        return sansRetour(titre)
 
 #Détection des mails
   def getMail(self):
 
     mails=[]
 
-    #Les mails sont recherchés dans la prémisse
-    premisse=self.getPremisse()
+    #Les mails sont recherchés dans la prémisse puis dans le document entier
+    for zone in [self.getPremisse(),self]:
+      if len(mails)>0:
+        break
+        
+      #Éléments techniques
+      res={}
+      lastBloc=""
 
-    #Éléments techniques
-    res={}
-    lastBloc=""
-
-    #Détection des polices contenant des "@"
-    for i, bloc in enumerate(premisse):
-      if "@" in bloc:
-        if bloc.font not in res:
-          res[bloc.font]=[]
-          for j,b in enumerate(premisse):
-            if b.font==bloc.font:
-              res[bloc.font].append(j)
-              
-    #Détection de la bonne police parmi celles-ci
-    for font in res:
-      for i in res[font]:
-        bloc=premisse[i]
-        for n,word in enumerate(sansRetour(bloc).split(" ")):
-          if "@" in word:
-            #Cas (nom1,nom2,nom3)@ubs.fr
-            if word.startswith("@"):
-              if n!=0:
-                lastBloc=" ".join(sansRetour(bloc).split(" ")[0:n])
-              if lastBloc=="":
-                if i==0:
-                  lastBloc="_"
-                else:
-                  lastBloc=premisse[i-1]
-              x=lastBloc.split(",")
-              for person in x:
-                #Types de parenthèses
-                for cha in "{}[]() ":
-                  person=person.replace(cha,"")
-                if person=="":
-                  person="_"
-                mails.append(person+word)
+      #Détection des polices contenant des "@"
+      for i, bloc in enumerate(zone):
+        if "@" in bloc:
+          if bloc.font not in res:
+            res[bloc.font]=[]
+            for j,b in enumerate(zone):
+              if b.font==bloc.font:
+                res[bloc.font].append(j)
+      #Détection de la bonne police parmi celles-ci
+      for font in res:
+        for i in res[font]:
+          bloc=zone[i]
+          for n,word in enumerate(sansRetour(bloc).split(" ")):
+            if "@" in word:
+              #Cas (nom1,nom2,nom3)@ubs.fr
+              if word.startswith("@"):
+                if n!=0:
+                  lastBloc=" ".join(sansRetour(bloc).split(" ")[0:n])
+                if lastBloc=="":
+                  if i==0:
+                    lastBloc="_"
+                  else:
+                    lastBloc=zone[i-1]
+                x=lastBloc.split(",")
+                for person in x:
+                  #Types de parenthèses
+                  for cha in "{}[]() ":
+                    person=person.replace(cha,"")
+                  if person=="":
+                    person="_"
+                  mails.append(person+word)
+                  self.posMail.append(bloc.pos)
+                  if i!=0:
+                    zone[i-1]=zone[i-1].fixe()
+              #Cas nom1,nom2,nom3@ubs.fr
+              elif "," in word:
+                fin="@"+word.split("@")[1]
+                words=word.split("@")[0].split(",")
+                for w in words:
+                  mails.append(w+fin)
+                  self.posMail.append(bloc.pos)
+              else:
+                mails.append(word)
                 self.posMail.append(bloc.pos)
-                if i!=0:
-                  premisse[i-1]=premisse[i-1].fixe()
-            else:
-              mails.append(word)
-              self.posMail.append(bloc.pos)
-            #Suppression des mails dans le carnet
-            premisse[i].text=premisse[i].text.replace(word,"")
-        premisse[i]=premisse[i].fixe()
-        lastBloc=premisse[i]
-      break
+              #Suppression des mails dans le carnet
+              zone[i].text=zone[i].text.replace(word,"")
+          zone[i]=zone[i].fixe()
+          lastBloc=zone[i]
+        break
       
     return mails
 
@@ -192,8 +208,8 @@ class Carnet(list):
         l=[]
         for j, b in enumerate(premisse):
           if b.font==s:
-              #Séparation des noms par ",",";","\n"
-              for k in b.replace(",","\n").replace(";","\n").split("\n"):
+              #Séparation des noms par "," ";" "\n" " and " " & &
+              for k in b.replace(",","\n").replace(";","\n").replace(" & ","\n").replace(" and ","\n").split("\n"):
                 while k.startswith(" "):
                   k=k[1:]
                 while k.endswith(" "):
@@ -249,6 +265,8 @@ class Carnet(list):
                 "cole",
                 "school",
                 "nstitu",
+                "epartmen",
+                "épartemen"
                 ]
     
     #Les affiliations sont détéctées dans la prémisse
@@ -294,8 +312,21 @@ class Carnet(list):
     univ=["" for _ in mail]
 
     #Attribution des affiliations aux différents auteurs
-    for i in res:
-      univ[plus_pres(i[1],self.posMail)]+="\n"+i[0]
+    #Cas moins d'affiliations que d'auteur
+    if 2*len(res)<=len(univ):#    if len(res)<len(univ):
+      for i in range(len(univ)):
+        for j in res:
+          univ[i]+=" "+j[0]
+    #Cas autant ou plus d'affiliations que d'auteur
+    else:
+      #Tentative d'attribuer les affiliations en fonction de la position des blocs
+      if len(set([plus_pres(i[1],self.posMail) for i in res]))>1:
+        for i in res:
+          univ[plus_pres(i[1],self.posMail)]+=" "+i[0]
+      else:
+        #Fallback
+        for i,r in enumerate(res):
+          univ[i%len(univ)]+=" "+r[0]
     for i in range(len(univ)):
       if len(res)>0:
         if univ[i]=="":
@@ -369,20 +400,29 @@ class Carnet(list):
                 lastLine=b
             #Évaluation de la pertinence de la police
             if long[1]>0 and long[0]/long[1]<2 and (res[4]=='' or (float(bloc.size)>float(res[4]))) and c>1:#c>res[0]:
-              res=[c,k,f,r,bloc.size,long[3]/max(0,len(r))]
+              res=[c,k,f,r,bloc.size,long[3]/max(1,len(r))]
         lastBloc=bloc
       self.policeTitre=res[2]
       self.parts=res[3][:-1]
+      if False:
+        #sys.exit()
+        for i in self.parts:
+          print("_____________________")
+          print(i[0])
+          print("_____________________")
+          print("---------------------")
+          print(i[1])
+          print("---------------------")
 
     return self.parts
   
 #Détection d'une partie du document par mots clefs
-  def findPart(self,l,reverse=False,dontStop=False):
+  def findPart(self,l,reverse=False,fallback=True):
 
     #Recherche exacte dans le cas où findPartReverse est utilisé
     exact=None
     if reverse:
-      exact=self.findPartReverse(l)
+      exact=self.findPartReverse(l,fallback)
       
     #Recherche dans les chapitres
     for i, part in enumerate(self.getParts()):
@@ -400,8 +440,14 @@ class Carnet(list):
     #Fallback si la partie n'était pas dans les chapitres
     for i, part in enumerate(self):
       if flag:
+        #Reverse : on prend tout jusqu'à la fin du document
+        if reverse:
+          for _ in range(len(self)-i):
+            res=self.pop()+res
+          self.pop()
+          return res
         #Extraction de la partie
-        if ((part.font==self.policeTitre and len(res)>100) or (self.policeTitre=="" and len(res)>1000)) and not dontStop:
+        if (part.font==self.policeTitre and len(res)>100) or (self.policeTitre=="" and len(res)>1000):
           return res
         res+=part
         if i==len(self)-1:
@@ -419,21 +465,36 @@ class Carnet(list):
     return "N/A"
   
 #Méthode semblable à findPart mais recherchant depuis la fin du document
-  def findPartReverse(self,l):
+  def findPartReverse(self,l,fallback):
+
+    res=""
     
     #Recherche dans les chapitres
     for part in reversed(self.getParts()):
       #Détection des mots clefs
       for keyword in l:
+        flag=False
         if keyword in part[0].lower():
-          #Renvoi du titre exact de chapitre à chercher pour findPart
-          return part[0]
+          res=part[0]
+          flag=True
+          break
+      #Gestion des cas où la partie est en plusieurs chapitres successifs
+      if not flag and res!="":
+        break
+
+    #Renvoi du titre exact de chapitre à chercher pour findPart
+    if res!="":
+      return res
+      
 
     #Recherche dans les éléments ayant la police des chapitres
     #Puis dans tous les éléments pouvant être assimilés à un titre
     for tour in range(2):
-      for part in reversed(self):
+      for i,part in enumerate(reversed(self)):
         if tour==1 or part.font==self.policeTitre:
+          #Cas où la détection de la partie est jugée secondaire
+          if not fallback and i>40:
+            break
           #Détection des mots clefs
           for keyword in l:
             firstLine=part.lower().split("\n")
@@ -449,7 +510,7 @@ class Carnet(list):
 
 #Détection de l'Abstract
   def getAbstract(self):
-    return self.findPart(["bstract"])
+    return self.findPart(["bstract","b s t r a c t"])
   
 #Détection de l'Introduction
   def getIntro(self):
@@ -457,7 +518,11 @@ class Carnet(list):
 
 #Détection de la Discussion
   def getDiscu(self):
-    return self.findPart(["iscussion"],True)
+    return self.findPart(["iscussion"],True,False)
+
+#Détection des Acknowlegements
+  def getAknow(self):
+    return self.findPart(["cknowledgement","cknowledgment"],True,False)
 
 #Détection de la Conclusion
   def getConclu(self):
@@ -465,7 +530,7 @@ class Carnet(list):
 
 #Détection de la Bibliographie
   def getBiblio(self):
-    return self.findPart(["eference","bliogr"],True,True)
+    return self.findPart(["eference","bliogr"],True)
 
 #Détection de l'Abstract
   def getCorps(self):
@@ -518,7 +583,7 @@ class Carnet(list):
 def plus_pres(p,l):
   r=[0,100000000]
   for i,q in enumerate(l):
-    distance=(p[0]-q[0])**2+(p[1]-q[1])**2
+    distance=(((p[2]+p[0])/2)-((q[2]+q[0])/2))**2+(((p[3]+p[1])/2)-((q[3]+q[1])/2))**2
     if distance<r[1]:
       r=[i,distance]
   return r[0]
@@ -593,6 +658,10 @@ def correct(s):
     s=s.replace(i[0].upper()+i[1],i[2].upper())
 
   return s
+
+#Caractérisation d'un bloc horizontal
+def horizontal(b):
+  return b.pos[2]-b.pos[0]>b.pos[3]-b.pos[1]
 
 #Caractérisation d'un bloc court
 def isShort(s):

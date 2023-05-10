@@ -1,24 +1,24 @@
 <article><preamble>acl2012.pdf</preamble>
 <titre>Finding Salient Dates for Building Thematic Timelines</titre>
-<auteurs><auteur><nom>Rémy Kessler</nom>
+<auteurs><auteur><name>Rémy Kessler</name>
 <mail>kessler@limsi.fr</mail>
-<affiliation>Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
+<affiliation>Univ. Paris-Sud, Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
 </auteur>
-<auteur><nom>Xavier Tannier</nom>
+<auteur><name>Xavier Tannier</name>
 <mail>xtannier@limsi.fr</mail>
-<affiliation>Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
+<affiliation>Univ. Paris-Sud, Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
 </auteur>
-<auteur><nom>Caroline Hagège</nom>
+<auteur><name>Caroline Hagège</name>
 <mail>hagege@xrce.xerox.com</mail>
-<affiliation>Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
+<affiliation>Univ. Paris-Sud, Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
 </auteur>
-<auteur><nom>Véronique Moriceau</nom>
+<auteur><name>Véronique Moriceau</name>
 <mail>moriceau@limsi.fr</mail>
-<affiliation>Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
+<affiliation>Univ. Paris-Sud, Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
 </auteur>
-<auteur><nom>André Bittar</nom>
+<auteur><name>André Bittar</name>
 <mail>bittar@xrce.xerox.com</mail>
-<affiliation>Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
+<affiliation>Univ. Paris-Sud, Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
 </auteur>
 </auteurs>
 <abstract>We present an approach for detecting salient
@@ -1328,45 +1328,7 @@ to show that our system produces usable outputs and
 that our system can be of help to journalists by pro-
 viding them with chronologies that are as useful and
 objective as possible.</corps>
-<discussion>Chronologies hand-written by journalists are a very
-useful resources for evaluation of our system, as they
-are completely dissociated from our research and are
-an exact representation of the output we aim to ob-
-tain. However, assembling such a chronology is a
-very subjective task, and no clear method for evalu-
-ation agreement between two journalists seems im-
-mediately apparent.
-Only experts can build such
-chronologies, and calculating this agreement would
-require at least two experts from each domain, which
-are hard to come by. One may then consider our sys-
-tem as a useful tool for building a chronology more
-objectively.
-To illustrate this point, we chose four speciﬁc top-
-ics6and showed one of our runs on each topic to an
-AFP expert for these subjects. We asked him to as-
-sess the ﬁrst 30 dates of these runs.6Namely,“Arab revolt timeline for Morocco”,“Kyrgyzs-
-tan unrest timeline”,“Lebanon’s new government: a timeline”,“Libya timeline”.TopicAPCAPEMorocco0.5847
-0.5718Kyrgyzstan0.6125
-0.9989Libya0.7856
-1Lebanon0.4673
-0.7652
-Table 4: Average precision results for manual evaluation
-on 4 topics, against the original chronologies (APC), and
-the expert assessment (APE).Table 4 presents results for this evaluation, com-
-paring average precision values obtained 1) against
-the original, manual chronologies (APC), and 2)
-against the expert assessment (APE). These values
-show that, for 3 runs out of 4, many dates returned
-by the system are considered as valid by the expert,
-even if not presented in the original chronology.
-Even if this experiment is not strong enough to
-lead to a formal conclusion (post-hocevaluation
-with only 4 topics and a single assessor), this tends
-to show that our system produces usable outputs and
-that our system can be of help to journalists by pro-
-viding them with chronologies that are as useful and
-objective as possible.</discussion>
+<discussion>N/A</discussion>
 <conclusion>This article presents a task of “date extraction” and
 shows the importance of taking temporal informa-
 tion into consideration and how with relatively sim-
@@ -1416,9 +1378,7 @@ Thorsten Brants, Francine Chen, and Ayman Farahat.
 2003. A system for new event detection. InProceed-
 ings of the 26th annual international ACM SIGIR con-
 ference on Research and development in informaion
-retrieval, SIGIR ’03, pages 330–337, New York, NY,
-USA. ACM.
-Hai Leong Chieu and Yoong Keok Lee. 2004. Query
+retrieval, SIGIR ’03, pages 330–337, New York, NY,USA. ACM.Hai Leong Chieu and Yoong Keok Lee. 2004. Query
 based event extraction along a timeline. InProceed-
 ings of the 27th annual international ACM SIGIR con-
 ference on Research and development in information
@@ -1469,9 +1429,7 @@ Giridhar Kumaran and James Allen. 2004. Text clas-
 siﬁcation and named entities for new event detection.
 InSIGIR ’04: Proceedings of the 27th annual in-
 ternational ACM SIGIR conference on Research and
-development in information retrieval, pages 297–304.
-ACM.
-Wei Li, Wenjie Li, Qin Lu, and Kam-Fai Wong. 2005a.
+development in information retrieval, pages 297–304.ACM.Wei Li, Wenjie Li, Qin Lu, and Kam-Fai Wong. 2005a.
 A Preliminary Work on Classifying Time Granulari-
 ties of Temporal Questions. InProceedings of Second
 international joint conference in NLP (IJCNLP 2005),
@@ -1486,8 +1444,7 @@ search and Development in Information Retrieval, Sal-
 vador, Brazil. ACM Press, New York City, NY, USA.
 Thomas Mestl, Olga Cerrato, Jon Ølnes, Per Myrseth,
 and Inger-Mette Gustavsen. 2009. Time Challenges -
-Challenging Times for Future Information Search.D-
-Lib Magazine, 15(5/6).
+Challenging Times for Future Information Search.D-Lib Magazine, 15(5/6).
 James Pustejovsky, Kiyong Lee, Harry Bunt, and Lau-
 rent Romary.
 2010.
@@ -1510,23 +1467,17 @@ QA Systems with Complex Temporal Question Pro-
 cessing Capabilities.Journal of Articiﬁal Intelligence
 Research, 35:775–811.
 David A. Smith. 2002. Detecting events with date and
-place information in unstructured text. InJCDL ’02:
-Proceedings of the 2nd ACM/IEEE-CS joint confer-
-ence on Digital libraries, pages 191–196, New York,
-NY, USA. ACM.
-Russell Swan and James Allen. 2000. Automatic genera-
+place information in unstructured text. InJCDL ’02:Proceedings of the 2nd ACM/IEEE-CS joint confer-
+ence on Digital libraries, pages 191–196, New York,NY, USA. ACM.Russell Swan and James Allen. 2000. Automatic genera-
 tion of overview timelines. InProceedings of the 23rd
 annual international ACM SIGIR conference on Re-
-search and development in information retrieval, SI-
-GIR ’00, pages 49–56, New York, NY, USA. ACM.
+search and development in information retrieval, SI-GIR ’00, pages 49–56, New York, NY, USA. ACM.
 Marc Verhagen, Robert Gaizauskas, Franck Schilder,
 Mark Hepple, Graham Katz, and James Pustejovsky.
 2007. SemEval-2007 - 15: TempEval Temporal Rela-
 tion Identiﬁcation. InProceedings of SemEval work-
 shop at ACL 2007, Prague, Czech Republic, June. As-
-sociation for Computational Linguistics, Morristown,
-NJ, USA.
-Rui Yan, Liang Kong, Congrui Huang, Xiaojun Wan, Xi-
+sociation for Computational Linguistics, Morristown,NJ, USA.Rui Yan, Liang Kong, Congrui Huang, Xiaojun Wan, Xi-
 aoming Li, and Yan Zhang.
 2011a.
 Timeline gen-

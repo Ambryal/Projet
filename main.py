@@ -5,7 +5,6 @@ import glob, os
 import shutil
 from datetime import datetime
 
-
 #-----------------Modules du projet-----------------
 
 sys.path.insert(1, 'Class')

@@ -15,12 +15,13 @@ class Classeur(dict):
     "auteurs":Tag("","auteurs"),
     "auteur":Tag("","auteur"),
     "mail":Tag("Mails des auteurs","mail"),
-    "noms":Tag("Noms des auteurs","nom"),
+    "noms":Tag("Noms des auteurs","name"),
     "univ":Tag("Affiliations des auteurs","affiliation"),
 
     "abstract":Tag("Abstract","abstract"),
     "intro":Tag("Introduction","introduction"),
     "discu":Tag("Discussion","discussion"),
+    "aknow":Tag("Aknowledgements","aknowledgements"),
     "biblio":Tag("Bibliographie","biblio"),
     "conclu":Tag("Conclusion","conclusion"),
     
@@ -45,11 +46,13 @@ class Classeur(dict):
 
     self["intro"]=carnet.getIntro()
 
-    self["discu"]=carnet.getDiscu()
-
-    self["conclu"]=carnet.getConclu()
-
     self["biblio"]=carnet.getBiblio()
+
+    self["discu"]=carnet.getDiscu()
+    
+    self["aknow"]=carnet.getAknow()
+    
+    self["conclu"]=carnet.getConclu()
 
     self["corps"]=carnet.getCorps()
 

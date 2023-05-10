@@ -1,8 +1,24 @@
 <article><preamble>C14-1212.pdf</preamble>
 <titre>Learning to Distinguish Hypernyms and Co-Hyponyms</titre>
-<auteurs><auteur><nom>Julie Weeds</nom>
-<mail>juliewe,D.Clarke,J.P.Reffin,davidw,billk@sussex.ac.uk</mail>
-<affiliation>University of Sussex, Brighton, UK</affiliation>
+<auteurs><auteur><name>Julie Weeds</name>
+<mail>juliewe@sussex.ac.uk</mail>
+<affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+</auteur>
+<auteur><name>Daoud Clarke</name>
+<mail>D.Clarke@sussex.ac.uk</mail>
+<affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+</auteur>
+<auteur><name>Jeremy Refﬁn</name>
+<mail>J.P.Reffin@sussex.ac.uk</mail>
+<affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+</auteur>
+<auteur><name>David Weir</name>
+<mail>davidw@sussex.ac.uk</mail>
+<affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+</auteur>
+<auteur><name>Bill Keller</name>
+<mail>billk@sussex.ac.uk</mail>
+<affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
 </auteur>
 </auteurs>
 <abstract>This work is concerned with distinguishing different semantic relations which exist between
@@ -167,7 +183,8 @@ P
 ww
 (
 u, v
-) = Σ
+) = 
+Σ
 f
 ∈
 F
@@ -199,7 +216,8 @@ R
 ww
 (
 u, v
-) = Σ
+) = 
+Σ
 f
 ∈
 F
@@ -256,7 +274,8 @@ P
 cl
 (
 u, v
-) = Σ
+) = 
+Σ
 f
 ∈
 F
@@ -294,7 +313,8 @@ R
 cl
 (
 u, v
-) = Σ
+) = 
+Σ
 f
 ∈
 F
@@ -1214,8 +1234,7 @@ Computational Linguistics: Human Language Technologies, pages 746–751, Atlanta
 Tristan Miller, Chris Biemann, Torsten Zesch, and Iryna Gurevych. 2012. Using distributional similarity for
 lexical expansion in knowledge-based word sense disambiguation. InProceedings of COLING 2012, pages
 1781–1796, Mumbai, India, December.
-Jeff Mitchell and Mirella Lapata. 2008. Vector-based models of semantic composition. InProceedings of ACL-08:
-HLT, pages 236–244, Columbus, Ohio, June. Association for Computational Linguistics.
+Jeff Mitchell and Mirella Lapata. 2008. Vector-based models of semantic composition. InProceedings of ACL-08:HLT, pages 236–244, Columbus, Ohio, June. Association for Computational Linguistics.
 Joakim Nivre. 2004. Incrementality in deterministic dependency parsing. InProceedings of the ACL workshop on
 Incremental Parsing, pages 50–57.2258Marek Rei and Ted Briscoe. 2013. Parser lexicalisation through self-learning. InProceedings of the 2013 Con-
 ference of the North American Chapter of the Association for Computational Linguistics: Human Language
@@ -1248,8 +1267,7 @@ pages 81–88.
 Julie Weeds, David Weir, and Diana McCarthy. 2004. Characterising measures of lexical distributional similarity.
 InProceedings of Coling 2004, pages 1015–1021, Geneva, Switzerland, Aug 23–Aug 27. COLING.
 Julie Weeds, David Weir, and Jeremy Refﬁn. 2014. Distributional composition using higher-order dependency
-vectors. InProceedings of the 2nd Workshop on Continuous Vector Space Models and their Compositionality,
-EACL 2014, Gothenburg, Sweden, April.
+vectors. InProceedings of the 2nd Workshop on Continuous Vector Space Models and their Compositionality,EACL 2014, Gothenburg, Sweden, April.
 Dominic Widdows. 2008. Semantic vector products: Some initial investigations. InProceedings of the Second
 Symposium on Quantum Interaction, Oxford, UK, pages 1–8.
 Wen-tau Yih, Geoffrey Zweig, and John Platt. 2012. Polarity inducing latent semantic analysis. InProceedings of

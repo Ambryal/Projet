@@ -1,20 +1,18 @@
 <article><preamble>L18-1504.pdf</preamble>
 <titre>A New Annotated Portuguese/Spanish Corpus for the Multi-Sentence Compression Task</titre>
-<auteurs><auteur><nom>Elvys Linhares Pontes</nom>
+<auteurs><auteur><name>Elvys Linhares Pontes</name>
 <mail>elvys.linhares-pontes@univ-avignon.fr</mail>
-<affiliation>CERI/LIA, Université d’Avignon et des Pays de Vaucluse, Avignon, France
-École Polytechnique de Montréal, Montréal, Canada
-Universidade Federal do Ceará, Sobral-CE, Brasil</affiliation>
+<affiliation>CERI/LIA, Université d’Avignon et des Pays de Vaucluse, Avignon, France</affiliation>
 </auteur>
-<auteur><nom>Juan-Manuel Torres-Moreno</nom>
+<auteur><name>Juan-Manuel Torres-Moreno</name>
 <mail>juan-manuel.torres@univ-avignon.fr</mail>
-<affiliation>Universidade Federal do Ceará, Sobral-CE, Brasil</affiliation>
+<affiliation>École Polytechnique de Montréal, Montréal, Canada</affiliation>
 </auteur>
-<auteur><nom>Stéphane Huet</nom>
+<auteur><name>Stéphane Huet</name>
 <mail>stephane.huet@univ-avignon.fr</mail>
 <affiliation>Universidade Federal do Ceará, Sobral-CE, Brasil</affiliation>
 </auteur>
-<auteur><nom>Andréa Carneiro Linhares</nom>
+<auteur><name>Andréa Carneiro Linhares</name>
 <mail>andrea.linhares@ufc.br</mail>
 <affiliation>Universidade Federal do Ceará, Sobral-CE, Brasil</affiliation>
 </auteur>
