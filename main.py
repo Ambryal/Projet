@@ -26,7 +26,7 @@ DESTINATION_DIRECTORY = "Artefacts/Sprint_6/"
 #Format de sortie par défaut
 FORMAT = "xml"
 #Sélection de fichier par défaut
-SELECTION = None
+SELECTION = "1"
 #Survie de la fenetre après exécution par exécutable
 STAY_ALIVE=True
 

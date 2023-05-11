@@ -2,23 +2,23 @@
 <titre>Information Processing and Management</titre>
 <auteurs><auteur><name>Rémy Kessler</name>
 <mail>remy.kessler@univ-avignon.fr</mail>
-<affiliation>LIA/Université d’Avignon et des Pays de Vaucluse, 339 chemin des Meinajariès, 84911 Avignon, France</affiliation>
+<affiliation> LIA/Université d’Avignon et des Pays de Vaucluse, 339 chemin des Meinajariès, 84911 Avignon, France, École Polytechnique de Montréal, CP 6079, succ. Centre-ville, Montréal (Québec) Canada H3C 3A7, LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
 </auteur>
 <auteur><name>Nicolas Béchet</name>
 <mail>nicolas.bechet@inria.fr</mail>
-<affiliation>École Polytechnique de Montréal, CP 6079, succ. Centre-ville, Montréal (Québec) Canada H3C 3A7</affiliation>
+<affiliation> LIA/Université d’Avignon et des Pays de Vaucluse, 339 chemin des Meinajariès, 84911 Avignon, France, École Polytechnique de Montréal, CP 6079, succ. Centre-ville, Montréal (Québec) Canada H3C 3A7, LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
 </auteur>
 <auteur><name>Mathieu Roche</name>
 <mail>mathieu.roche@lirmm.fr</mail>
-<affiliation>LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+<affiliation> LIA/Université d’Avignon et des Pays de Vaucluse, 339 chemin des Meinajariès, 84911 Avignon, France, École Polytechnique de Montréal, CP 6079, succ. Centre-ville, Montréal (Québec) Canada H3C 3A7, LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
 </auteur>
 <auteur><name>Juan-Manuel Torres-Moreno</name>
 <mail>res@univ-avignon.fr</mail>
-<affiliation>LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+<affiliation> LIA/Université d’Avignon et des Pays de Vaucluse, 339 chemin des Meinajariès, 84911 Avignon, France, École Polytechnique de Montréal, CP 6079, succ. Centre-ville, Montréal (Québec) Canada H3C 3A7, LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
 </auteur>
 <auteur><name>Marc El-Bèze</name>
 <mail>marc.elbeze@univ-avignon.fr</mail>
-<affiliation>LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+<affiliation> LIA/Université d’Avignon et des Pays de Vaucluse, 339 chemin des Meinajariès, 84911 Avignon, France, École Polytechnique de Montréal, CP 6079, succ. Centre-ville, Montréal (Québec) Canada H3C 3A7, LIRMM, CNRS Université Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
 </auteur>
 </auteurs>
 <abstract>The evolution of the job market has resulted in traditional methods of recruitment becom-
@@ -54,8 +54,8 @@ http://dx.doi.org/10.1016/j.ipm.2012.03.002
 ⇑
 Corresponding author.
 E-mail addresses:
-remy.kessler@univ-avignon.fr (R. Kessler), nicolas.bechet@inria.fr (N. Béchet), mathieu.roche@lirmm.fr (M. Roche), juan-manuel.tor-
-res@univ-avignon.fr (J.-M. Torres-Moreno), marc.elbeze@univ-avignon.fr (M. El-Bèze).
+ (R. Kessler),  (N. Béchet),  (M. Roche), juan-manuel.tor-
+ (J.-M. Torres-Moreno),  (M. El-Bèze).
 1
 http://www.keljob.com.
 Information Processing and Management 48 (2012) 1124–1135
@@ -361,7 +361,6 @@ d
 1
 1
 þ
-
 P
 n
 i
@@ -388,7 +387,6 @@ j
 ;
 d
 Þ ¼
-
 P
 i
 2
@@ -741,7 +739,6 @@ P
 s
 b
 ¼
-
 P
 C
 v
@@ -793,7 +790,6 @@ s
 :
 5
 þ
-
 P
 s
 a
@@ -810,7 +806,6 @@ s
 :
 5
 �
-
 P
 s
 b
@@ -1180,13 +1175,27 @@ RF and RFC for job offer 31274.</corps>
 tions and skills is not a trivial task (Loth et al., 2010) and results on this type of document have been quite low (Clech &amp;Table 4Comparison of AUC score for each size of Relevance Feedback withCORTEXsummarization system.Size of Relevance FeedbackISMIS resultFull CV and CL summary 30% compression rate
 Random distribution
 0.500
-0.500RF00.642
-0.653RF10.654
-0.658RF20.657
-0.659RF30.659
-0.661RF40.659
-0.659RF50.660
-0.662RF60.6610.663
+0.500
+RF0
+0.642
+0.653
+RF1
+0.654
+0.658
+RF2
+0.657
+0.659
+RF3
+0.659
+0.661
+RF4
+0.659
+0.659
+RF5
+0.660
+0.662
+RF6
+0.6610.663
 Fig. 5.Results of Relevance Feedback with and without summaries of CL.R. Kessler et al. / Information Processing and Management 48 (2012) 1124–11351133Author&apos;s personal copyZighed, 2003). The information we use in this kind of process is not well formated in natural language, but follows a conven-
 tional structure. This paper deals with theCORTEXsummarizer and the E-Gen system for processing job offers. E-Gen assists an
 employer in the recruitment task. This paper focuses on candidate answers to job offers. We rank the candidate answers by
@@ -1219,7 +1228,8 @@ Colucci, S., Di Noia, T., Di Sciascio, E., Donini, F. M., Mongiello, M., &amp; M
 descriptions.Journal of Universal Computer Science, Special issue on Skills Management, 9, 1437–1454.
 Dorn, J., &amp; Naz, T. (2007). Meta-search in human resource management. InProceedings of 4th international conference on knowledge systems ICKS’07
 Bangkok,Thailand(pp. 105–110).
-Enrica, A., &amp; Iezzi, D. F. (2006). Recruitment via web and information technology: A model for ranking the competences in job market. InJADT’2006,Besanton, France(pp. 79–88).
+Enrica, A., &amp; Iezzi, D. F. (2006). Recruitment via web and information technology: A model for ranking the competences in job market. InJADT’2006,
+Besanton, France(pp. 79–88).
 Fan, R.-E., Chen, P.-H., &amp; Lin, C.-J. (2005). Working set selection using the second order information for training SVM.Journal of Machine Learning Research,
 1889–1918.
 Fawcett, T. (2006). An introduction to ROC analysis.Pattern Recognition Letters, 27, 861–874.
@@ -1231,7 +1241,8 @@ RF2
 RF3
 RF4
 RF5
-RF60,40
+RF6
+0,40
 0,45
 0,50
 0,55
@@ -1275,8 +1286,18 @@ Salton, G., &amp; Mcgill, M. J. (1986).Introduction to modern information retrie
 Smyth, B., &amp; Bradley, K. (2003). Personalized information ordering: A case-study in online recruitment.Journal of Knowledge-Based Systems, 269–275.
 Sparck Jones, K. (1970). Some thoughts on classiﬁcation for retrieval.Journal of Documentation, 89–101.
 Sutton, R. S., &amp; Barto, A. G. (1998).Reinforcement learning: An introduction (adaptive computation and machine learning). The MIT Press.
-Tolksdorf,R.,Mocho,M.,Heese,R.,Oldakowski,R.,&amp;
-Christian,B.(2006).
+Tolksdorf,
+R.,
+Mocho,
+M.,
+Heese,
+R.,
+Oldakowski,
+R.,
+&amp;
+Christian,
+B.
+(2006).
 Semantic-Web-Technologien
 im
 Arbeitsvermittlungsprozess.Wirtschaftsinformatik, 17–26.

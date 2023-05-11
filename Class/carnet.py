@@ -53,9 +53,6 @@ class Carnet(list):
                         size=lines['size']
                         line=lines['text']
                         pos=lines["bbox"]
-                        if line.upper()==line and line.lower()!=line:
-                            font=font+"upper"
-                            size+=0.1
                         if bloc.font==None:
                             bloc.font=font
                             bloc.size=size
@@ -189,13 +186,20 @@ class Carnet(list):
 #Détection des noms
   def getNom(self,mail):
 
-    #Fallback si les mails n'ont pas été détectés
-    if mail==[]:
-      return mail
-
     #Les noms sont détéctés dans la prémisse
     premisse=self.getPremisse()
-    
+
+    #Fallback si les mails n'ont pas été détectés
+    if mail==[]:
+      for i, bloc in enumerate(premisse):
+        noms=[]
+        if " and " in bloc or " & " in bloc:
+          noms=bloc.replace(" , ","\n").replace(" and ","\n").split("\n")
+          break
+      while len(mail)<len(noms):
+          mail.append("")
+      return noms
+
     #Éléments techniques
     fonts=[]
     res=[0,["" for _ in mail],["" for _ in mail],""]
@@ -266,12 +270,15 @@ class Carnet(list):
                 "school",
                 "nstitu",
                 "epartmen",
-                "épartemen"
+                "épartemen",
+                "esearch",
+                "echerche",
+                "cnrs"
                 ]
     
     #Les affiliations sont détéctées dans la prémisse
     premisse=self.getPremisse()
-    
+
     #Éléments techniques
     fonts=[]
     res=[]
@@ -313,10 +320,10 @@ class Carnet(list):
 
     #Attribution des affiliations aux différents auteurs
     #Cas moins d'affiliations que d'auteur
-    if 2*len(res)<=len(univ):#    if len(res)<len(univ):
+    if 2*len(res)<=len(univ)+1:
       for i in range(len(univ)):
         for j in res:
-          univ[i]+=" "+j[0]
+          univ[i]+=", "+j[0]
     #Cas autant ou plus d'affiliations que d'auteur
     else:
       #Tentative d'attribuer les affiliations en fonction de la position des blocs
@@ -327,6 +334,7 @@ class Carnet(list):
         #Fallback
         for i,r in enumerate(res):
           univ[i%len(univ)]+=" "+r[0]
+
     for i in range(len(univ)):
       if len(res)>0:
         if univ[i]=="":
@@ -348,9 +356,17 @@ class Carnet(list):
     fonts=[]
     res=[0,0,"",[],0,0]
     lastLine=""
-    lastBloc=""
+    lastBloc=""         
         
     if len(self.parts)==0:
+      
+      #Mise en valeur des lignes en majuscule
+      for bloc in self:
+        if bloc.upper()==bloc and bloc.lower()!=bloc:
+          bloc.font=bloc.font+1000
+          bloc.size+=0.1
+          print(bloc)
+          
       for i, bloc in enumerate(self):
         f=bloc.font
         #Détection de la police des titres
@@ -454,7 +470,7 @@ class Carnet(list):
           return res
       #Détection des mots clefs
       for keyword in l:
-        if exact==part or (not reverse and keyword in part.lower()):
+        if exact==part or (isShort(part) and not reverse and keyword in part.lower()):
           if reverse:
             self.corpsMax=min(self.corpsMax,i)
           else:
@@ -553,7 +569,7 @@ class Carnet(list):
       #Parcours du carnet
       for bloc in self:
         #Renvoi si des mails ont été détectés et que le bloc est un paragraphe
-        if isLong(bloc) and mailFound:
+        if isLong(bloc):
           break
         if "@" in bloc:
           mailFound=True

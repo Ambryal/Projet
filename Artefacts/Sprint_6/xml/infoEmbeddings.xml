@@ -1,11 +1,27 @@
 <article><preamble>infoEmbeddings.pdf</preamble>
 <titre>An Empirical Evaluation of Text Representation Schemes on Multilingual Social Web to Filter the Textual Aggression</titre>
-<auteurs><auteur><name>Sandip Modha</name>
+<auteurs><auteur><name></name>
 <mail>sjmodha@gmail.com</mail>
 <affiliation></affiliation>
 </auteur>
-<auteur><name>and Prasenjit Majumder</name>
+<auteur><name></name>
 <mail>prasenjit.majumder@gmail.com</mail>
+<affiliation></affiliation>
+</auteur>
+<auteur><name></name>
+<mail>p@100</mail>
+<affiliation></affiliation>
+</auteur>
+<auteur><name></name>
+<mail>R@1000</mail>
+<affiliation></affiliation>
+</auteur>
+<auteur><name></name>
+<mail>MAP@100</mail>
+<affiliation></affiliation>
+</auteur>
+<auteur><name></name>
+<mail>p@100R@1000MAP@100MAPnDCG@100</mail>
 <affiliation></affiliation>
 </auteur>
 </auteurs>
@@ -34,25 +50,31 @@ best weightedF1-score than Word2Vec and Glove. Results are further improved
 using pre-trained vector model. Statistical signiﬁcance tests are employed to en-
 sure the signiﬁcance of the classiﬁcation results. In the case of lexically diﬀerent
 test Dataset, other than training Dataset, deep neural models are more robust and
-perform substantially better than machine learning classiﬁers.Abbreviations:NLP:Natural
+perform substantially better than machine learning classiﬁers.Abbreviations:NLP:
+Natural
 Language
 Processing;
 BoW
 :Bag-of-Word;
 CNN:Convolution Neural Network;LSTM :Long Short-Term Memory.KEYWORDSAggression, Trolling, Bag-of-Words, Word Embedding, Transfer learning,
-Word2Vec, Glove, fastText, Signiﬁcance Test, Wilcoxon signed-rank, Student t-testCONTACT Sandip Modha. Email: sjmodha@gmail.com
-CONTACT Prasenjit Majumder. Email: prasenjit.majumder@gmail.comarXiv:1904.08770v1  [cs.IR]  16 Apr 2019Table 1.sample post for the each class.
+Word2Vec, Glove, fastText, Signiﬁcance Test, Wilcoxon signed-rank, Student t-testCONTACT Sandip Modha. Email: 
+CONTACT Prasenjit Majumder. Email: arXiv:1904.08770v1  [cs.IR]  16 Apr 2019Table 1.sample post for the each class.
 Post text
 Class Label
 1
 She is simple girl and need not know politics. Let her vote to
-her choiceNAG2
+her choice
+NAG
+2
 People talk about common man suﬀering all the time.This is
 the same country where thousands laid their lives for free-
 dom.Cant the common man endure little trouble to stand in
-queues for the greater goodCAG3
+queues for the greater good
+CAG
+3
 Langove get out from this conversation. U are an uninvited
-dog hereOAG1. Introduction</abstract>
+dog here
+OAG1. Introduction</abstract>
 <introduction>1 . Organizations involved
 in relief operation actively track posts related to situational information posted on
 Facebook and Twitter during the disaster. However, At the same time, social media
@@ -455,8 +477,8 @@ Text Classiﬁcation is stated as follows. Given a set of social media feed and 
 classes, We need to compute a function of the form:
 C =
 f (
-T,
-Ω) where f is the multi-class classiﬁer that is computed using training data, T is the
+T, Ω)
+where f is the multi-class classiﬁer that is computed using training data, T is the
 numeric representation of the text of the dataset, Ω is the set of parameters of the
 classiﬁer and C is the pre-deﬁne class-labels.
 5.1.2. Model Architectures and Hyperparameters In this subsection, we will discuss the architecture and hyperparameters of our deep
@@ -1307,11 +1329,11 @@ Heatmap on English Facebook Test Dataset Results.
 Table 13.
 Results Comparison with rest of team on FIRE 2018 IRMiDis Dataset.
 System
-p@100
-R@1000
-MAP@100
+
+
+
 MAP
-nDCG @100
+nDCG 
 nDCG
 Our System
 0.4
@@ -1690,12 +1712,15 @@ and Menczer, Filippo (2011).Predicting the political alignment of twitter users,
 Security, Risk and Trust (PASSAT) and 2011 IEEE Third Inernational Conference on Social
 Computing (SocialCom), 2011 IEEE Third International Conference on, pp.192–199.
 Davidson, Thomas and Warmsley, Dana and Macy, Michael and Weber, Ingmar (2017).Au-
-tomated Hate Speech Detection and the Problem of Oﬀensive Langemuage.Proceedings ofICWSM.
+tomated Hate Speech Detection and the Problem of Oﬀensive Langemuage.Proceedings of
+ICWSM.
 Deriu, Jan and Gonzenbach, Maurice and Uzdilli, Fatih and Lucchi, Aurelien and Luca, Valeria
 De and Jaggi, Martin (2016).Swisscheese at semeval-2016 task 4: Sentiment classiﬁcation
 using an ensemble of convolutional neural networks with distant supervision.Proceedings of
 the 10th international workshop on semantic evaluation,pp.1124–1128.
-Hltcoe, J (2013).Semeval-2013 task 2: Sentiment analysis in Twitter,vol-312 Atlanta, Georgia,USA.Howard, Jeremy &amp; Ruder, Sebastian 2018.Universal language model ﬁne-tuning for text clas-
+Hltcoe, J (2013).Semeval-2013 task 2: Sentiment analysis in Twitter,vol-312 Atlanta, Georgia,
+USA.
+Howard, Jeremy &amp; Ruder, Sebastian 2018.Universal language model ﬁne-tuning for text clas-
 siﬁcation”,arXiv preprint arXiv:1801.06146,
 Harris, Zellig S (1954),Distributional structureWord,10, number=2-3,pp.146–162,1954, Taylor
 &amp; Francis.
@@ -1714,7 +1739,8 @@ Majumder, Prasenjit and Mandl, Thomas and Modha Sandip (2018)Filtering Aggressio
 the Multilingual Social Media Feed Proceedings of the First Workshop on Trolling, Aggres-
 sion and Cyberbullying (TRAC-2018), pp. 199–207
 Malmasi, Shervin and Zampieri, Marcos (2017)Detecting Hate Speech in Social Media Pro-
-ceedings of the International Conference Recent Advances in Natural Language Processing(RANLP), pp.467–472.
+ceedings of the International Conference Recent Advances in Natural Language Processing
+(RANLP), pp.467–472.
 Malmasi, Shervin and Zampieri, Marcos (2018).Challenges in Discriminating Profanity from
 Hate Speech Journal of Experimental &amp; Theoretical Artiﬁcial Intelligencepp.1–16, vol-30,
 issue-2,Taylor &amp; Francis.
@@ -1726,7 +1752,8 @@ Armand (2018).Advances in Pre-Training Distributed Word Representations,Proceedi
 the International Conference on Language Resources and Evaluation (LREC 2018).
 Modha, Sandip and Agrawal, Krati and Verma, Deepali and Majumder, Prasenjit and Man-
 dalia, Chintak 2016.DAIICT at TREC RTS 2016: Live Push Notiﬁcation and Email Di-
-gest.,TREC.Mohammad, Saif M and Kiritchenko, Svetlana and Zhu, Xiaodan (2013).NRC-Canada: Build-
+gest.,TREC.
+Mohammad, Saif M and Kiritchenko, Svetlana and Zhu, Xiaodan (2013).NRC-Canada: Build-
 ing the state-of-the-art in sentiment analysis of tweets.arXiv preprint arXiv:1308.6242.
 Nakov, Preslav and Ritter, Alan and Rosenthal, Sara and Sebastiani, Fabrizio and Stoyanov,
 Veselin (2016).SemEval-2016 task 4: Sentiment analysis in Twitter,Proceedings of the 10th
@@ -1753,7 +1780,8 @@ pp.1–10,
 Severyn, Aliaksei and Moschitti, Alessandro (2015)Unitn: Training deep convolutional neural
 network for twitter sentiment classiﬁcation,Proceedings of the 9th international workshop
 on semantic evaluation (SemEval 2015), pp. 464–469.
-Tumasjan, Andranik and Sprenger, Timm Oliver and Sandner, Philipp G and Welpe, IsabellM (2010).Predicting elections with twitter: What 140 characters reveal about political sen-
+Tumasjan, Andranik and Sprenger, Timm Oliver and Sandner, Philipp G and Welpe, Isabell
+M (2010).Predicting elections with twitter: What 140 characters reveal about political sen-
 timent.,Icwsm, vol-10, number-1, pp. 178–185.
 Warner, William and Hirschberg, Julia (2012)Detecting hate speech on the world wide web,Proceedings of the Second Workshop on Language in Social Media,pp 19–26,Association for
 Computational Linguistics.
@@ -1768,5 +1796,6 @@ Maiti, Samaresh and Mitra, Sukanya and Sen, Aparajita and Pal, Sukomal.Text coll
 for FIRE,Proceedings of the 31st annual international ACM SIGIR conference on research
 and development in information retrieval,pp.699–700,ACM
 Majumdar, P and Mitra, Mandar and Parui, Swapan K and Bhattacharya,Initiative for indian
-language ir evaluation,The First International Workshop on Evaluating Information Access(EVIA)21</biblio>
+language ir evaluation,The First International Workshop on Evaluating Information Access
+(EVIA)21</biblio>
 </article>

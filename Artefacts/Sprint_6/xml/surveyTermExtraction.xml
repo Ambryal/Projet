@@ -2,15 +2,15 @@
 <titre>AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT  SYSTEMS</titre>
 <auteurs><auteur><name>M. Teresa Cabré Castellví</name>
 <mail>teresa.cabre@trad.upf.es,</mail>
-<affiliation>Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
+<affiliation> Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
 </auteur>
 <auteur><name>Rosa Estopà Bagot</name>
 <mail>rosa.estopa@trad.upf.es,</mail>
-<affiliation>Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
+<affiliation> Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
 </auteur>
 <auteur><name>Jordi Vivaldi Palatresi</name>
 <mail>jorge.vivaldi@info.upf.es</mail>
-<affiliation>Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
+<affiliation> Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
 </auteur>
 </auteurs>
 <abstract>In this paper we account for the main characteristics and performance of a 
@@ -92,6 +92,7 @@ termhood
 as the degree in that a linguistic unit is related to a domain-specific 
 concept. 
 AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  3 
+ 
 The difference between these two approaches lies in the fact that a tool for TE 
 should extract 
 all
@@ -208,7 +209,7 @@ various systems of terminology extraction together with a short evaluation in
 which weak and strong points have been outlined. Secondly, the terminology 
 extraction systems have been classified according to some parameters.  
 AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  5 
-</introduction>
+ </introduction>
 <corps>2. 
 Description of some terminology extraction systems 
 In the following sections we offer a critical description of number of 
@@ -380,6 +381,7 @@ Further information can be found at:
 http://www.clarit.com
 . 
 AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  7 
+ 
 Document indexing for IR is an important field of application of NLP 
 techniques. This branch holds common points with term detection since the word 
 sequences that help in document indexing are normally terminological units too.  
@@ -515,6 +517,7 @@ This seems to be an interesting system and the applicability of some basic ideas
 to terminology detection appears to be feasible. Actually CLARIT holds 
 similarities with the Daille’s (1994) proposal (a linguistically-driven statistics). 
 AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  9 
+ 
 It should be borne in mind, however, that problems of terminology extraction 
 and document indexing are similar but no identical so that many decisions 
 should be re-considered strictly from the point of view of term detection. It is 
@@ -567,10 +570,8 @@ variables on which the dependence degree is measured. Data are represented in a
 standard contingency table: 
 10 Automatic Term Detection: a Review of Current Systems 
  
-
 L
 2
-
 L
 n
 where 
@@ -581,7 +582,6 @@ L
 occurrences 
 L
 1
-
 A 
 b 
  
@@ -594,7 +594,6 @@ n
 2) occurrences 
 L
 m
-
 C 
 d 
  
@@ -626,7 +625,6 @@ cubed
 association 
 criterion
 6
-
 (IM
 3
 ), 
@@ -1616,67 +1614,98 @@ learning
 Other 
 1 
 ANA 
-
+ 
+ 
+ 
 X 
+ 
 - 
 2 
 CLARIT 
-
+ 
+ 
 X 
+ 
+ 
 statistical 
 3 
 Daille 
  
 X 
+ 
+ 
+ 
 - 
 4 
 FASTR 
-
+ 
 X 
 X 
 X 
+ 
 - 
 5 
 Heid 
  
 X 
+ 
+ 
+ 
 - 
 6 
 LEXTER 
 X 
-
+ 
+ 
+ 
 X 
+ 
 7 
 Naulleau 
  
  
  
 X 
+ 
 - 
 8 
 NEURAL 
-
+ 
 X 
+ 
+ 
+ 
 - 
 9 
 NODALIDA-95  
-
+ 
+ 
 X 
+ 
 - 
 10 
 Termight 
  
 X 
+ 
+ 
+ 
 - 
 11 
 TERMINO 
-
+ 
+ 
 X 
+ 
+ 
 - 
 12 
 TERMS 
-
+ 
 X 
+ 
+ 
+ 
 - 
 3.3. 
 Strategies of term filtering 
@@ -1704,31 +1733,52 @@ user
 defined 
 1 
 ANA 
-
+ 
+ 
+ 
+ 
 X 
+ 
 2 
 CLARIT 
-
+ 
+ 
 X 
 X 
+ 
+ 
 3 
 Daille 
  
  
  
 X 
+ 
+ 
 4 
 FASTR 
-
+ 
+ 
+ 
+ 
 X 
+ 
 5 
 Heid 
  
 X 
+ 
+ 
+ 
+ 
 6 
 LEXTER 
-
+ 
 X 
+ 
+ 
+ 
+ 
 7 
 Naulleau 
  
@@ -1739,24 +1789,43 @@ Naulleau
 X 
 8 
 NEURAL 
-
+ 
+ 
+ 
 X 
+ 
+ 
 9 
 NODALIDA-95  
 X 
+ 
+ 
+ 
+ 
 10 
 Termight 
 X 
 X 
+ 
+ 
+ 
+ 
 11 
 TERMINO 
-
+ 
 X 
+ 
+ 
+ 
+ 
 12 
 TERMS 
 X 
 X 
-
+ 
+ 
+ 
+ 
 
 10
 The technique of term filtering through frequency terms has been considered something in between 
@@ -1918,7 +1987,8 @@ than these ones and they are never detected. Those systems based only on these
 types of linguistic techniques generate too much noise. i)It is generally agreed that frequency is a good criterion to indicate that a 
 candidate term is actually a terminological unit. However, frequency is not on its 
 own a sufficient criterion, as it yields a great deal of noise. j)Only a few recent systems use semantic information to recognise and delimit 
-terminological units although its use takes place at different levels. AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  29 
+terminological units although its use takes place at different levels. AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  
+29 
  k) None of the systems uses extensively the combinatory features of terms from 
 specialised languages in relation to a given domain. It is needed more studies 
 about the type of constraints that terminological units present with regard to 
@@ -1977,7 +2047,8 @@ Language Processing,34-40.
 Daille, B. 1994. Approche mixte pour l&apos;extraction de terminologie: statistique 
 lexicale et filtres linguistiques. PhD dissertation. Paris: Université Paris VII.  
 Daille, B. and Jacquemin, C 1998. “Lexical database and information access: a 
-fruitfull association?”. First International Conference on LREC.Granada.  AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  31 
+fruitfull association?”. First International Conference on LREC.Granada.  AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  
+31 
  
 David, S. and Plante, P. 1991. “Le progiciel TERMINO: de la nécessité d&apos;une 
 analyse morphosyntaxique pour le dépouillement terminologique des textes”. Proceedings of the Montreal Colloquium Les industries de la langue: 
@@ -2000,7 +2071,8 @@ Frantzi, K. T. 1997. “Incorporating context information for extraction of term
 Habert, B., Naulleau, E. and Nazarenko, A. 1996.“Symbolic word clustering for 
 medium-size corpora”. Proceedings of Coling’96: 490-495. 
 Heid, U., Jauss, S., Krüger, K. and Hohmann, A. 1996. “Term extraction with 
-standard tools for corpus exploration. Experience from German”. In: TKE ‘96: Terminology and Knowledge Engineering,, 139-150. Berlin: Indeks Verlag.Jacquemin, C. 1994. “Recycling Terms into a Partial Parser”. Proceedings ofANLP’94, 113-118. 
+standard tools for corpus exploration. Experience from German”. In: TKE ‘96: 
+Terminology and Knowledge Engineering,, 139-150. Berlin: Indeks Verlag.Jacquemin, C. 1994. “Recycling Terms into a Partial Parser”. Proceedings ofANLP’94, 113-118. 
 Jacquemin, C. 1999. “Syntagmatic and paradigmatic representations of term 
 variation”. Proceedings ofACL&apos;99, University of Maryland, 341-348. 
 Jacquin, C. and Liscouet, M. 1996. “Terminology extraction from texts corpora: 
@@ -2027,7 +2099,8 @@ Term Extraction”. Proceedings of Computerm ’98,Montreal, 64-70.
 Naulleau, E 1998. Apprentissage et filtrage syntaxico-sémantique de syntagmes 
 nominaux pertinents pour la recherche documentaire.PhD thesis. Paris: 
 Université Paris 13. 
-Naulleau, E. 1999. “Profile-guided terminology extraction”. In: TKE‘99: Terminology and Knowledge Engineering. 222-240. Vienna: TermNet.  
+Naulleau, E. 1999. “Profile-guided terminology extraction”. In: TKE‘99: 
+Terminology and Knowledge Engineering. 222-240. Vienna: TermNet.  
 Plante, P. and Dumas, L. 1998. “Le Dépoulliment terminologique assisté par 
 ordinateur”. Terminogramme, 46, 24-28. 
 Shieber, S.N. 1986. “An Introduction to Unification-Based Approaches to 
@@ -2037,5 +2110,6 @@ generation. Columbia: Columbia University. Department of Computer
 Science. [Unpublished doctoral dissertation]Voutilainen, A. 1993. “NPtool, a detector of English noun phrases”. Proceedings 
 of theWorkshop on Very Large Corpora.  
 Zhai, C., Tong, X., Milic-Frayling, N. and Evans, D.A. 1996. “Evaluation of 
-syntactic phrase indexing CLARIT. NLP track report”. Proceedings of the TREC-5.TREC Web Site:http://trec.nist.gov/pubs/trec5/t5_proceedings.html </biblio>
+syntactic phrase indexing CLARIT. NLP track report”. Proceedings of the 
+TREC-5.TREC Web Site:http://trec.nist.gov/pubs/trec5/t5_proceedings.html </biblio>
 </article>
