@@ -1,15 +1,32 @@
-<article><preamble>infoEmbeddings.pdf</preamble>
-<titre>An Empirical Evaluation of Text Representation Schemes on Multilingual Social Web to Filter the Textual Aggression</titre>
-<auteurs><auteur><name>Sandip Modha</name>
-<mail>sjmodha@gmail.com</mail>
-<affiliation> DA-IICT Gandhinagar,India;</affiliation>
-</auteur>
-<auteur><name>Prasenjit Majumder</name>
-<mail>prasenjit.majumder@gmail.com</mail>
-<affiliation> DA-IICT Gandhinagar,India;</affiliation>
-</auteur>
-</auteurs>
-<abstract>Due to an exponential rise in the social media user base, incidents like hate speech,
+-----------------Nom-----------------
+
+infoEmbeddings.pdf
+
+-----------------Titre-----------------
+
+An Empirical Evaluation of Text Representation Schemes on Multilingual Social Web to Filter the Textual Aggression
+
+-----------------Noms des auteurs-----------------
+
+ • Sandip Modha
+
+ • Prasenjit Majumder
+
+-----------------Mails des auteurs-----------------
+
+ • sjmodha@gmail.com
+
+ • prasenjit.majumder@gmail.com
+
+-----------------Affiliations des auteurs-----------------
+
+ •  DA-IICT Gandhinagar,India;
+
+ •  DA-IICT Gandhinagar,India;
+
+-----------------Abstract-----------------
+
+Due to an exponential rise in the social media user base, incidents like hate speech,
 trolling, cyberbullying are also increasing and that lead hate speech detection prob-
 lem reshaped into diﬀerent tasks like Aggression detection, Fact detection. This
 paper attempt to study the eﬀectiveness of text representation schemes on two
@@ -52,8 +69,11 @@ the same country where thousands laid their lives for free-
 dom.Cant the common man endure little trouble to stand in
 queues for the greater goodCAG3
 Langove get out from this conversation. U are an uninvited
-dog hereOAG1. Introduction</abstract>
-<introduction>he last few years, there is an exponential growth in Social Media user base. Sensing
+dog hereOAG1. Introduction
+
+-----------------Introduction-----------------
+
+he last few years, there is an exponential growth in Social Media user base. Sensing
 content of Social Media like Facebook, Twitter, by the smart autonomous application
 empower its user community with real-time information which is unfolded across the
 diﬀerent part of the world. Social media provide the easiest and anonymous platform
@@ -90,8 +110,11 @@ a ﬁxed length vector. The BoW techniques generate very sparse and high dimensi
 space vector. Text representation using distributed word/sentence representation or
 word embedding is gain rapid momentum recently. In this paper, one of the objectives
 1
-https://phys.org/news/2018-08-social-media-bad-disaster-zones.html</introduction>
-<corps>2 Table 2.
+https://phys.org/news/2018-08-social-media-bad-disaster-zones.html
+
+-----------------Corps-----------------
+
+2 Table 2.
 sample post for the each class.
 Post text
 Class Label
@@ -1655,9 +1678,15 @@ F
 1 score lower for CNN model with multiple convolution layer than CNN model with
 single convolution layer.
 18
-8. Conclusion</corps>
-<discussion>N/A</discussion>
-<conclusion>In this Paper, Multilingual Social media stream is studied with special kind of text
+8. Conclusion
+
+-----------------Discussion-----------------
+
+N/A
+
+-----------------Conclusion-----------------
+
+In this Paper, Multilingual Social media stream is studied with special kind of text
 features: Aggression and fact perspective. Exhaustive experiments are performed to
 benchmark the text representation scheme on machine learning classiﬁers and deep
 neural nets. From the results, we conclude that deep Neural model with pre-trained
@@ -1679,8 +1708,11 @@ cases. Our work shows what kind of problems are moving into the center of attent
 for research in machine learning. Using deep learning models, there is great potential
 to solve some of these problems, yet still, the performance is far from perfect. Model
 transfer between problems and the application of derived knowledge in user interfaces
-are areas directions for future work.</conclusion>
-<biblio>Aroyehun, Segun Taofeek and Gelbukh, Alexander (2018).Aggression detection in social media:
+are areas directions for future work.
+
+-----------------Bibliographie-----------------
+
+Aroyehun, Segun Taofeek and Gelbukh, Alexander (2018).Aggression detection in social media:
 Using deep neural networks, data augmentation, and pseudolabeling.Proceedings of the First
 Workshop on Trolling, Aggression and Cyberbullying (TRAC-2018), pp.90–97.
 Arroyo-Fernández, Ignacio and Forest, Dominic and Torres-Moreno, Juan-Manuel and
@@ -1698,7 +1730,7 @@ riching word vectors with subword information,Transactions of the Association fo
 tational Linguistics, vol-5,pp.135–146, MIT Press.
 Burnap, Pete and Williams, Matthew Ltitle (2015).Cyber hate speech on twitter: An applica-
 tion of machine classiﬁcation and statistical modeling for policy and decision makingPolicy
-&amp; Internet, vol-7 number 2, pp.223–242, Wiley Online Library.
+& Internet, vol-7 number 2, pp.223–242, Wiley Online Library.
 Conover, Michael and Ratkiewicz, Jacob and Francisco, Matthew R and Gon¸calves , Bruno and
 Menczer, Filippo and Flammini, Alessandro (2011).Political polarization on twitter.,Icwsm,
 vol-133, pp.89–96.19Conover, Michael D and Gon¸calves, Bruno and Ratkiewicz, Jacob and Flammini, Alessandro
@@ -1711,10 +1743,10 @@ Deriu, Jan and Gonzenbach, Maurice and Uzdilli, Fatih and Lucchi, Aurelien and L
 De and Jaggi, Martin (2016).Swisscheese at semeval-2016 task 4: Sentiment classiﬁcation
 using an ensemble of convolutional neural networks with distant supervision.Proceedings of
 the 10th international workshop on semantic evaluation,pp.1124–1128.
-Hltcoe, J (2013).Semeval-2013 task 2: Sentiment analysis in Twitter,vol-312 Atlanta, Georgia,USA.Howard, Jeremy &amp; Ruder, Sebastian 2018.Universal language model ﬁne-tuning for text clas-
+Hltcoe, J (2013).Semeval-2013 task 2: Sentiment analysis in Twitter,vol-312 Atlanta, Georgia,USA.Howard, Jeremy & Ruder, Sebastian 2018.Universal language model ﬁne-tuning for text clas-
 siﬁcation”,arXiv preprint arXiv:1801.06146,
 Harris, Zellig S (1954),Distributional structureWord,10, number=2-3,pp.146–162,1954, Taylor
-&amp; Francis.
+& Francis.
 Kumar, Ritesh and Reganti, Aishwarya N. and Bhatia, Akshit and Maheshwari,Tushar (2018),Aggression-annotated Corpus of Hindi-English Code-mixed Data,Proceedings of the 11th
 Language Resources and Evaluation Conference (LREC), Miyazaki, Japan.
 Kumar, Ritesh and Ojha, Atul Kr. and Malmasi, Shervin and Zampieri Marcos (2018).Bench-
@@ -1732,8 +1764,8 @@ sion and Cyberbullying (TRAC-2018), pp. 199–207
 Malmasi, Shervin and Zampieri, Marcos (2017)Detecting Hate Speech in Social Media Pro-
 ceedings of the International Conference Recent Advances in Natural Language Processing(RANLP), pp.467–472.
 Malmasi, Shervin and Zampieri, Marcos (2018).Challenges in Discriminating Profanity from
-Hate Speech Journal of Experimental &amp; Theoretical Artiﬁcial Intelligencepp.1–16, vol-30,
-issue-2,Taylor &amp; Francis.
+Hate Speech Journal of Experimental & Theoretical Artiﬁcial Intelligencepp.1–16, vol-30,
+issue-2,Taylor & Francis.
 Maynard, Diana and Funk, Adam (2011)Automatic detection of political opinionsin tweets,Extended Semantic Web Conference,pp. 88–99,Springer.
 Mikolov, Tomas and Chen, Kai and Corrado, Greg and Dean, Jeﬀrey (2013).Eﬃcient estima-
 tion of word representations in vector space,arXiv preprint arXiv:1301.3781.
@@ -1784,5 +1816,5 @@ Maiti, Samaresh and Mitra, Sukanya and Sen, Aparajita and Pal, Sukomal.Text coll
 for FIRE,Proceedings of the 31st annual international ACM SIGIR conference on research
 and development in information retrieval,pp.699–700,ACM
 Majumdar, P and Mitra, Mandar and Parui, Swapan K and Bhattacharya,Initiative for indian
-language ir evaluation,The First International Workshop on Evaluating Information Access(EVIA)21</biblio>
-</article>
+language ir evaluation,The First International Workshop on Evaluating Information Access(EVIA)21
+

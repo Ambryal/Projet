@@ -1,15 +1,32 @@
-<article><preamble>BLESS.pdf</preamble>
-<titre>How we BLESSed distributional semantic evaluation</titre>
-<auteurs><auteur><name>Marco Baroni</name>
-<mail>marco.baroni@unitn.it</mail>
-<affiliation>University of Trento Trento, Italy</affiliation>
-</auteur>
-<auteur><name>Alessandro Lenci</name>
-<mail>alessandro.lenci@ling.unipi.it</mail>
-<affiliation>University of Pisa Pisa, Italy</affiliation>
-</auteur>
-</auteurs>
-<abstract>We introduce BLESS, a data set speciﬁcally
+-----------------Nom-----------------
+
+BLESS.pdf
+
+-----------------Titre-----------------
+
+How we BLESSed distributional semantic evaluation
+
+-----------------Noms des auteurs-----------------
+
+ • Marco Baroni
+
+ • Alessandro Lenci
+
+-----------------Mails des auteurs-----------------
+
+ • marco.baroni@unitn.it
+
+ • alessandro.lenci@ling.unipi.it
+
+-----------------Affiliations des auteurs-----------------
+
+ • University of Trento Trento, Italy
+
+ • University of Pisa Pisa, Italy
+
+-----------------Abstract-----------------
+
+We introduce BLESS, a data set speciﬁcally
 designed for the evaluation of distributional
 semantic models. BLESS contains a set of tu-
 ples instantiating different, explicitly typed se-
@@ -21,8 +38,11 @@ ses of the types of semantic relations that a
 model favors. We discuss the motivations for
 BLESS, describe its construction and struc-
 ture, and present examples of its usage in the
-evaluation of distributional semantic models.</abstract>
-<introduction>In NLP, it is customary to distinguish between
+evaluation of distributional semantic models.
+
+-----------------Introduction-----------------
+
+In NLP, it is customary to distinguish between
 in-
 trinsic evaluations
 , testing a system in itself, and
@@ -87,8 +107,11 @@ paces),
 a new data set speciﬁcally geared towards the in-
 trinsic evaluation of DSMs, downloadable from:
 http://clic.cimec.unitn.it/distsem
-.</introduction>
-<corps>2
+.
+
+-----------------Corps-----------------
+
+2
 Distributional semantics benchmarks
 There are several benchmarks that have been widely
 adopted for the evaluation of DSMs, all of them cap-
@@ -1598,9 +1621,15 @@ a document is indeed a much looser cue to similarity
 than speciﬁcally co-occurring within a narrow win-
 dow). Traditional DSM tests, based on a single qual-
 ity measure, would not have given us this broad view
-of how models are behaving.</corps>
-<discussion>N/A</discussion>
-<conclusion>We introduced BLESS, the ﬁrst data set speciﬁcally
+of how models are behaving.
+
+-----------------Discussion-----------------
+
+N/A
+
+-----------------Conclusion-----------------
+
+We introduced BLESS, the ﬁrst data set speciﬁcally
 designed for the intrinsic evaluation of DSMs. The
 data set contains tuples instantiating different, ex-
 plicitly typed semantic relations, plus a number of
@@ -1621,8 +1650,11 @@ tiny, we believe that the BLESS approach can boost
 and innovate evaluation in distributional semantics,
 as a key condition to get at a deeper understanding
 of its potentialities as a viable model for meaning.
-9</conclusion>
-<biblio>Herv Abdi and Lynne Williams. 2010. Newman-Keuls
+9
+
+-----------------Bibliographie-----------------
+
+Herv Abdi and Lynne Williams. 2010. Newman-Keuls
 and Tukey test. In N.J. Salkind, D.M. Dougherty, and
 B. Frey, editors,Encyclopedia of Research Design.
 Sage, Thousand Oaks, CA.
@@ -1704,5 +1736,5 @@ Peter Turney.
 2006.
 Similarity of semantic relations.Computational Linguistics, 32(3):379–416.
 Morton E. Winston, Roger Chafﬁn, and Douglas Her-
-rmann. 1987. A taxonomy of part-whole relations.Cognitive Science, 11:417–444.10</biblio>
-</article>
+rmann. 1987. A taxonomy of part-whole relations.Cognitive Science, 11:417–444.10
+

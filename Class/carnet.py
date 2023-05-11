@@ -39,6 +39,7 @@ class Carnet(list):
 
     #Création des blocs par analyse de la sortie de pymupdf
     pdf = pdf.open()
+    premisse=True
     for page in pdf:
         self.addPage()
         bloc=Bloc()
@@ -48,11 +49,18 @@ class Carnet(list):
                 for span in group['lines']:
                     #Parcours des lignes du pdf et regroupement de celles-ci
                     #en un seul Bloc tant qu'elles ont la même Police
-                    for lines in span['spans']:
+                    for i,lines in enumerate(span['spans']):
                         font=str(lines['size'])+lines['font']
                         size=lines['size']
                         line=lines['text']
                         pos=lines["bbox"]
+                        #Détection heuristique de la sortie de la prémisse
+                        if "bstract" in line.lower():
+                           premisse=False
+                        #Valorisation des lignes en majuscule
+                        if not premisse and line.upper()==line and line.lower()!=line:
+                          font=font+"upper"
+                          size+=0.1
                         if bloc.font==None:
                             bloc.font=font
                             bloc.size=size
@@ -75,7 +83,7 @@ class Carnet(list):
                         source=source[len(line):]
         self.addBloc(bloc)
     pdf.close()
-
+    
 #Ajout d'une page au carnet
   def addPage(self):
     self.pages.append([])
@@ -104,7 +112,7 @@ class Carnet(list):
           arg=n
           titre=bloc
       #Suppression du texte précédant le titre
-      if n>40:
+      if n>40 or j>0:
         while self[0].size!=max:
           self.pop(0)
           if len(self.pages[0])==0:
@@ -138,12 +146,18 @@ class Carnet(list):
             for j,b in enumerate(zone):
               if b.font==bloc.font:
                 res[bloc.font].append(j)
+
       #Détection de la bonne police parmi celles-ci
       for font in res:
+        mailFound=-1
         for i in res[font]:
           bloc=zone[i]
           for n,word in enumerate(sansRetour(bloc).split(" ")):
+            if mailFound==0:
+              break
+            mailFound-=1
             if "@" in word:
+              mailFound=30
               #Cas (nom1,nom2,nom3)@ubs.fr
               if word.startswith("@"):
                 if n!=0:
@@ -166,7 +180,7 @@ class Carnet(list):
                     zone[i-1]=zone[i-1].fixe()
               #Cas nom1,nom2,nom3@ubs.fr
               elif "," in word:
-                fin="@"+word.split("@")[1]
+                fin="@"+word.split("@")[1].replace(",","")
                 words=word.split("@")[0].split(",")
                 for w in words:
                   mails.append(w+fin)
@@ -212,6 +226,11 @@ class Carnet(list):
         l=[]
         for j, b in enumerate(premisse):
           if b.font==s:
+              #Suppression des "and"
+              if b.startswith("and "):
+                b=b[4:]
+              if b.endswith(" and"):
+                b=b[:-4]
               #Séparation des noms par "," ";" "\n" " and " " & &
               for k in b.replace(",","\n").replace(";","\n").replace(" & ","\n").replace(" and ","\n").split("\n"):
                 while k.startswith(" "):
@@ -273,7 +292,8 @@ class Carnet(list):
                 "épartemen",
                 "esearch",
                 "echerche",
-                "cnrs"
+                "cnrs",
+                "iict"
                 ]
     
     #Les affiliations sont détéctées dans la prémisse
@@ -359,14 +379,6 @@ class Carnet(list):
     lastBloc=""         
         
     if len(self.parts)==0:
-      
-      #Mise en valeur des lignes en majuscule
-      for bloc in self:
-        if bloc.upper()==bloc and bloc.lower()!=bloc:
-          bloc.font=bloc.font+1000
-          bloc.size+=0.1
-          print(bloc)
-          
       for i, bloc in enumerate(self):
         f=bloc.font
         #Détection de la police des titres
@@ -388,8 +400,15 @@ class Carnet(list):
                 if b.startswith(l[c]) or rattrapage:
                   c+=1
                   long[1]+=long[2]
-                  long[2]=0
-                  r.append([b,""])
+                  titre=b
+                  texte=""
+                  #Cas où le titre et le texte du chapitre sont dans le même bloc
+                  if len(titre)>200:
+                    texte=b.split("\n",1)[1]
+                    titre=b.split("\n",1)[0]
+                  long[2]=len(texte)
+                  long[3]+=len(titre)
+                  r.append([titre,texte])
                   #Fallback si le numéro est dans la dernière ligne du bloc précedent
                   if rattrapage:
                     r[-1][0]=lastLine.split("\n")[-1]+r[-1][0]
@@ -398,6 +417,11 @@ class Carnet(list):
                   #Extraction du titre du chapitre
                   if len(r)>0:
                     if r[-1][1]=="" and len(r[-1][0])<200:
+                        #Cas où le titre et le texte du chapitre sont dans le même bloc
+                        if len(b)>100:
+                          r[-1][1]+=" "+b.split("\n",1)[1]
+                          long[2]+=len(b.split("\n",1)[1])
+                          b=b.split("\n",1)[0]
                         r[-1][0]+=" "+b
                         long[3]+=len(b)
                     else:
@@ -568,7 +592,7 @@ class Carnet(list):
       mailFound=False
       #Parcours du carnet
       for bloc in self:
-        #Renvoi si des mails ont été détectés et que le bloc est un paragraphe
+        #Renvoi si le bloc est un paragraphe
         if isLong(bloc):
           break
         if "@" in bloc:

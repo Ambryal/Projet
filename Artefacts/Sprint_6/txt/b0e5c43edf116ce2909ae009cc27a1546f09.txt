@@ -1,24 +1,46 @@
-<article><preamble>b0e5c43edf116ce2909ae009cc27a1546f09.pdf</preamble>
-<titre>Inclusive yet Selective: Supervised Distributional Hypernymy Detection</titre>
-<auteurs><auteur><name>Stephen Roller</name>
-<mail>roller@cs.utexas.edu</mail>
-<affiliation>Department of Computer Science</affiliation>
-</auteur>
-<auteur><name>Katrin Erk</name>
-<mail>katrin.erk@mail.utexas.edu</mail>
-<affiliation>Department of Linguistics</affiliation>
-</auteur>
-<auteur><name>Gemma Boleda</name>
-<mail>gemma.boleda@upf.edu</mail>
-<affiliation>The University of Texas at Austin</affiliation>
-</auteur>
-</auteurs>
-<abstract>We test the Distributional Inclusion Hypothesis, which states that hypernyms tend to occur in
+-----------------Nom-----------------
+
+b0e5c43edf116ce2909ae009cc27a1546f09.pdf
+
+-----------------Titre-----------------
+
+Inclusive yet Selective: Supervised Distributional Hypernymy Detection
+
+-----------------Noms des auteurs-----------------
+
+ • Stephen Roller
+
+ • Katrin Erk
+
+ • Gemma Boleda
+
+-----------------Mails des auteurs-----------------
+
+ • roller@cs.utexas.edu
+
+ • katrin.erk@mail.utexas.edu
+
+ • gemma.boleda@upf.edu
+
+-----------------Affiliations des auteurs-----------------
+
+ • Department of Computer Science
+
+ • Department of Linguistics
+
+ • The University of Texas at Austin
+
+-----------------Abstract-----------------
+
+We test the Distributional Inclusion Hypothesis, which states that hypernyms tend to occur in
 a superset of contexts in which their hyponyms are found. We ﬁnd that this hypothesis only
 holds when it is applied to relevant dimensions. We propose a robust supervised approach that
 achieves accuracies of .84 and .85 on two existing datasets and that can be interpreted as selecting
-the dimensions that are relevant for distributional inclusion.</abstract>
-<introduction>One of the main criticisms of distributional models has been that they fail to distinguish between semantic
+the dimensions that are relevant for distributional inclusion.
+
+-----------------Introduction-----------------
+
+One of the main criticisms of distributional models has been that they fail to distinguish between semantic
 relations: Typical nearest neighbors of
 dog
 are words like
@@ -89,8 +111,11 @@ http://creativecommons.org/licenses/by/4.0/
 Code and data are available at
 http://stephenroller.com/research/coling14
 .
-1025</introduction>
-<corps>2
+1025
+
+-----------------Corps-----------------
+
+2
 Background
 Distributional models.
 Distributional models represent a word through the contexts in which it has
@@ -204,7 +229,7 @@ x
 �
 1
 if
-x &gt;
+x >
 0;
 0
 otherwise
@@ -629,7 +654,7 @@ all concepts, this yields four sets of z-normalized similarity scores, one for e
 describe the relative similarity of concepts to their nearest neighbors in different relations. Tukey’s Hon-
 estly Signiﬁcant Difference test is used for testing whether scores differ signiﬁcantly between relations
 (threshold:
-p &lt;
+p <
 0
 .
 05
@@ -1043,7 +1068,7 @@ is learning weights on vector difference features. This is equivalent to doing s
 inclusion. In the next section, we test this Selective Distributional Inclusion Hypothesis.
 6
 Wilcoxon signed-rank test,
-p &lt; .
+p < .
 001
 .
 1031
@@ -1276,7 +1301,7 @@ it exists in a higher dimensional space than the projection matrix. Furthermore,
 using the difference features because of its analogy to the Distributional Inclusion Hypothesis.
 9
 Wilcoxon signed-rank test,
-p &lt; .
+p < .
 001
 . To check that the measures are being improved by the dimension selection and not
 1032
@@ -1418,9 +1443,15 @@ LESS
 . We expect that our method should work well for other data sets, given its high
 accuracy and the strict training procedure. However, these features are unlikely to be global indicators of
 hypernymy. This emphasizes the need, in future work, to ﬁnd a way to automatically determine relevance
-on a per-word basis.</corps>
-<discussion>N/A</discussion>
-<conclusion>In this paper, we have tested the Distributional Inclusion Hypothesis, the basis for distributional ap-
+on a per-word basis.
+
+-----------------Discussion-----------------
+
+N/A
+
+-----------------Conclusion-----------------
+
+In this paper, we have tested the Distributional Inclusion Hypothesis, the basis for distributional ap-
 proaches to hypernymy. We have found that the hypothesis only works if inclusion is selectively applied
 to a set of relevant dimensions.just by restricting to a smaller space, we evaluated the similarity measures on a variation of the U+W2 space which uses 500
 randomly selected dimensions from the original space. The results are approximately unchanged from those on the original
@@ -1434,8 +1465,11 @@ The next natural step is to use the supervised features to guide development of 
 sure for hypernymy detection: Now that we have examples, we hope to propose a method which selects
 relevant features automatically. We also would like to explore detection of other relationships, such
 as meronymy. Finally, we would like to perform an extrinsic evaluation of our hypernymy detection
-approach in an actual RTE system.</conclusion>
-<biblio>Marco Baroni and Alessandro Lenci. 2011. How we BLESSed distributional semantic evaluation. InProceedings
+approach in an actual RTE system.
+
+-----------------Bibliographie-----------------
+
+Marco Baroni and Alessandro Lenci. 2011. How we BLESSed distributional semantic evaluation. InProceedings
 of the GEMS 2011 Workshop on GEometrical Models of Natural Language Semantics, pages 1–10, Edinburgh,
 UK, July. Association for Computational Linguistics.
 Marco Baroni, Silvia Bernardini, Adriano Ferraresi, and Eros Zanchetta.
@@ -1519,5 +1553,5 @@ Maayan Zhitomirsky-Geffet and Ido Dagan. 2005. The distributional inclusion hypo
 InProceedings of the 43rd Annual Meeting of the Association for Computational Linguistics, pages 107–114,
 Ann Arbor, Michigan, June. Association for Computational Linguistics.
 Maayan Zhitomirsky-Geffet and Ido Dagan. 2009. Bootstrapping distributional feature vector quality.Computa-
-tional linguistics, 35(3):435–461.1036</biblio>
-</article>
+tional linguistics, 35(3):435–461.1036
+

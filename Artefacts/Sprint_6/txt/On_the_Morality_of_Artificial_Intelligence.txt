@@ -1,15 +1,32 @@
-<article><preamble>On_the_Morality_of_Artificial_Intelligence.pdf</preamble>
-<titre>On the Morality of Artiﬁcial Intelligence</titre>
-<auteurs><auteur><name>Alexandra Luccioni</name>
-<mail></mail>
-<affiliation> Université de Montréal, Mila December 2019</affiliation>
-</auteur>
-<auteur><name>Yoshua Bengio</name>
-<mail></mail>
-<affiliation> Université de Montréal, Mila December 2019</affiliation>
-</auteur>
-</auteurs>
-<abstract>Much of the existing research on the social and ethical impact of Artiﬁcial Intelligence has been
+-----------------Nom-----------------
+
+On_the_Morality_of_Artificial_Intelligence.pdf
+
+-----------------Titre-----------------
+
+On the Morality of Artiﬁcial Intelligence
+
+-----------------Noms des auteurs-----------------
+
+ • Alexandra Luccioni
+
+ • Yoshua Bengio
+
+-----------------Mails des auteurs-----------------
+
+ • 
+
+ • 
+
+-----------------Affiliations des auteurs-----------------
+
+ •  Université de Montréal, Mila December 2019
+
+ •  Université de Montréal, Mila December 2019
+
+-----------------Abstract-----------------
+
+Much of the existing research on the social and ethical impact of Artiﬁcial Intelligence has been
 focused on deﬁning ethical principles and guidelines surrounding Machine Learning (ML) and other
 Artiﬁcial Intelligence (AI) algorithms [IEEE, 2017, Jobin et al., 2019]. While this is extremely useful for
 helping deﬁne the appropriate social norms of AI, we believe that it is equally important to discuss both
@@ -18,9 +35,15 @@ present article, which is speciﬁcally aimed at ML practitioners, we thus focus
 out an overview of existing high-level ethical frameworks and guidelines, but above all proposing both
 conceptual and practical principles and guidelines for ML research and deployment, insisting on concrete
 actions that can be taken by practitioners to pursue a more ethical and moral practice of ML aimed at
-using AI for social good.</abstract>
-<introduction>N/A</introduction>
-<corps>Abstract
+using AI for social good.
+
+-----------------Introduction-----------------
+
+N/A
+
+-----------------Corps-----------------
+
+Abstract
 Much of the existing research on the social and ethical impact of Artiﬁcial Intelligence has been
 focused on deﬁning ethical principles and guidelines surrounding Machine Learning (ML) and other
 Artiﬁcial Intelligence (AI) algorithms [IEEE, 2017, Jobin et al., 2019]. While this is extremely useful for
@@ -483,9 +506,15 @@ to reduce cognitive bias – in this regard, it is possible to use images genera
 Networks (GANs) which represent the impacts of extreme events on locations that have personal value to
 the viewer [Schmidt et al., 2019]. A crucial part of developing ML tools for individuals is, once again,
 working with multidisciplinary experts in psychology, scientiﬁc communication, and user design to ensure
-that the tools created reach the largest possible audience and maximize their positive impact.</corps>
-<discussion>N/A</discussion>
-<conclusion>Technology in general, and ML more speciﬁcally, carries a great potential for change and disruption. While
+that the tools created reach the largest possible audience and maximize their positive impact.
+
+-----------------Discussion-----------------
+
+N/A
+
+-----------------Conclusion-----------------
+
+Technology in general, and ML more speciﬁcally, carries a great potential for change and disruption. While
 neither of these is guaranteed to make the world a better place, this potential can most deﬁnitely be used
 to have a positive impact on the world. In the present article, we have illustrated some inspiring projects
 that aim to make the world a better place and by using the powerful techniques and approaches that ML has
@@ -505,8 +534,11 @@ ML practitioner regarding the nature of the work they are doing and the potentia
 this work in the world around them, some of which we have listed in the ﬁrst part of the current paper. And
 while we do not claim to have all the answers to all of these tough questions, we hope that we can start a
 conversation that will accompany ML research and practice throughout its infancy towards its tumultuous
-teenage years in the coming decades, and eventually towards mature adulthood beyond that.</conclusion>
-<biblio>Robert G Abbott. Automated expert modeling for automated student evaluation. InInternational Confer-
+teenage years in the coming decades, and eventually towards mature adulthood beyond that.
+
+-----------------Bibliographie-----------------
+
+Robert G Abbott. Automated expert modeling for automated student evaluation. InInternational Confer-
 ence on Intelligent Tutoring Systems, pages 1–10. Springer, 2006.
 M Allen, P Antwi-Agyei, F Aragon-Durand, M Babiker, P Bertoldi, M Bind, S Brown, M Buckeridge,
 I Camilloni, A Cartwright, et al. Technical summary: Global warming of 1.5c. an ipcc special report
@@ -578,8 +610,8 @@ nology Conference (IHTC), pages 197–201. IEEE, 2017.
 Anna Jobin, Marcello Ienca, and Effy Vayena. Artiﬁcial intelligence: the global landscape of ethics guide-
 lines.arXiv preprint arXiv:1906.11668, 2019.
 Christopher M Jones and Daniel M Kammen. Quantifying carbon footprint reduction opportunities for us
-households and communities.Environmental science &amp; technology, 45(9):4088–4095, 2011.
-Lynn H Kaack, George H Chen, and M Granger Morgan. Truck trafﬁc monitoring with satellite images. InProceedings of the Conference on Computing &amp; Sustainable Societies, pages 155–164. ACM, 2019.
+households and communities.Environmental science & technology, 45(9):4088–4095, 2011.
+Lynn H Kaack, George H Chen, and M Granger Morgan. Truck trafﬁc monitoring with satellite images. InProceedings of the Conference on Computing & Sustainable Societies, pages 155–164. ACM, 2019.
 Yann LeCun, Léon Bottou, Yoshua Bengio, Patrick Haffner, et al.
 Gradient-based learning applied to
 document recognition.Proceedings of the IEEE, 86(11):2278–2324, 1998.
@@ -592,7 +624,7 @@ Global
 satellite monitoring of climate-induced vegetation disturbances.Trends in plant science, 20(2):114–123,
 2015.
 Roger Nkambou, Riichiro Mizoguchi, and Jacqueline Bourdeau.Advances in intelligent tutoring systems,
-volume 308. Springer Science &amp; Business Media, 2010.
+volume 308. Springer Science & Business Media, 2010.
 Silvio Nocera, Cayetano Ruiz-Alarcón-Quintero, and Federico Cavallaro. Assessing carbon emissions from
 road transport through trafﬁc ﬂow estimators.Transportation Research Part C: Emerging Technologies,
 95:125–148, 2018.
@@ -649,5 +681,5 @@ Jenna Wiens, Suchi Saria, Mark Sendak, Marzyeh Ghassemi, Vincent X Liu, Finale D
 Jung, Katherine Heller, David Kale, Mohammed Saeed, et al. Do no harm: a roadmap for responsible
 machine learning for health care.Nature medicine, 25(9):1337–1340, 2019.
 Rich Zemel, Yu Wu, Kevin Swersky, Toni Pitassi, and Cynthia Dwork. Learning fair representations. InInternational Conference on Machine Learning, pages 325–333, 2013.
-12</biblio>
-</article>
+12
+

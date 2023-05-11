@@ -24,9 +24,9 @@ CURRENT_PDF_DIRECTORY = "res/tests/Corpus TEST"#"res/tests/Corpus_2021/PDF"
 #Dossier destination par défaut
 DESTINATION_DIRECTORY = "Artefacts/Sprint_6/"
 #Format de sortie par défaut
-FORMAT = "xml"
+FORMAT = "txt"
 #Sélection de fichier par défaut
-SELECTION = "1"
+SELECTION = None
 #Survie de la fenetre après exécution par exécutable
 STAY_ALIVE=True
 
@@ -34,7 +34,7 @@ STAY_ALIVE=True
 i=1
 if len(sys.argv)>i and sys.argv[i].startswith("-"):
     if sys.argv[i]=="-t":
-        FORMAT = "txt"
+        FORMAT = "xml"
     i+=1
 if len(sys.argv)>i and sys.argv[i]!="_":
     CURRENT_PDF_DIRECTORY=sys.argv[i]

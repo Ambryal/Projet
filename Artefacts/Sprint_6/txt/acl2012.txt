@@ -1,27 +1,50 @@
-<article><preamble>acl2012.pdf</preamble>
-<titre>Finding Salient Dates for Building Thematic Timelines</titre>
-<auteurs><auteur><name>Rémy Kessler</name>
-<mail>kessler@limsi.fr</mail>
-<affiliation>LIMSI-CNRS Orsay, France</affiliation>
-</auteur>
-<auteur><name>Xavier Tannier</name>
-<mail>xtannier@limsi.fr</mail>
-<affiliation>Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
-</auteur>
-<auteur><name>Caroline Hagège</name>
-<mail>hagege@xrce.xerox.com</mail>
-<affiliation>Xerox Research Center Europe Meylan, France</affiliation>
-</auteur>
-<auteur><name>Véronique Moriceau</name>
-<mail>moriceau@limsi.fr</mail>
-<affiliation>Univ. Paris-Sud, LIMSI-CNRS Orsay, France</affiliation>
-</auteur>
-<auteur><name>André Bittar</name>
-<mail>bittar@xrce.xerox.com</mail>
-<affiliation>Xerox Research Center Europe Meylan, France</affiliation>
-</auteur>
-</auteurs>
-<abstract>We present an approach for detecting salient
+-----------------Nom-----------------
+
+acl2012.pdf
+
+-----------------Titre-----------------
+
+Finding Salient Dates for Building Thematic Timelines
+
+-----------------Noms des auteurs-----------------
+
+ • Rémy Kessler
+
+ • Xavier Tannier
+
+ • Caroline Hagège
+
+ • Véronique Moriceau
+
+ • André Bittar
+
+-----------------Mails des auteurs-----------------
+
+ • kessler@limsi.fr
+
+ • xtannier@limsi.fr
+
+ • hagege@xrce.xerox.com
+
+ • moriceau@limsi.fr
+
+ • bittar@xrce.xerox.com
+
+-----------------Affiliations des auteurs-----------------
+
+ • LIMSI-CNRS Orsay, France
+
+ • Univ. Paris-Sud, LIMSI-CNRS Orsay, France
+
+ • Xerox Research Center Europe Meylan, France
+
+ • Univ. Paris-Sud, LIMSI-CNRS Orsay, France
+
+ • Xerox Research Center Europe Meylan, France
+
+-----------------Abstract-----------------
+
+We present an approach for detecting salient
 (important) dates in texts in order to auto-
 matically build event timelines from a search
 query (e.g.the name of an event or person,
@@ -34,8 +57,11 @@ ize temporal expressions in texts and then use
 a machine-learning approach to extract salient
 dates that relate to a particular topic. We fo-
 cused only on extracting the dates and not the
-events to which they are related.</abstract>
-<introduction>Our aim here was to build thematic timelines for
+events to which they are related.
+
+-----------------Introduction-----------------
+
+Our aim here was to build thematic timelines for
 a general domain topic deﬁned by a user query.
 This task, which involves the extraction of important
 events, is related to the tasks of
@@ -82,8 +108,11 @@ in Section 4, and the strategy used for indexing and
 ﬁnding salient dates, as well as the results obtained,
 are given in Section 5
 1
-.</introduction>
-<corps>2
+.
+
+-----------------Corps-----------------
+
+2
 Related Work
 The ISO-TimeML language (Pustejovsky et al.,
 2010) is a speciﬁcation language for manual anno-
@@ -199,17 +228,17 @@ the day. For example,
 London transport attacks unfolded”
 , relating
 the events hour by hour, is not in our focus.
-&lt;
+<
 NewsML
-Version=&quot;1.2&quot;
-&gt;
-&lt;
+Version="1.2"
+>
+<
 NewsItem
-xml:lang=&quot;en&quot;
-&gt;
-&lt;
+xml:lang="en"
+>
+<
 HeadLine
-&gt;
+>
 Key
 dates
 in
@@ -217,97 +246,97 @@ Thai-
 land’s
 political
 crisis
-&lt;
+<
 /HeadLine
-&gt;
-&lt;
+>
+<
 DateId
-&gt;
+>
 20100513T100519Z
-&lt;
+<
 /DateId
-&gt;
-&lt;
+>
+<
 NameLabel
-&gt;
+>
 Thailand-politics
-&lt;
+<
 /NameLabel
-&gt;
-&lt;
+>
+<
 DataContent
-&gt;
-&lt;
+>
+<
 p
-&gt;
+>
 The following is a timeline of events since
 the protests began, soon after Thailand’s Supreme
 Court conﬁscated 1.4 billion dollars of Thaksin’s
 wealth for abuse of power.
-&lt;
+<
 /p
-&gt;
-&lt;
+>
+<
 p
-&gt;
+>
 March 14
 : Tens of thousands of Red Shirts
 demonstrate in the capital calling for Abhisit’s gov-
 ernment to step down, [...]
-&lt;
+<
 /p
-&gt;
-&lt;
+>
+<
 p
-&gt;
+>
 March 28
 : The government and the Reds en-
 ter into talks but hit a stalemate after two days
 [...]
-&lt;
+<
 /p
-&gt;
-&lt;
+>
+<
 p
-&gt;
+>
 April 3
 : Tens of thousands of protesters move
 from Bangkok’s historic district into the city’s com-
 mercial heart [...]
-&lt;
+<
 /p
-&gt;
-&lt;
+>
+<
 p
-&gt;
+>
 April 7
 : Abhisit declares state of emergency
 in capital after Red Shirts storm parliament.
-&lt;
+<
 /p
-&gt;
-&lt;
+>
+<
 p
-&gt;
+>
 April 8
 : Authorities announce arrest warrants
 for protest leaders.
-&lt;
+<
 /p
-&gt;
+>
 . . .
-&lt;
+<
 /
 DataContent
-&gt;
-&lt;
+>
+<
 /
 NewsItem
-&gt;
-&lt;
+>
+<
 /
 NewsML
-&gt;
+>
 Figure 1: Example of an AFP manual chronology.
 For
 learning
@@ -599,72 +628,72 @@ our corpus.
 We decided that the TEs
 today
 and
-&lt;
+<
 DCT
-value=&quot;20050105&quot;
+value="20050105"
 /
-&gt;
-&lt;
+>
+<
 EC
-TYPE=&quot;TIMEX&quot; value=&quot;unknown&quot;
-&gt;
+TYPE="TIMEX" value="unknown"
+>
 The year
 2004
-&lt;
+<
 /EC
-&gt;
+>
 was the deadliest
-&lt;
+<
 EC
-TYPE=&quot;TIMEX&quot;
-value=&quot;unknown&quot;
-&gt;
+TYPE="TIMEX"
+value="unknown"
+>
 in a decade
-&lt;
+<
 /EC
-&gt;
+>
 for journalists
 around the world, mainly because of the number of reporters
 killed
 in
-&lt;
+<
 EC
-TYPE=&quot;LOCORG&quot;
-&gt;
+TYPE="LOCORG"
+>
 Iraq
-&lt;
+<
 /EC
-&gt;
+>
 ,
 the
 media
 rights
 group
-&lt;
+<
 EN
-TYPE=&quot;ORG&quot;
-&gt;
+TYPE="ORG"
+>
 Reporters
 Sans
 Frontieres
-&lt;
+<
 /EN
-&gt;
+>
 (Reporters
 Without
 Bor-
 ders)
 said
-&lt;
+<
 EC
-TYPE=&quot;DATE&quot; SUBTYPE=&quot;REL&quot;
-REF=&quot;ST&quot; DECLARATION=&quot;YES&quot; value
-=&quot;20050105&quot;
-&gt;
+TYPE="DATE" SUBTYPE="REL"
+REF="ST" DECLARATION="YES" value
+="20050105"
+>
 Wednesday
-&lt;
+<
 /EC
-&gt;
+>
 .
 Figure 4: Example of XIP output for a sample article.
 now
@@ -1022,14 +1051,14 @@ and simple ﬁltering. Signiﬁcance of ﬁltering improve-
 ment is indicated by Student t-test against no ﬁltering (
 ∗
 :
-p &lt;
+p <
 0
 .
 05
 (signiﬁcant);
 ∗∗
 :
-p &lt;
+p <
 0
 .
 01
@@ -1327,9 +1356,15 @@ with only 4 topics and a single assessor), this tends
 to show that our system produces usable outputs and
 that our system can be of help to journalists by pro-
 viding them with chronologies that are as useful and
-objective as possible.</corps>
-<discussion>N/A</discussion>
-<conclusion>This article presents a task of “date extraction” and
+objective as possible.
+
+-----------------Discussion-----------------
+
+N/A
+
+-----------------Conclusion-----------------
+
+This article presents a task of “date extraction” and
 shows the importance of taking temporal informa-
 tion into consideration and how with relatively sim-
 ple temporal processing, we were able to indirectly
@@ -1348,8 +1383,11 @@ the same event or not. Finally, as our news corpus
 is available both for English and French (compara-
 ble corpus, not necessarily translations), we aim to
 investigate cross-lingual extraction of salient dates
-and salient events.</conclusion>
-<biblio>Salah Äıt-Mokhtar, Jean-Pierre Chanod, and Claude
+and salient events.
+
+-----------------Bibliographie-----------------
+
+Salah Äıt-Mokhtar, Jean-Pierre Chanod, and Claude
 Roux. 2002. Robustness beyond Shallowness: Incre-
 mental Deep Parsing.Natural Language Engineering,
 8:121–144.
@@ -1502,5 +1540,5 @@ retrospective and on-line event detection. InProceed-
 ings of the 21st Annual International ACM SIGIR Con-
 ference on Research and Development in Information
 Retrieval, Melbourne, Australia, August. ACM Press,
-New York City, NY, USA.</biblio>
-</article>
+New York City, NY, USA.
+

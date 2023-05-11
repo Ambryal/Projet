@@ -1,12 +1,19 @@
+
+"""
+Objet héritant de la classe Dict résumant un pdf sous forme Balise -> Valeur
+"""
+
 class Classeur(dict):
-  
+
+  #Objet Tag représentant une balise
   class Tag():
 
     def __init__(self,nom,balise):
       self.nom=nom
       self.baliseDebut="<"+balise+">"
       self.baliseFin="</"+balise+">\n"
-      
+
+  #Liste des balises
   tags={
     "article":Tag("","article"),
     "nom":Tag("Nom","preamble"),
@@ -32,6 +39,8 @@ class Classeur(dict):
   def __init__(self,carnet):
     self.pdf=carnet.pdf
 
+    #Création de toutes les valeurs dés l'initialisation de l'objet
+    
     self["nom"]=self.pdf.name+".pdf"
 
     self["titre"]=carnet.getTitre()
@@ -56,32 +65,44 @@ class Classeur(dict):
 
     self["corps"]=carnet.getCorps()
 
+  #Exportation au format txt
   def saveAsTxt(self,path):
     s=""
-    for i in self:
-      if tage[i].nom!="":
-        s+=Classeur.tags[i].nom+" : \n\n"
-        if type(self[i])==str:
-          s+=self[i]
-        else:
-          for j in self[i]:
-            s+=j+"\n"
-        s+="\n\n"
+    for i in ["nom",
+              "titre",
+              "noms",
+              "mail",
+              "univ",
+              "abstract",
+              "intro",
+              "corps",
+              "discu",
+              "conclu",
+              "biblio"
+              ]:
+      s+="-----------------"+self.tags[i].nom+"-----------------\n\n"
+      if isinstance(self[i],list):
+        for j in self[i]:
+          s+=" • "+j+"\n\n"
+      else:
+        s+=self[i]+"\n\n"
       
     self.save(path+"/"+self.pdf.name+".txt",s)
-    
+
+  #Caractères à échapper dans un document xml
   XMLechap={"&":"&amp;",
            '"':"&quot;",
            "'":"&apos;",
            "<":"&lt;",
            ">":"&gt;"
            }
-  
+  #Échappement d'un document xml
   def echape(self,s):
     for cha in self.XMLechap:
       s=s.replace(cha,self.XMLechap[cha])
     return s
-  
+
+  #Fonction récursive de création des balises xml
   def balise(self,l):
     s=""
     if len(l)==0:
@@ -100,8 +121,9 @@ class Classeur(dict):
         s+=self.balise(l[1])
       s+=t.baliseFin
     return s
-
+  #Exportation au format xml
   def saveAsXml(self,path):
+    #Syntaxe du document xml à produire
     syntaxe=[
       "article",[
         ["nom"],
@@ -127,7 +149,7 @@ class Classeur(dict):
     
     self.save(path+"/"+self.pdf.name+".xml",self.balise(syntaxe))
 
-
+  #Fonction de création d'un fichier
   def save(self,path,valeur):
     file = open (path, 'w', encoding="utf8")
     file.write(valeur)

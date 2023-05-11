@@ -1,23 +1,45 @@
-<article><preamble>surveyTermExtraction.pdf</preamble>
-<titre>AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT  SYSTEMS</titre>
-<auteurs><auteur><name>M. Teresa Cabré Castellví</name>
-<mail>teresa.cabre@trad.upf.es</mail>
-<affiliation> Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
-</auteur>
-<auteur><name>Rosa Estopà Bagot</name>
-<mail>rosa.estopa@trad.upf.es</mail>
-<affiliation> Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
-</auteur>
-<auteur><name>Jordi Vivaldi Palatresi</name>
-<mail>jorge.vivaldi@info.upf.es</mail>
-<affiliation> Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 </affiliation>
-</auteur>
-</auteurs>
-<abstract>In this paper we account for the main characteristics and performance of a 
+-----------------Nom-----------------
+
+surveyTermExtraction.pdf
+
+-----------------Titre-----------------
+
+AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT  SYSTEMS
+
+-----------------Noms des auteurs-----------------
+
+ • M. Teresa Cabré Castellví
+
+ • Rosa Estopà Bagot
+
+ • Jordi Vivaldi Palatresi
+
+-----------------Mails des auteurs-----------------
+
+ • teresa.cabre@trad.upf.es
+
+ • rosa.estopa@trad.upf.es
+
+ • jorge.vivaldi@info.upf.es
+
+-----------------Affiliations des auteurs-----------------
+
+ •  Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 
+
+ •  Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 
+
+ •  Institut Universitari de Lingüística Aplicada. Universitat Pompeu Fabra La Rambla, 30-32 Barcelona – Spain - 08002 
+
+-----------------Abstract-----------------
+
+In this paper we account for the main characteristics and performance of a 
 number of recently developed term extraction systems. The analysed tools 
 represent the main strategies followed by researchers in this area. All systems 
-are analysed and compared against a set of technically relevant characteristics. </abstract>
-<introduction>In the late 80s there was an acute need, from different disciplines and goals, to 
+are analysed and compared against a set of technically relevant characteristics. 
+
+-----------------Introduction-----------------
+
+In the late 80s there was an acute need, from different disciplines and goals, to 
 automatically extract terminological units from specialised texts. In the 90s large 
 computerised textual corpora have been constructed resulting in the first 
 programs for terminology extraction
@@ -72,7 +94,7 @@ unithood
 2
 ; TE systems may be designed based on only one of these two aspects. 
 Some practical experiments following each scheme for ranking a set terms 
-extracted from Japanese texts are presented in (Nakagawa &amp; Mori, 1998). They 
+extracted from Japanese texts are presented in (Nakagawa & Mori, 1998). They 
 show that results in precision and recall are very close but the set of terms 
 extracted are a somewhat different. This is still a research issue. 
 Alongside term detection we find the task of automatic document indexing (i.e. 
@@ -84,7 +106,7 @@ rooted on IR as well as on the analysis of a specific IR system with no
 application whatsoever to TE. 
                                                            
 2
-(Kageura &amp; Umino, 1996) refer to 
+(Kageura & Umino, 1996) refer to 
 unithood
 as the degree of stability of syntagmatic combinations 
 (collocations) and 
@@ -208,8 +230,11 @@ various systems of terminology extraction together with a short evaluation in
 which weak and strong points have been outlined. Secondly, the terminology 
 extraction systems have been classified according to some parameters.  
 AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  5 
-</introduction>
-<corps>2. 
+
+
+-----------------Corps-----------------
+
+2. 
 Description of some terminology extraction systems 
 In the following sections we offer a critical description of number of 
 semiautomatic terminology extraction systems. In all cases, the following 
@@ -276,7 +301,7 @@ The second module consists in a gradual acquisition process of new terms from
 existing ones. Further, links between detected terms are automatically generated 
                                                            
 4
-Remarkable examples of the use of these techniques are the works of Church &amp; Hanks (1989) on 
+Remarkable examples of the use of these techniques are the works of Church & Hanks (1989) on 
 word association and Smadja (1991) on collocation extraction from large corpora. 
 6 Automatic Term Detection: a Review of Current Systems 
 to build a semantic network. This module is based on word co-occurrence that 
@@ -706,17 +731,17 @@ N
 2
 N
 3 
-&lt;N
+<N
 1
-lexicalization&gt;= ‘N
+lexicalization>= ‘N
 2
 ’ 
-&lt;N
+<N
 2
-lemma&gt;=serum 
-&lt;N
+lemma>=serum 
+<N
 3
-lemma&gt;=albumin.  
+lemma>=albumin.  
 The value indicated by the feature “lexicalization” will be use just before partial 
 parsing to selectively activate the target rules. Thus the above rule is linked to the 
 word 
@@ -784,15 +809,15 @@ albumin
 function of constricted equations of the original rule. Further, they are the 
 anchoring point for the application of the metarule. A metarule can be associated 
 with specific restrictions, as for instance: (
-&lt;C
+<C
 4
-lemma&gt;
+lemma>
 ≠
 but
 ) or (
-&lt;X
+<X
 5
-cat&gt;
+cat>
 ≠
 Dd
 ). 
@@ -830,9 +855,9 @@ N
 3
 ) and 
 12 Automatic Term Detection: a Review of Current Systems 
-a number of restriction equations (e.g. &lt;N
+a number of restriction equations (e.g. <N
 2
-lemma&gt;=
+lemma>=
 serum
 ). First, the system 
 filters the rules that are to be applied according to the given text and then an 
@@ -869,7 +894,7 @@ likely that in forecoming cycles more non-valid terms are added. Jacquemin
 some way, corrects itself since “normally” non-correct candidates do not give 
 way to new potential candidate terms. 
 Actually this technique should not be isolately applied. Rather, it should be 
-coordinated with other strategies as in (Jacquin &amp; Liscouet 1996) and (Daille 
+coordinated with other strategies as in (Jacquin & Liscouet 1996) and (Daille 
 1998).
 
 AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  
@@ -1120,7 +1145,7 @@ indexation, hypertextual consulting of technical documentation, knowledge
 acquisition and construction of terminological databases. 
 LEXTER is also used as a terminology extractor in the terminological 
 knowledge base designed by the Terminologie et Intelligence Artificielle 
-(Terminology &amp; Artificial Intelligence) terminology group. SYCLADE (Habert, 
+(Terminology & Artificial Intelligence) terminology group. SYCLADE (Habert, 
 1996), a tool for word classification also makes use of LEXTER.  Evaluation 
 LEXTER was born in an industrial environment and from the very beginning it 
 sought a robust, accurate and domain-independent tools. These objectives were 
@@ -1195,7 +1220,7 @@ Frantzi and Ananiadou (1995)   Main goal:
 Term extraction 
 Neural is a system for TE of a hybrid nature, that is it uses both linguistic 
 (morphosyntactic patterns and a list of suffixes specific to the domain) and 
-statistically knowledge (frequency and mutual information). Frantzi &amp; 
+statistically knowledge (frequency and mutual information). Frantzi & 
 Ananiadou (1995) pays special attention to two different problems: detection of 
 nested terms and detection of low frequency terms using statistical methods. 
 The test bench is a corpus of 55,000 words in the domain of medicine 
@@ -1214,17 +1239,17 @@ made with another set of 300 words. It obtained a success rate of 70 %.
 The author and other scholars from the Manchester Metropolitan University have 
 been active since 1995 developing specific statistical figures for TE. In this way 
 it is necessary to mention those tasks related to the adding of context information 
-(Frantzi, 1997, Maynard &amp; Ananiadou, 1999). Usually the context is discarded 
+(Frantzi, 1997, Maynard & Ananiadou, 1999). Usually the context is discarded 
 or, alternatively, considered as a bag of words although its relevance is signalled 
 by many scholars. Here the basic assumption is that terms tend to appear 
 grouped in real text, so the termhood figure of a candidate would increase if 
 there are other terms (or candidates highly ranked) in the context. 
-Both Frantzi, 1997 and Maynard &amp; Ananiadou, 1999 propose a similarity figure 
+Both Frantzi, 1997 and Maynard & Ananiadou, 1999 propose a similarity figure 
 based on the distance between the candidate and the context words (nouns, 
 adjectives and verbs). This figure is calculated by Frantzi (1997) using statistical 
-and syntactic information while Maynard &amp; Ananiadou (1999) include also 
+and syntactic information while Maynard & Ananiadou (1999) include also 
 semantic information from a specialised thesaurus (UMLS semantic Network).  
-In Maynard &amp; Ananiadou (1999) this similarity figure may also be used to take 
+In Maynard & Ananiadou (1999) this similarity figure may also be used to take 
 into account some kind of semantic disambiguation for the sense that gets a 
 better value. A context factor (CF) is added to the figure already used to rank the 
 candidates (Cvalue) and thus reordering the set of candidates as follows: 
@@ -1298,39 +1323,39 @@ idiomatic expressions, compound forms, typographical signs, etc. Then it is
 morphologically analysed and a result like this is obtained
 9
 : 
-(“&lt;*the&gt;”  
-(“the” DET CENTRAL ART SG/PL (@&gt;N))) 
-(“&lt;inlet&gt;”  
+(“<*the>”  
+(“the” DET CENTRAL ART SG/PL (@>N))) 
+(“<inlet>”  
 (“inlet” N NOM SG)) 
-(“&lt;and&gt;”  
+(“<and>”  
 (“and” CC (@CC))) 
-(“&lt;exhaust&gt;” 
-(“exhaust” &lt;SVO&gt; V SUBJUNCTIVE VFIN (@V)) 
+(“<exhaust>” 
+(“exhaust” <SVO> V SUBJUNCTIVE VFIN (@V)) 
  
  
  
-(“exhaust” &lt;SVO&gt; V IMP VFIN (@V)) 
+(“exhaust” <SVO> V IMP VFIN (@V)) 
  
  
  
-(“exhaust” &lt;SVO&gt; V INF) 
+(“exhaust” <SVO> V INF) 
  
  
  
-(“exhaust” &lt;SVO&gt; V PRES -SG3 VFIN (@V)) 
+(“exhaust” <SVO> V PRES -SG3 VFIN (@V)) 
  
  
  
 (“exhaust” N NOM SG)) 
-(“&lt;manifold&gt;” (“manifold” N NOM PL)) 
+(“<manifold>” (“manifold” N NOM PL)) 
 At this moment disambiguation takes place. For example in the sentence: ”
 The 
 inlet and exhaust manifolds are mounted on opposite sides of the cylinder head
 “ 
 two analyses are obtained: 
-(1) on/@AH opposite/@N sides/@NH of/@N&lt; the/@&gt;N cylinder/@NH
+(1) on/@AH opposite/@N sides/@NH of/@N< the/@>N cylinder/@NH
 head/@V
-(2) on/@AH opposite/@N sides/@NH of/@N&lt; the/@&gt;N cylinder/@&gt;N
+(2) on/@AH opposite/@N sides/@NH of/@N< the/@>N cylinder/@>N
 head/@NH
 
 What distinguishes these two analyses is the consideration of whether the final 
@@ -1369,9 +1394,9 @@ of them). Also it should be stressed that NODALIDA has not been tested using
 the NPtool enhanced version in an actual situation of terminology problems. 
                                                            
 9
-The meaning of the syntactic function tags are: @&gt;N = pre-modifier; @&lt;N = post-modifier; @CC 
+The meaning of the syntactic function tags are: @>N = pre-modifier; @<N = post-modifier; @CC 
 and @CS= coordination and subordination conjunction; @V = Verb; @NH = nominal head. Finally, 
-“&gt;” and “&lt;” indicate the direction of the phrasal head. 
+“>” and “<” indicate the direction of the phrasal head. 
 AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  
 21 
  
@@ -1392,7 +1417,7 @@ TERMIGHT  Reference publication:
 Dagan and Church (1994)  Main goal:
 Translation aid 
 Termight is currently used by 
-A&amp;T Business Translation Systems
+A&T Business Translation Systems
 . It was created 
 to be a tool for automating some stages of the professional translator 
 terminological research.  
@@ -1882,9 +1907,15 @@ English
 77 
 86 
 96 
- </corps>
-<discussion>N/A</discussion>
-<conclusion>We can reach some conclusions after having analysed and evaluated some of the 
+ 
+
+-----------------Discussion-----------------
+
+N/A
+
+-----------------Conclusion-----------------
+
+We can reach some conclusions after having analysed and evaluated some of the 
 main systems of TE designed in the last decade: 
                                                            11The system has been intensively tested with regard to the indexing frequency, but not in relation to 
 the quality of the extracted terms. 28 Automatic Term Detection: a Review of Current Systems a) The efficiency of the extraction presents a high degree of variation from one 
@@ -1951,13 +1982,16 @@ extraction becomes as automatic and precise as possible. In the future, we
 believe that any current terminology extractor, apart from accounting for the 
 morphological, syntactic and structural aspects of terminological units, has to 
 necessarily include semantic aspects if the efficiency of the system is to be 
-improved with regard to the existing ones. </conclusion>
-<biblio>Arppe, A. 1995. “Term extraction from unrestricted text”. Lingsoft Web Site: 
+improved with regard to the existing ones. 
+
+-----------------Bibliographie-----------------
+
+Arppe, A. 1995. “Term extraction from unrestricted text”. Lingsoft Web Site: 
 http://www.lingsoft.comAhmad, K., Davies, A., Fulford, H. and Rogers, M. 1992. “What is a term? The 
 semiautomatic extraction of terms from text”. Translation Studies – an 
 interdiscipline. Amsterdam: John Benjamins. 
-Bourigault, D. 1994. LEXTER, un Logiciel d&apos;EXtraction de TERminologie. 
-Application à l&apos;acquisition des connaissances à partir de textes. PhD Thesis. 
+Bourigault, D. 1994. LEXTER, un Logiciel d'EXtraction de TERminologie. 
+Application à l'acquisition des connaissances à partir de textes. PhD Thesis. 
 Paris: École des Hautes Études en Sciences Sociales. 
 Bourigault, D., Gonzalez-Mullier, I. and Gros, C. 1996. “LEXTER, a Natural 
 Language Processing Tool for Terminology Extraction”. Proceedings of the 
@@ -1974,12 +2008,12 @@ Condamines, A. 1995. “Terminology: new needs, new perspectives”. Terminology
 Dagan, I. and Church, K. 1994. “Termight: Identifying and translating technical 
 terminology”. Proceedings of the Fourth Conference on Applied Natural 
 Language Processing,34-40. 
-Daille, B. 1994. Approche mixte pour l&apos;extraction de terminologie: statistique 
+Daille, B. 1994. Approche mixte pour l'extraction de terminologie: statistique 
 lexicale et filtres linguistiques. PhD dissertation. Paris: Université Paris VII.  
 Daille, B. and Jacquemin, C 1998. “Lexical database and information access: a 
 fruitfull association?”. First International Conference on LREC.Granada.  AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS  31 
  
-David, S. and Plante, P. 1991. “Le progiciel TERMINO: de la nécessité d&apos;une 
+David, S. and Plante, P. 1991. “Le progiciel TERMINO: de la nécessité d'une 
 analyse morphosyntaxique pour le dépouillement terminologique des textes”. Proceedings of the Montreal Colloquium Les industries de la langue: 
 perspectives des années 1990,1: 71-88. 
 Enguehard, C. and Pantera, L. 1994. “Automatic Natural Acquisition of a 
@@ -2002,7 +2036,7 @@ medium-size corpora”. Proceedings of Coling’96: 490-495.
 Heid, U., Jauss, S., Krüger, K. and Hohmann, A. 1996. “Term extraction with 
 standard tools for corpus exploration. Experience from German”. In: TKE ‘96: Terminology and Knowledge Engineering,, 139-150. Berlin: Indeks Verlag.Jacquemin, C. 1994. “Recycling Terms into a Partial Parser”. Proceedings ofANLP’94, 113-118. 
 Jacquemin, C. 1999. “Syntagmatic and paradigmatic representations of term 
-variation”. Proceedings ofACL&apos;99, University of Maryland, 341-348. 
+variation”. Proceedings ofACL'99, University of Maryland, 341-348. 
 Jacquin, C. and Liscouet, M. 1996. “Terminology extraction from texts corpora: 
 application to document keeping via Internet”. In: TKE ‘96: Terminology and 
 Knowledge Engineering, 74-83.Berlin: Indeks Verlag. 
@@ -2037,5 +2071,5 @@ generation. Columbia: Columbia University. Department of Computer
 Science. [Unpublished doctoral dissertation]Voutilainen, A. 1993. “NPtool, a detector of English noun phrases”. Proceedings 
 of theWorkshop on Very Large Corpora.  
 Zhai, C., Tong, X., Milic-Frayling, N. and Evans, D.A. 1996. “Evaluation of 
-syntactic phrase indexing CLARIT. NLP track report”. Proceedings of the TREC-5.TREC Web Site:http://trec.nist.gov/pubs/trec5/t5_proceedings.html </biblio>
-</article>
+syntactic phrase indexing CLARIT. NLP track report”. Proceedings of the TREC-5.TREC Web Site:http://trec.nist.gov/pubs/trec5/t5_proceedings.html 
+

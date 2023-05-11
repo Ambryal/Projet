@@ -1,19 +1,38 @@
-<article><preamble>Guy.pdf</preamble>
-<titre>Skill2vec: Machine Learning Approach for Determining the Relevant Skills from Job Description</titre>
-<auteurs><auteur><name>Le Van-Duyet</name>
-<mail>me@duyet.net</mail>
-<affiliation></affiliation>
-</auteur>
-<auteur><name>Vo Minh Quan</name>
-<mail>95.vominhquan@gmail.com</mail>
-<affiliation></affiliation>
-</auteur>
-<auteur><name>Dang Quang An</name>
-<mail>an.dang1390@gmail.com</mail>
-<affiliation></affiliation>
-</auteur>
-</auteurs>
-<abstract>— Unsupervise learned word embeddings have seen
+-----------------Nom-----------------
+
+Guy.pdf
+
+-----------------Titre-----------------
+
+Skill2vec: Machine Learning Approach for Determining the Relevant Skills from Job Description
+
+-----------------Noms des auteurs-----------------
+
+ • Le Van-Duyet
+
+ • Vo Minh Quan
+
+ • Dang Quang An
+
+-----------------Mails des auteurs-----------------
+
+ • me@duyet.net
+
+ • 95.vominhquan@gmail.com
+
+ • an.dang1390@gmail.com
+
+-----------------Affiliations des auteurs-----------------
+
+ • 
+
+ • 
+
+ • 
+
+-----------------Abstract-----------------
+
+— Unsupervise learned word embeddings have seen
 tremendous success in numerous Natural Language Processing
 (NLP) tasks in recent years. The main contribution of this
 paper is to develop a technique called Skill2vec, which applies
@@ -25,8 +44,11 @@ skills to new vector space, which has the characteristics of
 calculation and presents skills relationships. We conducted an
 experiment evaluation manually by a recruitment company’s
 domain experts to demonstrate the effectiveness of our ap-
-proach.</abstract>
-<introduction>Recruiters in information technology domain have met the
+proach.
+
+-----------------Introduction-----------------
+
+Recruiters in information technology domain have met the
 problem ﬁnding appropriate candidates by their skills. In the
 resume, the candidate may describe one skill in different
 ways or skills could be replaced by others. The recruiters
@@ -38,8 +60,11 @@ building a dictionary manually, ontology approach, natural
 language processing methods, etc. In this study, we apply a
 word embedding method Word2Vec, using skills from online
 job post descriptions. We treat skills as terms, job posts as
-documents and ﬁnd the relatedness of these skills.</introduction>
-<corps>II. RELATED WORK
+documents and ﬁnd the relatedness of these skills.
+
+-----------------Corps-----------------
+
+II. RELATED WORK
 To ﬁnd relatedness of skills, Simon Hughes [4] from Dice
 proposed an approach using Latent Semantic Analysis with
 an assumption that skills are related to skills which occur
@@ -229,9 +254,15 @@ Pig
 HDFS
 Hadoop
 Spark
-Impala</corps>
-<discussion>N/A</discussion>
-<conclusion>In this paper, we developed a relationship network between
+Impala
+
+-----------------Discussion-----------------
+
+N/A
+
+-----------------Conclusion-----------------
+
+In this paper, we developed a relationship network between
 skills in recruitment domain by using the neural net inspired
 by Word2vec model. We observed that it is possible to
 train high quality word vectors using very simple model
@@ -246,15 +277,18 @@ candidates and job post. In the other hand, candidates can
 ability, so they can ﬁnd the suitable trainings.
 A direction we can follow in the future: adding domain
 in training model, for example: BetweenPython,Java, andR, inData Sciencedomain,PythonandRare more relevant
-thanJava, however inBack Enddomain,PythonandJavaare more relevant thanR.R</conclusion>
-<biblio>[1]
+thanJava, however inBack Enddomain,PythonandJavaare more relevant thanR.R
+
+-----------------Bibliographie-----------------
+
+[1]
 Michael W Berry and Ricardo D Fierro. “Low-rank
 orthogonal decompositions for information retrieval ap-
 plications”. In:Numerical linear algebra with applica-
 tions3.4 (1996), pp. 301–327.
 [2]
 Vinay Bhat et al. “Finding aliases on the web using
-latent semantic analysis”. In:Data &amp; Knowledge Engi-
+latent semantic analysis”. In:Data & Knowledge Engi-
 neering49.2 (2004), pp. 129–143.
 [3]
 Chien-Kang Huang, Lee-Feng Chien, and Yen-Jen
@@ -288,5 +322,5 @@ Christian Posse.Cloud Jobs API: machine learning
 goes to work on job search and discovery. 2016.URL:https: // cloud. google. com/ blog/big -
 data/2016/11/cloud-jobs-api-machine-
 learning-goes-to-work-on-job-search-
-and-discovery(visited on 03/03/2018).</biblio>
-</article>
+and-discovery(visited on 03/03/2018).
+

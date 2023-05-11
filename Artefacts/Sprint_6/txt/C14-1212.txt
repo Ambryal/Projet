@@ -1,33 +1,59 @@
-<article><preamble>C14-1212.pdf</preamble>
-<titre>Learning to Distinguish Hypernyms and Co-Hyponyms</titre>
-<auteurs><auteur><name>Julie Weeds</name>
-<mail>juliewe@sussex.ac.uk</mail>
-<affiliation> Department of Informatics,, University of Sussex, Brighton, UK</affiliation>
-</auteur>
-<auteur><name>Daoud Clarke</name>
-<mail>D.Clarke@sussex.ac.uk</mail>
-<affiliation> Department of Informatics,, University of Sussex, Brighton, UK</affiliation>
-</auteur>
-<auteur><name>Jeremy Refﬁn</name>
-<mail>J.P.Reffin@sussex.ac.uk</mail>
-<affiliation> Department of Informatics,, University of Sussex, Brighton, UK</affiliation>
-</auteur>
-<auteur><name>David Weir</name>
-<mail>davidw@sussex.ac.uk</mail>
-<affiliation> Department of Informatics,, University of Sussex, Brighton, UK</affiliation>
-</auteur>
-<auteur><name>Bill Keller</name>
-<mail>billk@sussex.ac.uk</mail>
-<affiliation> Department of Informatics,, University of Sussex, Brighton, UK</affiliation>
-</auteur>
-</auteurs>
-<abstract>This work is concerned with distinguishing different semantic relations which exist between
+-----------------Nom-----------------
+
+C14-1212.pdf
+
+-----------------Titre-----------------
+
+Learning to Distinguish Hypernyms and Co-Hyponyms
+
+-----------------Noms des auteurs-----------------
+
+ • Julie Weeds
+
+ • Daoud Clarke
+
+ • Jeremy Refﬁn
+
+ • David Weir
+
+ • Bill Keller
+
+-----------------Mails des auteurs-----------------
+
+ • juliewe@sussex.ac.uk
+
+ • D.Clarke@sussex.ac.uk
+
+ • J.P.Reffin@sussex.ac.uk
+
+ • davidw@sussex.ac.uk
+
+ • billk@sussex.ac.uk
+
+-----------------Affiliations des auteurs-----------------
+
+ •  Department of Informatics,, University of Sussex, Brighton, UK
+
+ •  Department of Informatics,, University of Sussex, Brighton, UK
+
+ •  Department of Informatics,, University of Sussex, Brighton, UK
+
+ •  Department of Informatics,, University of Sussex, Brighton, UK
+
+ •  Department of Informatics,, University of Sussex, Brighton, UK
+
+-----------------Abstract-----------------
+
+This work is concerned with distinguishing different semantic relations which exist between
 distributionally similar words. We compare a novel approach based on training a linear Support
 Vector Machine on pairs of feature vectors with state-of-the-art methods based on distributional
 similarity. We show that the new supervised approach does better even when there is minimal
 information about the target words in the training data, giving a 15% reduction in error rate over
-unsupervised approaches.</abstract>
-<introduction>Over recent years there has been much interest in the ﬁeld of distributional semantics, drawing on the
+unsupervised approaches.
+
+-----------------Introduction-----------------
+
+Over recent years there has been much interest in the ﬁeld of distributional semantics, drawing on the
 distributional hypothesis: words that occur in similar contexts tend to have similar meanings (Harris,
 1954). There is a large body of work on the use of different similarity measures (Lee, 1999; Weeds and
 Weir, 2003; Curran, 2004) and many researchers have built thesauri (i.e. lists of “nearest neighbours”)
@@ -152,8 +178,11 @@ for further research in this area. Third, we show that when learning how to dete
 relationship between a pair of similar words by means of the word’s distributional vectors, quite different
 vector operations are useful when identifying different ontological relationships. In particular, using the
 difference between the vectors for pairs of words is appropriate for the entailment task, whereas adding
-the vectors works well for the co-hyponym task.</introduction>
-<corps>2
+the vectors works well for the co-hyponym task.
+
+-----------------Corps-----------------
+
+2
 Related Work
 Lee (1999) noted that the substitutability of one word for another was asymmetric and proposed the
 alpha-skew divergence measure, an asymmetric version of the Kullback-Leibler divergence measure. She
@@ -261,7 +290,7 @@ I
 (
 n, f
 )
-&gt;
+>
 0
 .
 By comparing the precision and recall of one word’s retrieval of another word’s contexts, they were
@@ -629,14 +658,14 @@ v
 A
 .
 1
-&lt; k &lt;
+< k <
 50
 widthdiff
 width
 (
 B
 )
-&gt;
+>
 width
 (
 A
@@ -658,7 +687,7 @@ width
 (
 B
 )
-&gt; p
+> p
 →
 rel
 (
@@ -669,7 +698,7 @@ simcos
 (
 A, B
 )
-&gt; p
+> p
 →
 rel
 (
@@ -686,7 +715,7 @@ simlin
 (
 A, B
 )
-&gt; p
+> p
 →
 rel
 (
@@ -699,7 +728,7 @@ ww
 (
 A, B
 )
-&gt; R
+> R
 ww
 (
 A, B
@@ -716,7 +745,7 @@ cl
 (
 A, B
 )
-&gt; R
+> R
 cl
 (
 A, B
@@ -732,7 +761,7 @@ invCL
 (
 A, B
 )
-&gt; p
+> p
 →
 rel
 (
@@ -744,7 +773,7 @@ balAPinc
 (
 A, B
 )
-&gt; p
+> p
 →
 rel
 (
@@ -1062,7 +1091,7 @@ WN
 -
 -
 Table 3: Accuracy Figures for the data sets generated from BLESS and WordNet (standard errors
-&lt;
+<
 0.02). For cohyponyms, results for measures designed to detect hyponymy have been omitted. We also
 omit results of clarkediff as these were consistently the same or less than CRdiff.
 On the corresponding co-hyponym task, using the
@@ -1141,9 +1170,15 @@ WN
 dataset. Our task is slightly different to that of (Kotlerman et al., 2010), since we are deter-
 mining the existence (or not) of hyponymy, rather than the direction of entailment for pairs where it is
 known that a relationship exists. It could be that the measure is particularly suited to the latter task.
-2256</corps>
-<discussion>N/A</discussion>
-<conclusion>We have shown that it is possible to predict to a large extent whether or not there is a speciﬁc semantic
+2256
+
+-----------------Discussion-----------------
+
+N/A
+
+-----------------Conclusion-----------------
+
+We have shown that it is possible to predict to a large extent whether or not there is a speciﬁc semantic
 relation between two words given their distributional vectors, using a supervised approach based on
 linear SVMs. The increase in accuracy over unsupervised methods is signiﬁcant at the 0.01% level and
 corresponds to a substantial absolute reduction in error rate (over 15%).
@@ -1168,8 +1203,11 @@ bours found for a given word with speciﬁc semantic relations. We also plan to 
 bag-of-words (windowed) vectors instead of grammatical relations for this task.
 Finally, we believe that the data sets constructed from WordNet, which we publish alongside this
 paper, can be used as a useful benchmark in evaluating future advances in this area, both for supervised
-and unsupervised methods.</conclusion>
-<biblio>Marco Baroni and Alessandro Lenci. 2011. How we BLESSed distributional semantic evaluation. InProceedings
+and unsupervised methods.
+
+-----------------Bibliographie-----------------
+
+Marco Baroni and Alessandro Lenci. 2011. How we BLESSed distributional semantic evaluation. InProceedings
 of the GEMS 2011 workshop on Geometric Models of Natural Language Semantics, EMNLP 2011.
 Marco Baroni and Roberto Zamparelli. 2010. Nouns are vectors, adjectives are matrices: Representing adjective-
 noun constructions in semantic space. InProceedings of the 2010 Conference on Empirical Methods in Natural
@@ -1275,5 +1313,5 @@ the 2012 Joint Conference on Empirical Methods in Natural Language Processing an
 Language Learning, pages 1212–1222, Jeju Island, Korea, July. Association for Computational Linguistics.
 Chen Zhang and Joyce Chai. 2010. Towards conversation entailment: An empirical investigation. InProceedings
 of the 2010 Conference on Empirical Methods in Natural Language Processing, pages 756–766, Cambridge,
-MA, October. Association for Computational Linguistics.2259</biblio>
-</article>
+MA, October. Association for Computational Linguistics.2259
+
